@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wszystko o Pentesterach 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/blood.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+       .reveal h1,.reveal h2,.reveal h3 { text-transform: none; }
+       .reveal.slides section { text-align: left; }
+       .reveal.center { text-align: center!important; }
+       .icon-box { display: inline-block; width: 60px; text-align: center; color: #a31515; margin-right: 15px; }
+       .salary-table { font-size: 0.8em; width: 100%; }
+       .salary-table th { background: #a31515; color: white; }
+       .citation { font-size: 0.5em; color: #888; vertical-align: super; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section class="center" data-background-gradient="linear-gradient(to bottom, #1a1a1a, #000)">
+                <h1>Świat Pentestera 2026</h1>
+                <h3>Rola, narzędzia i ścieżka kariery</h3>
+                <p><small>Interaktywne kompendium ofensywnego bezpieczeństwa</small></p>
+                <div style="margin-top: 50px;">
+                    <i class="fas fa-user-secret fa-3x"></i>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-mask icon-box"></i>Kim jest Pentester?</h2>
+                <ul>
+                    <li class="fragment"><strong>Biały Kapelusz (White Hat):</strong> Etyczny haker działający na zlecenie i w granicach prawa <span class="citation">[1, 2]</span>.</li>
+                    <li class="fragment"><strong>Cel:</strong> Znalezienie luk, zanim zrobią to przestępcy <span class="citation">[4, 6]</span>.</li>
+                    <li class="fragment"><strong>Doradztwo:</strong> Nie tylko "łamie", ale dostarcza rekomendacje naprawcze <span class="citation">[4, 5]</span>.</li>
+                    <li class="fragment"><strong>Mentalność:</strong> Kreatywne myślenie "poza pudełkiem" i empatia adwersarza <span class="citation">[1, 2]</span>.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3><i class="fas fa-project-diagram icon-box"></i>7 Etapów Pentestu</h3>
+                <ol style="font-size: 0.85em;">
+                    <li class="fragment"><strong>Planowanie & RoE:</strong> Ustalenie zakresu i zasad <span class="citation"></span>.</li>
+                    <li class="fragment"><strong>Rekonesans (OSINT):</strong> Zbieranie danych o celu <span class="citation"></span>.</li>
+                    <li class="fragment"><strong>Skanowanie & Enumeracja:</strong> Wykrywanie usług i wersji <span class="citation">[7, 10]</span>.</li>
+                    <li class="fragment"><strong>Analiza podatności:</strong> Szukanie luk (CVE, błędy logiczne) <span class="citation">[6, 26]</span>.</li>
+                    <li class="fragment"><strong>Eksploatacja:</strong> Praktyczne przełamanie zabezpieczeń <span class="citation"></span>.</li>
+                    <li class="fragment"><strong>Post-eksploatacja:</strong> Eskalacja uprawnień i lateral movement <span class="citation"></span>.</li>
+                    <li class="fragment"><strong>Raportowanie & Cleanup:</strong> Finalny dokument i zatarcie śladów <span class="citation"></span>.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-boxes icon-box"></i>Modele Testowania</h2>
+                <div style="display: flex; gap: 20px;">
+                    <div class="fragment" style="background: #222; padding: 15px; border-radius: 10px; flex: 1;">
+                        <h4 class="center">Black Box</h4>
+                        <p style="font-size: 0.7em;">Zero wiedzy. Symulacja ataku "z ulicy" <span class="citation">[11, 8]</span>.</p>
+                    </div>
+                    <div class="fragment" style="background: #222; padding: 15px; border-radius: 10px; flex: 1;">
+                        <h4 class="center">Grey Box</h4>
+                        <p style="font-size: 0.7em;">Częściowa wiedza. Perspektywa pracownika lub kontrahenta <span class="citation">[11, 5]</span>.</p>
+                    </div>
+                    <div class="fragment" style="background: #222; padding: 15px; border-radius: 10px; flex: 1;">
+                        <h4 class="center">White Box</h4>
+                        <p style="font-size: 0.7em;">Pełna wiedza. Dostęp do kodu i architektury <span class="citation">[4, 11]</span>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-tools icon-box"></i>Warsztat Specjalisty</h2>
+                <div style="display: flex; align-items: center; justify-content: space-around;">
+                    <ul style="font-size: 0.8em;">
+                        <li class="fragment"><strong>System:</strong> Kali Linux <span class="citation">[10]</span></li>
+                        <li class="fragment"><strong>Sieć:</strong> Nmap, Wireshark <span class="citation">[10]</span></li>
+                        <li class="fragment"><strong>WWW:</strong> Burp Suite, SQLmap <span class="citation">[5, 14]</span></li>
+                        <li class="fragment"><strong>Exploity:</strong> Metasploit Framework <span class="citation">[13]</span></li>
+                        <li class="fragment"><strong>AD:</strong> BloodHound, Responder <span class="citation">[8, 18]</span></li>
+                    </ul>
+                    <div class="fragment center">
+                        <i class="fab fa-linux fa-5x"></i>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-microchip icon-box"></i>Nie tylko serwery...</h2>
+                <ul style="font-size: 0.85em;">
+                    <li class="fragment"><strong>Cloud (AWS/Azure/GCP):</strong> Błędy w IAM i bucketach <span class="citation">[27]</span>.</li>
+                    <li class="fragment"><strong>Mobile:</strong> Analiza APK/IPA wg OWASP MASVS <span class="citation">[28, 29]</span>.</li>
+                    <li class="fragment"><strong>Social Engineering:</strong> Phishing, vishing, tailgating <span class="citation"></span>.</li>
+                    <li class="fragment"><strong>Physical:</strong> Lockpicking, klonowanie kart zbliżeniowych <span class="citation"></span>.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-graduation-cap icon-box"></i>Nauka i Certyfikaty</h2>
+                <div style="display: flex; gap: 30px;">
+                    <div class="fragment" style="flex: 1;">
+                        <h4>Platformy</h4>
+                        <p style="font-size: 0.7em;"><strong>TryHackMe:</strong> Dla początkujących (Guided) <span class="citation">[15, 17]</span>.<br><br><strong>Hack The Box:</strong> Dla zaawansowanych (Pro Labs) <span class="citation">[16, 17]</span>.</p>
+                    </div>
+                    <div class="fragment" style="flex: 1;">
+                        <h4>Certyfikaty</h4>
+                        <ul style="font-size: 0.7em;">
+                            <li><strong>OSCP:</strong> Złoty standard (24h hackowania) <span class="citation">[18, 3]</span>.</li>
+                            <li><strong>PNPT:</strong> Realistyczny proces TCM <span class="citation">[18, 19]</span>.</li>
+                            <li><strong>CEH:</strong> HR-owy must-have <span class="citation">[18, 3]</span>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-money-bill-wave icon-box"></i>Zarobki w Polsce (2026)</h2>
+                <table class="salary-table fragment">
+                    <thead>
+                        <tr>
+                            <th>Poziom</th>
+                            <th>UoP (brutto)</th>
+                            <th>B2B (netto + VAT)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Junior</td>
+                            <td>8 000 - 14 000 PLN</td>
+                            <td>9 500 - 13 000 PLN</td>
+                        </tr>
+                        <tr>
+                            <td>Mid</td>
+                            <td>14 000 - 22 000 PLN</td>
+                            <td>15 000 - 25 000 PLN</td>
+                        </tr>
+                        <tr>
+                            <td>Senior</td>
+                            <td>22 000 - 28 000 PLN</td>
+                            <td>23 500 - 30 200+ PLN</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="font-size: 0.5em;" class="fragment center">Dane aktualne na luty 2026 r. <span class="citation">[2]</span></p>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-gavel icon-box"></i>Prawo i Bezpieczeństwo</h2>
+                <div class="fragment" style="border-left: 5px solid #a31515; padding-left: 20px;">
+                    <p><strong>Art. 267 KK:</strong> Zakaz nieuprawnionego dostępu do systemu <span class="citation">[20, 21]</span>.</p>
+                    <p><strong>Art. 269c KK:</strong> Kontratyp dla White Hatów informujących o błędach <span class="citation">[24, 25]</span>.</p>
+                </div>
+                <p class="fragment" style="margin-top: 30px; color: #ffbc00;"><strong>Pamiętaj:</strong> Zawsze działaj na podstawie pisemnej zgody (Rules of Engagement)! <span class="citation"></span></p>
+            </section>
+
+            <section class="center">
+                <h2>Gotowy na włamanie?</h2>
+                <p>Etyczne, oczywiście.</p>
+                <div style="margin-top: 50px;">
+                    <i class="fas fa-terminal fa-4x" style="color: #00ff00;"></i>
+                </div>
+                <p><small>Naciśnij ESC, aby zobaczyć podgląd slajdów</small></p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            transition: 'convex', // none/fade/slide/convex/concave/zoom
+            backgroundTransition: 'fade'
+        });
+    </script>
+</body>
+</html>
