@@ -3,165 +3,217 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Wszystko o Pentesterach 2026</title>
+    <title>Pentesting w Praktyce - 2026</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/blood.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;800&display=swap" rel="stylesheet">
     <style>
-       .reveal h1,.reveal h2,.reveal h3 { text-transform: none; }
-       .reveal.slides section { text-align: left; }
-       .reveal.center { text-align: center!important; }
-       .icon-box { display: inline-block; width: 60px; text-align: center; color: #a31515; margin-right: 15px; }
-       .salary-table { font-size: 0.8em; width: 100%; }
-       .salary-table th { background: #a31515; color: white; }
-       .citation { font-size: 0.5em; color: #888; vertical-align: super; }
+        :root {
+            --r-main-font: 'Inter', sans-serif;
+            --r-heading-font: 'Inter', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 800;
+            --accent-color: #00ff41; /* Klasyczny hackerski zielony */
+        }
+       .reveal.slides { text-align: left; }
+       .reveal h1,.reveal h2,.reveal h3 { color: var(--accent-color); text-shadow: 0 0 20px rgba(0, 255, 65, 0.4); }
+       .reveal p,.reveal li { font-size: 0.9em; line-height: 1.4; color: #e0e0e0; }
+       .highlight { color: var(--accent-color); font-weight: bold; }
+        
+       .icon-header { 
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 30px!important;
+        }
+       .icon-header i { 
+            margin-right: 25px; 
+            color: var(--accent-color);
+            filter: drop-shadow(0 0 10px var(--accent-color));
+        }
+
+       .terminal-box {
+            background: #121212;
+            padding: 20px;
+            border-left: 4px solid var(--accent-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7em!important;
+            margin-top: 20px;
+        }
+
+       .salary-tag {
+            background: #1a1a1a;
+            border: 1px solid var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+
+       .step-label {
+            background: var(--accent-color);
+            color: black;
+            padding: 2px 10px;
+            font-weight: bold;
+            border-radius: 3px;
+            margin-right: 10px;
+            font-size: 0.8em;
+        }
     </style>
 </head>
 <body>
     <div class="reveal">
         <div class="slides">
 
-            <section class="center" data-background-gradient="linear-gradient(to bottom, #1a1a1a, #000)">
-                <h1>Świat Pentestera 2026</h1>
-                <h3>Rola, narzędzia i ścieżka kariery</h3>
-                <p><small>Interaktywne kompendium ofensywnego bezpieczeństwa</small></p>
-                <div style="margin-top: 50px;">
-                    <i class="fas fa-user-secret fa-3x"></i>
+            <section data-background-color="#050505" class="center">
+                <h1 style="font-size: 2.5em;">Pentester:</h1>
+                <h2 style="color: #fff;">Między kodem a kofeiną</h2>
+                <div style="height: 2px; background: var(--accent-color); width: 100px; margin: 30px auto;"></div>
+                <p>Jak wygląda praca "legalnego włamywacza" w 2026 roku?</p>
+                <div style="margin-top: 40px; opacity: 0.6;">
+                    <i class="fas fa-terminal fa-2x"></i>
                 </div>
             </section>
 
-            <section>
-                <h2><i class="fas fa-mask icon-box"></i>Kim jest Pentester?</h2>
+            <section data-transition="convex">
+                <div class="icon-header">
+                    <i class="fas fa-user-ninja fa-2x"></i>
+                    <h2>Kim naprawdę jest Pentester?</h2>
+                </div>
+                <p>Zapomnij o gościu w bluzie z kapturem w ciemnej piwnicy. W praktyce to połączenie trzech ról:</p>
                 <ul>
-                    <li class="fragment"><strong>Biały Kapelusz (White Hat):</strong> Etyczny haker działający na zlecenie i w granicach prawa <span class="citation">[1, 2]</span>.</li>
-                    <li class="fragment"><strong>Cel:</strong> Znalezienie luk, zanim zrobią to przestępcy <span class="citation">[4, 6]</span>.</li>
-                    <li class="fragment"><strong>Doradztwo:</strong> Nie tylko "łamie", ale dostarcza rekomendacje naprawcze <span class="citation">[4, 5]</span>.</li>
-                    <li class="fragment"><strong>Mentalność:</strong> Kreatywne myślenie "poza pudełkiem" i empatia adwersarza <span class="citation">[1, 2]</span>.</li>
+                    <li class="fragment"><span class="highlight">Detektyw:</span> Szukasz śladów tam, gdzie inni widzą tylko nudny kod.</li>
+                    <li class="fragment"><span class="highlight">Inżynier:</span> Musisz rozumieć system lepiej niż ten, kto go zbudował.</li>
+                    <li class="fragment"><span class="highlight">Konsultant:</span> Twoim zadaniem nie jest tylko "zepsuć", ale pokazać biznesowi, jak to naprawić.</li>
                 </ul>
+                <div class="terminal-box fragment">
+                    root@kali:~# whoami<br>
+                    > etyczny_haker_doradca_biznesowy
+                </div>
+            </section>
+
+            <section data-transition="zoom">
+                <div class="icon-header">
+                    <i class="fas fa-list-check fa-2x"></i>
+                    <h2>Moja "playlista" ataku</h2>
+                </div>
+                <p style="font-size: 0.7em; margin-bottom: 20px;">To nie jest chaos. To precyzyjny proces:</p>
+                <div style="font-size: 0.75em;">
+                    <div class="fragment" style="margin-bottom: 10px;"><span class="step-label">01</span> <strong>Scoping:</strong> Gadanie z prawnikami i ustalanie, czego NIE wolno mi dotykać.</div>
+                    <div class="fragment" style="margin-bottom: 10px;"><span class="step-label">02</span> <strong>Recon:</strong> Przeszukiwanie internetu (OSINT). Czasami pracownicy sami wrzucają hasła na Slacka...</div>
+                    <div class="fragment" style="margin-bottom: 10px;"><span class="step-label">03</span> <strong>Skanowanie:</strong> Pukanie do drzwi (Nmap) i sprawdzanie, które są otwarte.</div>
+                    <div class="fragment" style="margin-bottom: 10px;"><span class="step-label">04</span> <strong>Eksploatacja:</strong> Ten moment, kiedy "wchodzisz do środka". Czysta adrenalina.</div>
+                    <div class="fragment" style="margin-bottom: 10px;"><span class="step-label">05</span> <strong>Post-Ex:</strong> Sprawdzanie, jak głęboko sięgnę. Czy mogę zostać adminem domeny?</div>
+                    <div class="fragment" style="margin-bottom: 10px;"><span class="step-label">06</span> <strong>Raport:</strong> Najnudniejsza, ale najważniejsza część. Pisanie o tym, co znalazłem.</div>
+                </div>
+            </section>
+
+            <section data-background-color="#111">
+                <div class="icon-header">
+                    <i class="fas fa-toolbox fa-2x"></i>
+                    <h2>Mój "scyzoryk" szwajcarski</h2>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 0.8em;">
+                    <div class="fragment" style="background: #1a1a1a; padding: 15px; border-radius: 8px;">
+                        <h4 style="margin: 0 0 10px 0;">Kali Linux</h4>
+                        <p style="margin: 0; font-size: 0.8em;">System operacyjny ze wszystkim, czego potrzebujesz na start.</p>
+                    </div>
+                    <div class="fragment" style="background: #1a1a1a; padding: 15px; border-radius: 8px;">
+                        <h4 style="margin: 0 0 10px 0;">Burp Suite</h4>
+                        <p style="margin: 0; font-size: 0.8em;">Bez tego nie dotykaj aplikacji webowych. Serce testów WWW.</p>
+                    </div>
+                    <div class="fragment" style="background: #1a1a1a; padding: 15px; border-radius: 8px;">
+                        <h4 style="margin: 0 0 10px 0;">Metasploit</h4>
+                        <p style="margin: 0; font-size: 0.8em;">Kombajn do odpalania gotowych "pocisków" (exploitów).</p>
+                    </div>
+                    <div class="fragment" style="background: #1a1a1a; padding: 15px; border-radius: 8px;">
+                        <h4 style="margin: 0 0 10px 0;">BloodHound</h4>
+                        <p style="margin: 0; font-size: 0.8em;">Rysuje mapę, jak przejąć całą firmę przez jedno słabe hasło.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section data-background-gradient="linear-gradient(to right, #000, #111)">
+                <div class="icon-header">
+                    <i class="fas fa-brain fa-2x"></i>
+                    <h2>Haker to stan umysłu</h2>
+                </div>
+                <p>Narzędzia to tylko 20% sukcesu. Reszta to:</p>
+                <ul>
+                    <li class="fragment"><strong>Cierpliwość:</strong> Siedzisz 5 godzin nad jednym błędem, aż w końcu "klika".</li>
+                    <li class="fragment"><strong>Myślenie nieszablonowe:</strong> "A co się stanie, jeśli wpiszę tu ujemną cenę produktu?"</li>
+                    <li class="fragment"><strong>Socjotechnika:</strong> Czasami łatwiej zadzwonić i poprosić o hasło, niż je łamać.</li>
+                </ul>
+                <p class="fragment" style="margin-top: 20px; color: #ffbc00; font-style: italic;">"Technologia zawodzi rzadziej niż ludzie."</p>
             </section>
 
             <section>
-                <h3><i class="fas fa-project-diagram icon-box"></i>7 Etapów Pentestu</h3>
-                <ol style="font-size: 0.85em;">
-                    <li class="fragment"><strong>Planowanie & RoE:</strong> Ustalenie zakresu i zasad <span class="citation"></span>.</li>
-                    <li class="fragment"><strong>Rekonesans (OSINT):</strong> Zbieranie danych o celu <span class="citation"></span>.</li>
-                    <li class="fragment"><strong>Skanowanie & Enumeracja:</strong> Wykrywanie usług i wersji <span class="citation">[7, 10]</span>.</li>
-                    <li class="fragment"><strong>Analiza podatności:</strong> Szukanie luk (CVE, błędy logiczne) <span class="citation">[6, 26]</span>.</li>
-                    <li class="fragment"><strong>Eksploatacja:</strong> Praktyczne przełamanie zabezpieczeń <span class="citation"></span>.</li>
-                    <li class="fragment"><strong>Post-eksploatacja:</strong> Eskalacja uprawnień i lateral movement <span class="citation"></span>.</li>
-                    <li class="fragment"><strong>Raportowanie & Cleanup:</strong> Finalny dokument i zatarcie śladów <span class="citation"></span>.</li>
-                </ol>
-            </section>
-
-            <section>
-                <h2><i class="fas fa-boxes icon-box"></i>Modele Testowania</h2>
+                <div class="icon-header">
+                    <i class="fas fa-graduation-cap fa-2x"></i>
+                    <h2>Gdzie ostrzyć pazury?</h2>
+                </div>
                 <div style="display: flex; gap: 20px;">
-                    <div class="fragment" style="background: #222; padding: 15px; border-radius: 10px; flex: 1;">
-                        <h4 class="center">Black Box</h4>
-                        <p style="font-size: 0.7em;">Zero wiedzy. Symulacja ataku "z ulicy" <span class="citation">[11, 8]</span>.</p>
+                    <div class="fragment" style="flex: 1; border: 1px solid #333; padding: 20px;">
+                        <h4 class="center">TryHackMe</h4>
+                        <p style="font-size: 0.7em;">Najlepsze na start. Prowadzi Cię za rękę przez podstawy sieci i narzędzi.</p>
                     </div>
-                    <div class="fragment" style="background: #222; padding: 15px; border-radius: 10px; flex: 1;">
-                        <h4 class="center">Grey Box</h4>
-                        <p style="font-size: 0.7em;">Częściowa wiedza. Perspektywa pracownika lub kontrahenta <span class="citation">[11, 5]</span>.</p>
+                    <div class="fragment" style="flex: 1; border: 1px solid #333; padding: 20px;">
+                        <h4 class="center">Hack The Box</h4>
+                        <p style="font-size: 0.7em;">Dla hardkorów. Dostajesz IP i radź sobie sam. To tu rodzą się najlepsi.</p>
                     </div>
-                    <div class="fragment" style="background: #222; padding: 15px; border-radius: 10px; flex: 1;">
-                        <h4 class="center">White Box</h4>
-                        <p style="font-size: 0.7em;">Pełna wiedza. Dostęp do kodu i architektury <span class="citation">[4, 11]</span>.</p>
+                </div>
+                <p class="fragment" style="font-size: 0.8em; margin-top: 30px;">Złoty standard certyfikatów? <span class="highlight">OSCP</span>. 24 godziny bez snu, tylko Ty i maszyny do przejęcia.</p>
+            </section>
+
+            <section data-background-color="#000">
+                <div class="icon-header">
+                    <i class="fas fa-coins fa-2x"></i>
+                    <h2>Czy to się opłaca? (Rynek 2026)</h2>
+                </div>
+                <p>Pieniądze są świetne, bo nikt nie chce być zhakowany:</p>
+                <div class="center" style="margin-top: 30px;">
+                    <div class="salary-tag fragment">
+                        <small>Junior</small><br>
+                        <strong>10 - 13k</strong><br>
+                        <small>na rękę (B2B)</small>
+                    </div>
+                    <div class="salary-tag fragment" style="border-width: 2px;">
+                        <small>Mid / Regular</small><br>
+                        <strong>15 - 25k</strong><br>
+                        <small>na rękę (B2B)</small>
+                    </div>
+                    <div class="salary-tag fragment" style="border-width: 3px; background: rgba(0, 255, 65, 0.1);">
+                        <small>Senior / Expert</small><br>
+                        <strong>25 - 35k+</strong><br>
+                        <small>na rękę (B2B)</small>
                     </div>
                 </div>
             </section>
 
             <section>
-                <h2><i class="fas fa-tools icon-box"></i>Warsztat Specjalisty</h2>
-                <div style="display: flex; align-items: center; justify-content: space-around;">
-                    <ul style="font-size: 0.8em;">
-                        <li class="fragment"><strong>System:</strong> Kali Linux <span class="citation">[10]</span></li>
-                        <li class="fragment"><strong>Sieć:</strong> Nmap, Wireshark <span class="citation">[10]</span></li>
-                        <li class="fragment"><strong>WWW:</strong> Burp Suite, SQLmap <span class="citation">[5, 14]</span></li>
-                        <li class="fragment"><strong>Exploity:</strong> Metasploit Framework <span class="citation">[13]</span></li>
-                        <li class="fragment"><strong>AD:</strong> BloodHound, Responder <span class="citation">[8, 18]</span></li>
-                    </ul>
-                    <div class="fragment center">
-                        <i class="fab fa-linux fa-5x"></i>
-                    </div>
+                <div class="icon-header">
+                    <i class="fas fa-scale-balanced fa-2x"></i>
+                    <h2>"Karta wolnego więzienia"</h2>
+                </div>
+                <p>Bez papieru jesteś po prostu przestępcą. Pamiętaj o:</p>
+                <ol>
+                    <li class="fragment"><strong>Pisemnej zgodzie:</strong> Musisz mieć "podkładkę" na każdy adres IP.</li>
+                    <li class="fragment"><strong>Rules of Engagement:</strong> Ustalenie, że np. nie wyłączasz serwerów w godzinach pracy.</li>
+                    <li class="fragment"><strong>Art. 267 i 269c KK:</strong> Polskie prawo mówi jasno – włamanie to przestępstwo, chyba że robisz to dla bezpieczeństwa i masz umowę.</li>
+                </ol>
+                <div class="terminal-box fragment" style="border-color: #ff4141;">
+                    [!] ALERT: Próba testu bez NDA i RoE = Ryzyko 2 lat więzienia.
                 </div>
             </section>
 
-            <section>
-                <h2><i class="fas fa-microchip icon-box"></i>Nie tylko serwery...</h2>
-                <ul style="font-size: 0.85em;">
-                    <li class="fragment"><strong>Cloud (AWS/Azure/GCP):</strong> Błędy w IAM i bucketach <span class="citation">[27]</span>.</li>
-                    <li class="fragment"><strong>Mobile:</strong> Analiza APK/IPA wg OWASP MASVS <span class="citation">[28, 29]</span>.</li>
-                    <li class="fragment"><strong>Social Engineering:</strong> Phishing, vishing, tailgating <span class="citation"></span>.</li>
-                    <li class="fragment"><strong>Physical:</strong> Lockpicking, klonowanie kart zbliżeniowych <span class="citation"></span>.</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2><i class="fas fa-graduation-cap icon-box"></i>Nauka i Certyfikaty</h2>
-                <div style="display: flex; gap: 30px;">
-                    <div class="fragment" style="flex: 1;">
-                        <h4>Platformy</h4>
-                        <p style="font-size: 0.7em;"><strong>TryHackMe:</strong> Dla początkujących (Guided) <span class="citation">[15, 17]</span>.<br><br><strong>Hack The Box:</strong> Dla zaawansowanych (Pro Labs) <span class="citation">[16, 17]</span>.</p>
-                    </div>
-                    <div class="fragment" style="flex: 1;">
-                        <h4>Certyfikaty</h4>
-                        <ul style="font-size: 0.7em;">
-                            <li><strong>OSCP:</strong> Złoty standard (24h hackowania) <span class="citation">[18, 3]</span>.</li>
-                            <li><strong>PNPT:</strong> Realistyczny proces TCM <span class="citation">[18, 19]</span>.</li>
-                            <li><strong>CEH:</strong> HR-owy must-have <span class="citation">[18, 3]</span>.</li>
-                        </ul>
-                    </div>
+            <section class="center" data-background-video="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGJpbmNueXU5Znd6NXFidXU5Znd6NXFidXU5Znd6NXFidXU5Znd6NXFidXU5Znd6NXFidXV6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKVUn7iM8FMEU24/giphy.gif" data-background-opacity="0.2">
+                <h2 style="font-size: 3em;">Pytania?</h2>
+                <p>Pamiętaj: Najlepszy zabezpieczeniem jest świadomość.</p>
+                <p style="margin-top: 50px;"><span class="highlight">Dzięki za uwagę!</span></p>
+                <div style="margin-top: 30px;">
+                    <i class="fas fa-shield-halved fa-3x" style="color: var(--accent-color);"></i>
                 </div>
-            </section>
-
-            <section>
-                <h2><i class="fas fa-money-bill-wave icon-box"></i>Zarobki w Polsce (2026)</h2>
-                <table class="salary-table fragment">
-                    <thead>
-                        <tr>
-                            <th>Poziom</th>
-                            <th>UoP (brutto)</th>
-                            <th>B2B (netto + VAT)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Junior</td>
-                            <td>8 000 - 14 000 PLN</td>
-                            <td>9 500 - 13 000 PLN</td>
-                        </tr>
-                        <tr>
-                            <td>Mid</td>
-                            <td>14 000 - 22 000 PLN</td>
-                            <td>15 000 - 25 000 PLN</td>
-                        </tr>
-                        <tr>
-                            <td>Senior</td>
-                            <td>22 000 - 28 000 PLN</td>
-                            <td>23 500 - 30 200+ PLN</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p style="font-size: 0.5em;" class="fragment center">Dane aktualne na luty 2026 r. <span class="citation">[2]</span></p>
-            </section>
-
-            <section>
-                <h2><i class="fas fa-gavel icon-box"></i>Prawo i Bezpieczeństwo</h2>
-                <div class="fragment" style="border-left: 5px solid #a31515; padding-left: 20px;">
-                    <p><strong>Art. 267 KK:</strong> Zakaz nieuprawnionego dostępu do systemu <span class="citation">[20, 21]</span>.</p>
-                    <p><strong>Art. 269c KK:</strong> Kontratyp dla White Hatów informujących o błędach <span class="citation">[24, 25]</span>.</p>
-                </div>
-                <p class="fragment" style="margin-top: 30px; color: #ffbc00;"><strong>Pamiętaj:</strong> Zawsze działaj na podstawie pisemnej zgody (Rules of Engagement)! <span class="citation"></span></p>
-            </section>
-
-            <section class="center">
-                <h2>Gotowy na włamanie?</h2>
-                <p>Etyczne, oczywiście.</p>
-                <div style="margin-top: 50px;">
-                    <i class="fas fa-terminal fa-4x" style="color: #00ff00;"></i>
-                </div>
-                <p><small>Naciśnij ESC, aby zobaczyć podgląd slajdów</small></p>
             </section>
 
         </div>
@@ -172,8 +224,12 @@
         Reveal.initialize({
             hash: true,
             slideNumber: 'c/t',
-            transition: 'convex', // none/fade/slide/convex/concave/zoom
-            backgroundTransition: 'fade'
+            transition: 'slide', 
+            backgroundTransition: 'fade',
+            autoAnimate: true,
+            center: false,
+            width: 1100,
+            height: 700
         });
     </script>
 </body>
