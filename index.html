@@ -3,110 +3,127 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Chemia organiczna: Tłuszcze</title>
+    <title>Tłuszcze - Budowa i Właściwości</title>
     
-    <!-- Biblioteki Reveal.js -->
+    <!-- Reveal.js & Theme -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/simple.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
     
-    <!-- Czcionki Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Ikony i Czcionki -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #2b6cb0; /* Naukowy niebieski */
-            --accent-yellow: #ecc94b; /* Kolor oleju/tłuszczu */
-            --accent-green: #48bb78; /* Pochodzenie roślinne */
-            --bg-light: #f7fafc;
-            --text-dark: #2d3748;
+            --brand-blue: #1A5F7A;
+            --brand-orange: #FF8400;
+            --brand-green: #228B22;
+            --bg-color: #F8F9FA;
+            --card-bg: #FFFFFF;
+            --text-main: #333333;
+            --text-muted: #6c757d;
         }
 
         body { 
-            background-color: var(--bg-light); 
-            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 20px 20px;
         }
         
-        /* Nadpisywanie stylów Reveal.js pod nasz design */
-        .reveal h1, .reveal h2, .reveal h3, .reveal h4 { 
-            font-family: 'Nunito', sans-serif; 
-            color: var(--text-dark); 
+        .reveal { font-family: 'Poppins', sans-serif; color: var(--text-main); }
+        .reveal h1, .reveal h2, .reveal h3 { 
+            font-family: 'Poppins', sans-serif; 
+            font-weight: 800; 
             text-transform: none; 
-            font-weight: 800;
+            color: var(--brand-blue);
         }
         
-        .reveal h1 { font-size: 3.5em; letter-spacing: -1px; }
-        .reveal h2 { 
-            color: var(--primary); 
-            border-bottom: 3px solid var(--accent-yellow); 
-            display: inline-block; 
-            padding-bottom: 10px;
-            margin-bottom: 40px;
-        }
-        .reveal p, .reveal li { color: #4a5568; font-weight: 500; }
+        .reveal h1 { font-size: 3.2em; }
+        .reveal h2 { font-size: 2.2em; margin-bottom: 0.8em; }
+        .reveal p { font-size: 1.1em; line-height: 1.5; font-weight: 300; }
         
-        .edu-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .edu-card:hover { transform: translateY(-5px); }
-
-        .formula-box {
-            background: #edf2f7;
-            border-left: 6px solid var(--primary);
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            padding: 20px;
-            font-size: 0.65em!important;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-top: 20px;
-            color: var(--text-dark);
+        /* Nowoczesne Karty */
+        .card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
             text-align: left;
         }
 
-        .highlight-blue { color: var(--primary); font-weight: 700; }
-        .highlight-yellow { background-color: rgba(236, 201, 75, 0.3); padding: 0 5px; border-radius: 4px; }
+        /* Układy */
+        .flex-row { display: flex; gap: 30px; align-items: stretch; justify-content: center; }
+        .flex-col { flex: 1; display: flex; flex-direction: column; }
+        .center-content { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
 
-        .big-icon {
-            font-size: 2em;
-            color: var(--accent-yellow);
-            margin-bottom: 15px;
-            display: block;
-            text-shadow: 0 4px 10px rgba(236, 201, 75, 0.4);
-        }
-
-        .category-pill {
+        /* Elementy ozdobne */
+        .badge {
             display: inline-block;
-            background: rgba(43, 108, 176, 0.1);
-            color: var(--primary);
-            padding: 6px 18px;
+            background: rgba(26, 95, 122, 0.1);
+            color: var(--brand-blue);
+            padding: 8px 20px;
             border-radius: 50px;
-            font-size: 0.55em;
+            font-size: 0.6em;
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            font-weight: 800;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-        
-        /* Układy siatkowe bazujące na oryginalnych klasach */
-        .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
-        
-        .stat-item { 
-            text-align: center; 
-            padding: 20px; 
-            background: #fff; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
+
+        .highlight-orange { color: var(--brand-orange); font-weight: 600; }
+        .highlight-blue { color: var(--brand-blue); font-weight: 600; }
+
+        /* Zapis chemiczny */
+        .chem-box {
+            background: #282C34;
+            color: #ABB2BF;
+            font-family: 'Fira Code', monospace;
+            padding: 30px;
+            border-radius: 16px;
+            font-size: 0.7em;
+            text-align: left;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+            overflow-x: auto;
         }
+        .chem-comment { color: #5C6370; font-style: italic; }
+        .chem-keyword { color: #C678DD; }
+        .chem-string { color: #98C379; }
         
-        .stat-val { display: block; font-size: 1.2em; font-weight: 800; color: var(--primary); margin: 10px 0; }
-        .stat-label { font-size: 0.55em; color: #718096; text-transform: uppercase; font-weight: 700; }
+        /* Listy */
+        .styled-list { list-style: none; padding: 0; margin: 0; }
+        .styled-list li { 
+            position: relative; 
+            padding-left: 40px; 
+            margin-bottom: 20px; 
+            font-size: 1.1em;
+        }
+        .styled-list li i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: var(--brand-orange);
+            font-size: 1.2em;
+        }
+
+        /* Tabela doświadczenia */
+        .exp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .exp-box {
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .exp-box.unsaturated { background: rgba(34, 139, 34, 0.1); border-color: rgba(34, 139, 34, 0.3); }
+        .exp-box.saturated { background: rgba(255, 132, 0, 0.1); border-color: rgba(255, 132, 0, 0.3); }
+
+        .icon-large { font-size: 3em; margin-bottom: 15px; }
 
     </style>
 </head>
@@ -115,162 +132,219 @@
     <div class="reveal">
         <div class="slides">
 
-            <!-- SLAJD 1: Tytułowy -->
-            <section class="center" data-auto-animate>
-                <i class="fas fa-flask big-icon" style="color: var(--primary);"></i>
-                <h1 style="font-size: 3.5em;">TŁUSZCZE</h1>
-                <p>Połączenie biologii z chemią</p>
-                <div class="formula-box" style="max-width: 550px; margin: 40px auto; text-align: center;">
-                    <span style="color: #718096">Temat 5.1</span> | Chemia organiczna <br>
-                    <span class="highlight-blue">Związki chemiczne niezbędne do funkcjonowania organizmu</span>
-                </div>
+            <!-- SLAJD 1: Tytuł -->
+            <section class="center-content">
+                <i class="fas fa-flask icon-large" style="color: var(--brand-orange);"></i>
+                <h1>Tłuszcze</h1>
+                <p style="font-size: 1.5em; color: var(--text-muted);">Budowa, właściwości i rola w organizmie</p>
+                <div class="badge" style="margin-top: 40px;">Temat 5.1 | Chemia Organiczna</div>
             </section>
 
-            <!-- SLAJD 2: Definicja i budowa -->
+            <!-- SLAJD 2: Definicja -->
             <section data-auto-animate>
-                <span class="category-pill">Budowa chemiczna</span>
-                <h2>Czym są tłuszcze?</h2>
-                <div class="split-grid">
-                    <div class="edu-card">
-                        <p>Tłuszcze to <strong>estry</strong> pochodzące od alkoholu polihydroksylowego o nazwie <span class="highlight-blue">propano-1,2,3-triol (glicerol)</span> oraz wyższych <span class="highlight-blue">kwasów tłuszczowych</span>.</p>
-                        <ul style="font-size: 0.8em; margin-top: 20px; padding-left: 20px;">
-                            <li class="fragment" style="margin-bottom: 15px;"><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Posiadają długie grupy węglowodorowe (reszt kwasowych).</li>
-                            <li class="fragment" style="margin-bottom: 15px;"><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Przykłady kwasów: stearynowy, oleinowy.</li>
-                            <li class="fragment"><i class="fas fa-exclamation-triangle" style="color: #dd6b20; margin-right: 10px;"></i> Kwas butanowy (masłowy) jest kwasem tłuszczowym, ale <em>nie wchodzi</em> w skład tłuszczów!</li>
+                <div class="badge">Budowa Chemiczna</div>
+                <h2 data-id="title-def">Czym są tłuszcze?</h2>
+                <div class="card">
+                    <p>Z chemicznego punktu widzenia, tłuszcze to <strong>estry</strong>.</p>
+                    <p class="fragment fade-in-then-semi-out">Powstają one w wyniku reakcji dwóch rodzajów związków:</p>
+                    
+                    <ul class="styled-list">
+                        <li class="fragment fade-up"><i class="fas fa-plus"></i> <span class="highlight-blue">Glicerolu</span> (inaczej: propano-1,2,3-triolu) – to alkohol polihydroksylowy.</li>
+                        <li class="fragment fade-up"><i class="fas fa-plus"></i> <span class="highlight-orange">Wyższych kwasów tłuszczowych</span> (np. kwasu palmitynowego, stearynowego, oleinowego).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SLAJD 3: Struktura chemiczna (Płynne przejście z poprzedniego) -->
+            <section data-auto-animate>
+                <div class="badge">Budowa Chemiczna</div>
+                <h2 data-id="title-def">Struktura Cząsteczki</h2>
+                
+                <div class="chem-box">
+                    <span class="chem-comment">// Schemat powstawania tłuszczu (estryfikacja)</span><br><br>
+                    <span class="chem-keyword">GLICEROL</span> + 3x <span class="chem-keyword">KWAS TŁUSZCZOWY</span> ➔ <span class="chem-string">TŁUSZCZ</span> + 3x WODA<br><br>
+                    
+                    <span class="chem-comment">/* Wzór ogólny cząsteczki tłuszczu: */</span><br>
+                    &nbsp;&nbsp;H₂C — O — CO — R₁<br>
+                    &nbsp;&nbsp;&nbsp;|<br>
+                    &nbsp;&nbsp;HC&nbsp; — O — CO — R₂<br>
+                    &nbsp;&nbsp;&nbsp;|<br>
+                    &nbsp;&nbsp;H₂C — O — CO — R₃<br><br>
+                    
+                    <span class="chem-comment">Gdzie R₁, R₂, R₃ to długie łańcuchy węglowodorowe reszt kwasowych.</span>
+                </div>
+                <p class="fragment" style="font-size: 0.8em; text-align: center; margin-top: 20px;">
+                    <i class="fas fa-lightbulb highlight-orange"></i> <strong>Uwaga:</strong> Kwas masłowy jest kwasem tłuszczowym, ale <em>nie zalicza się</em> do wyższych kwasów i nie tworzy tłuszczów właściwych!
+                </p>
+            </section>
+
+            <!-- SLAJD 4: Podział (Pochodzenie) -->
+            <section>
+                <div class="badge">Klasyfikacja</div>
+                <h2>Podział: Pochodzenie</h2>
+                
+                <div class="flex-row">
+                    <div class="card flex-col fragment fade-right">
+                        <div class="center-content">
+                            <i class="fas fa-seedling icon-large" style="color: var(--brand-green);"></i>
+                            <h3 style="color: var(--brand-green);">Roślinne</h3>
+                        </div>
+                        <ul class="styled-list" style="margin-top: 20px; font-size: 0.9em;">
+                            <li><i class="fas fa-check"></i> Olej rzepakowy</li>
+                            <li><i class="fas fa-check"></i> Olej słonecznikowy</li>
+                            <li><i class="fas fa-check"></i> Oliwa z oliwek</li>
+                            <li><i class="fas fa-check"></i> Olej kokosowy</li>
                         </ul>
                     </div>
-                    <div class="fragment">
-                        <div class="formula-box">
-                            <span style="color: #a0aec0;">// Wzór ogólny tłuszczu</span><br><br>
-                            &nbsp;&nbsp;H₂C — O — CO — R'<br>
-                            &nbsp;&nbsp;&nbsp;|<br>
-                            &nbsp;&nbsp;HC&nbsp; — O — CO — R''<br>
-                            &nbsp;&nbsp;&nbsp;|<br>
-                            &nbsp;&nbsp;H₂C — O — CO — R'''<br><br>
-                            <span style="color: #718096; font-size: 0.8em;">Gdzie R', R'', R''' to grupy węglowodorowe <br>kwasów tłuszczowych.</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SLAJD 3: Podział -->
-            <section>
-                <span class="category-pill">Klasyfikacja</span>
-                <h2>Kryteria podziału tłuszczów</h2>
-                <p style="font-size: 0.7em; margin-bottom: 40px;">Tłuszcze możemy klasyfikować na trzy główne sposoby:</p>
-                
-                <div style="display: flex; justify-content: space-between; gap: 15px;">
-                    <!-- Podział 1 -->
-                    <div class="fragment fade-up edu-card" style="flex: 1; text-align: center; padding: 20px;">
-                        <i class="fas fa-leaf" style="font-size: 1.5em; color: var(--accent-green);"></i>
-                        <h4 style="font-size: 0.8em; margin: 15px 0;">Pochodzenie</h4>
-                        <div style="font-size: 0.6em; text-align: left;">
-                            <strong style="color: var(--accent-green);">Roślinne:</strong><br> olej sojowy, rzepakowy, słonecznikowy, kokosowy<br><br>
-                            <strong style="color: #e53e3e;">Zwierzęce:</strong><br> masło, tran, smalec, słonina, łój
-                        </div>
-                    </div>
                     
-                    <!-- Podział 2 -->
-                    <div class="fragment fade-up edu-card" data-delay="200" style="flex: 1; text-align: center; padding: 20px;">
-                        <i class="fas fa-tint" style="font-size: 1.5em; color: #3182ce;"></i>
-                        <h4 style="font-size: 0.8em; margin: 15px 0;">Stan skupienia</h4>
-                        <div style="font-size: 0.6em; text-align: left;">
-                            <strong style="color: #3182ce;">Ciekłe:</strong><br> olej rzepakowy, słonecznikowy, oliwa, tran (wyjątek!)<br><br>
-                            <strong style="color: #718096;">Stałe:</strong><br> smalec, masło, margaryna, olej kokosowy (wyjątek!)
+                    <div class="card flex-col fragment fade-left">
+                        <div class="center-content">
+                            <i class="fas fa-cow icon-large" style="color: var(--brand-orange);"></i>
+                            <h3 style="color: var(--brand-orange);">Zwierzęce</h3>
                         </div>
-                    </div>
-                    
-                    <!-- Podział 3 -->
-                    <div class="fragment fade-up edu-card" data-delay="400" style="flex: 1; text-align: center; padding: 20px;">
-                        <i class="fas fa-atom" style="font-size: 1.5em; color: var(--accent-yellow);"></i>
-                        <h4 style="font-size: 0.8em; margin: 15px 0;">Charakter chemiczny</h4>
-                        <div style="font-size: 0.6em; text-align: left;">
-                            <strong>Nienasycone:</strong> (wiązania podwójne)<br> olej rzepakowy, lniany, oliwa<br><br>
-                            <strong>Nasycone:</strong> (wiązania pojedyncze)<br> olej kokosowy, masło, smalec
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SLAJD 4: Właściwości fizyczne -->
-            <section>
-                <div class="split-grid">
-                    <div>
-                        <h2>Właściwości fizyczne</h2>
-                        <p style="font-size: 0.8em;">Co zaobserwujemy w temperaturze 20°C?</p>
-                        <div class="formula-box">
-                            <span style="color: #718096;">// Obserwacje makroskopowe:</span><br>
-                            • Stan skupienia: <span class="highlight-blue">ciecze lub ciała stałe</span><br>
-                            • Barwa: <span class="highlight-blue">bezbarwne lub białe</span> (w naturze barwę nadają domieszki)<br>
-                            • Zapach i smak: <span class="highlight-blue">zależą od domieszek</span><br>
-                            • Temp. topnienia: <span class="highlight-blue">niskie wartości</span>
-                        </div>
-                    </div>
-                    <div class="edu-card fragment">
-                        <h4 style="color: var(--primary); margin-bottom: 20px;">Rozpuszczalność i gęstość</h4>
-                        <ul style="font-size: 0.7em; line-height: 1.6;">
-                            <li>Tłuszcze są całkowicie <span class="highlight-yellow">nierozpuszczalne w wodzie</span>.</li>
-                            <li>Znakomicie <span class="highlight-yellow">rozpuszczają się w nafcie</span> i innych rozpuszczalnikach organicznych.</li>
-                            <li>Mają <span class="highlight-blue">gęstość mniejszą od wody</span>, dlatego unoszą się na jej powierzchni (tworzą osobną warstwę).</li>
+                        <ul class="styled-list" style="margin-top: 20px; font-size: 0.9em;">
+                            <li><i class="fas fa-check"></i> Masło</li>
+                            <li><i class="fas fa-check"></i> Smalec</li>
+                            <li><i class="fas fa-check"></i> Słonina</li>
+                            <li><i class="fas fa-check"></i> Tran (olej rybi)</li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- SLAJD 5: Doświadczenie z bromem -->
+            <!-- SLAJD 5: Podział (Stan skupienia) -->
             <section>
-                <span class="category-pill">Doświadczenie 32</span>
-                <h2>Wykrywanie wiązań wielokrotnych</h2>
-                <p style="font-size: 0.8em;">Działanie roztworem zawierającym brom na oleje.</p>
+                <div class="badge">Klasyfikacja</div>
+                <h2>Podział: Stan Skupienia</h2>
+                <p style="text-align: center; font-size: 1em;">(w temperaturze pokojowej 20°C)</p>
                 
-                <div class="stat-grid fragment">
-                    <div class="stat-item" style="border-top: 4px solid var(--accent-yellow);">
-                        <i class="fas fa-vial" style="color: var(--accent-yellow); font-size: 1.5em;"></i>
-                        <span class="stat-val">Olej rzepakowy</span>
-                        <span class="stat-label">Tłuszcz nienasycony</span>
-                        <p style="font-size: 0.45em; margin-top: 10px;">Roztwór bromu odbarwia się. Pojawiają się jasne kłaczki. Brom przyłącza się do wiązań podwójnych.</p>
-                    </div>
-                    
-                    <div class="stat-item" style="border-top: 4px solid #cbd5e0; position: relative;">
-                        <div style="font-weight: 900; font-size: 1.5em; color: #a0aec0; margin-bottom: 10px;">VS</div>
-                        <span class="stat-label">Addycja Br₂ do -C=C-</span>
-                    </div>
-
-                    <div class="stat-item" style="border-top: 4px solid var(--text-dark);">
-                        <i class="fas fa-cube" style="color: var(--text-dark); font-size: 1.5em;"></i>
-                        <span class="stat-val">Olej kokosowy</span>
-                        <span class="stat-label">Tłuszcz nasycony</span>
-                        <p style="font-size: 0.45em; margin-top: 10px;">Barwa roztworu bromu pozostaje herbaciana (nie odbarwia się). Brak wiązań podwójnych w łańcuchu.</p>
+                <div class="card" style="margin-top: 30px;">
+                    <div class="flex-row" style="gap: 50px;">
+                        <div class="flex-col fragment">
+                            <h3 style="text-align: center; border-bottom: 2px solid var(--brand-blue); padding-bottom: 10px;">Ciekłe</h3>
+                            <p>Większość to tłuszcze <strong>roślinne</strong> (oleje, oliwa).</p>
+                            <p style="color: #e74c3c; font-weight: bold;"><i class="fas fa-exclamation-circle"></i> Wyjątek zwierzęcy: TRAN</p>
+                        </div>
+                        
+                        <div style="width: 2px; background: #eee;"></div>
+                        
+                        <div class="flex-col fragment">
+                            <h3 style="text-align: center; border-bottom: 2px solid var(--brand-blue); padding-bottom: 10px;">Stałe</h3>
+                            <p>Większość to tłuszcze <strong>zwierzęce</strong> (smalec, masło).</p>
+                            <p style="color: #e74c3c; font-weight: bold;"><i class="fas fa-exclamation-circle"></i> Wyjątek roślinny: OLEJ KOKOSOWY / MASŁO KAKAOWE</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SLAJD 6: Margaryna i dieta -->
+            <!-- SLAJD 6: Właściwości Fizyczne -->
             <section>
-                <h2>Margaryna i Rola w Diecie</h2>
-                <div class="split-grid" style="margin-top: 30px;">
-                    <div class="fragment edu-card">
-                        <h4 style="font-size: 0.9em; color: var(--primary);"><i class="fas fa-bread-slice"></i> Jak powstaje margaryna?</h4>
-                        <p style="font-size: 0.65em;">Margaryna to tłuszcz powstały z olejów roślinnych. Otrzymuje się ją poprzez proces <span class="highlight-blue">uwodornienia (utwardzania)</span> ciekłych tłuszczów nienasyconych. Proces wymaga specjalnych warunków i użycia katalizatora.</p>
-                    </div>
-                    <div class="fragment edu-card">
-                        <h4 style="font-size: 0.9em; color: var(--primary);"><i class="fas fa-heartbeat"></i> Czy są nam niezbędne?</h4>
-                        <p style="font-size: 0.65em;">Tak! Są potężnym źródłem energii, dostarczają <span class="highlight-yellow">NNKT</span> (niezbędnych nienasyconych kwasów tłuszczowych) oraz stanowią środowisko rozpuszczania dla <span class="highlight-blue">witamin A, D, E i K</span>.</p>
-                    </div>
-                </div>
-                <div class="formula-box fragment" style="text-align: center; border-left: none; border-top: 4px solid #e53e3e; background: #fff5f5; color: #c53030;">
-                    <strong>Ważne:</strong> Należy zachować racjonalne spożycie! Nadmiar tłuszczów (szczególnie nasyconych) sprzyja wielu chorobom.
+                <div class="badge">Obserwacje</div>
+                <h2>Właściwości Fizyczne</h2>
+                
+                <div class="card">
+                    <ul class="styled-list">
+                        <li class="fragment"><i class="fas fa-eye"></i> <strong>Barwa:</strong> Czyste tłuszcze są bezbarwne lub białe. Żółty kolor masła czy olejów pochodzi od domieszek (np. karotenu).</li>
+                        <li class="fragment"><i class="fas fa-thermometer-half"></i> <strong>Temperatura topnienia:</strong> Stosunkowo niska.</li>
+                        <li class="fragment"><i class="fas fa-tint-slash"></i> <strong>Rozpuszczalność w wodzie:</strong> Brak (nie rozpuszczają się).</li>
+                        <li class="fragment"><i class="fas fa-flask"></i> <strong>Rozpuszczalność w rozpuszczalnikach:</strong> Bardzo dobra w benzynie, nafcie i eterze.</li>
+                        <li class="fragment"><i class="fas fa-weight-hanging"></i> <strong>Gęstość:</strong> Mniejsza od gęstości wody (tłuszcze unoszą się na jej powierzchni, tworząc tzw. "oka" w rosole).</li>
+                    </ul>
                 </div>
             </section>
 
-            <!-- SLAJD 7: Zakończenie -->
-            <section class="center">
-                <i class="fas fa-graduation-cap big-icon" style="font-size: 4em; color: var(--primary);"></i>
-                <h2>Koniec tematu</h2>
-                <p>Czy potrafisz odpowiedzieć co zdrowsze: masło czy margaryna?</p>
-                <div style="margin-top: 40px; font-size: 0.6em; color: #718096;">
-                    W oparciu o materiały do biologii i chemii (klasa 8)
+            <!-- SLAJD 7: Doświadczenie 32 - Wstęp -->
+            <section data-auto-animate>
+                <div class="badge" style="background: rgba(255,132,0,0.1); color: var(--brand-orange);">Doświadczenie 32</div>
+                <h2 data-id="exp-title">Wykrywanie wiązań podwójnych</h2>
+                <p>Jak odróżnić tłuszcz nasycony od nienasyconego?</p>
+                
+                <div class="card" style="margin-top: 40px;">
+                    <p><strong>Odczynnik:</strong> Woda bromowa ($Br_2(aq)$) o herbacianej barwie.</p>
+                    <p>Związki posiadające wiązania wielokrotne (nienasycone) ulegają reakcji <strong>addycji</strong> (przyłączenia) bromu, co powoduje odbarwienie roztworu.</p>
                 </div>
+            </section>
+
+            <!-- SLAJD 8: Doświadczenie 32 - Przebieg -->
+            <section data-auto-animate>
+                <div class="badge" style="background: rgba(255,132,0,0.1); color: var(--brand-orange);">Doświadczenie 32</div>
+                <h2 data-id="exp-title">Wyniki Doświadczenia</h2>
+                
+                <div class="exp-grid">
+                    <div class="exp-box unsaturated fragment fade-up">
+                        <i class="fas fa-seedling" style="font-size: 2em; color: var(--brand-green);"></i>
+                        <h4 style="margin: 15px 0;">Olej rzepakowy</h4>
+                        <p style="font-size: 0.8em; margin-bottom: 10px;">(Tłuszcz nienasycony)</p>
+                        <hr style="border-color: rgba(0,0,0,0.1);">
+                        <p style="color: var(--brand-green); font-weight: bold; margin-top: 15px;">Odbarwia wodę bromową.</p>
+                        <p style="font-size: 0.7em;">Brom przyłącza się do wiązań podwójnych w resztach kwasowych.</p>
+                    </div>
+
+                    <div class="exp-box saturated fragment fade-up" data-fragment-index="1">
+                        <i class="fas fa-cube" style="font-size: 2em; color: var(--brand-orange);"></i>
+                        <h4 style="margin: 15px 0;">Olej kokosowy</h4>
+                        <p style="font-size: 0.8em; margin-bottom: 10px;">(Tłuszcz nasycony)</p>
+                        <hr style="border-color: rgba(0,0,0,0.1);">
+                        <p style="color: var(--brand-orange); font-weight: bold; margin-top: 15px;">Nie zmienia barwy roztworu.</p>
+                        <p style="font-size: 0.7em;">Woda bromowa pozostaje żółtawa/herbaciana. Brak wiązań podwójnych.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLAJD 9: Utwardzanie tłuszczów (Margaryna) -->
+            <section>
+                <div class="badge">Przemysł spożywczy</div>
+                <h2>Od oleju do margaryny</h2>
+                
+                <div class="card">
+                    <div class="flex-row" style="align-items: center;">
+                        <div class="flex-col" style="flex: 2;">
+                            <p>Tłuszcze ciekłe (nienasycone) można przekształcić w tłuszcze stałe (nasycone).</p>
+                            <p>Proces ten nazywa się <span class="highlight-blue">uwodornieniem</span> (lub utwardzaniem) tłuszczów.</p>
+                            <ul class="styled-list" style="margin-top: 20px;">
+                                <li><i class="fas fa-arrow-right"></i> Polega na addycji wodoru ($H_2$) do wiązań podwójnych.</li>
+                                <li><i class="fas fa-arrow-right"></i> Wymaga odpowiedniej temperatury, ciśnienia i katalizatora.</li>
+                                <li><i class="fas fa-arrow-right"></i> Tak produkuje się m.in. twarde margaryny kostkowe.</li>
+                            </ul>
+                        </div>
+                        <div class="flex-col" style="flex: 1; text-align: center;">
+                            <i class="fas fa-bread-slice" style="font-size: 5em; color: #F6C90E; text-shadow: 0 10px 20px rgba(0,0,0,0.1);"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLAJD 10: Rola w organizmie -->
+            <section>
+                <div class="badge">Biologia</div>
+                <h2>Znaczenie dla organizmu</h2>
+                
+                <div class="flex-row">
+                    <div class="card flex-col fragment fade-up">
+                        <i class="fas fa-bolt" style="font-size: 2em; color: var(--brand-orange); margin-bottom: 15px;"></i>
+                        <h4>Główne źródło energii</h4>
+                        <p style="font-size: 0.85em;">Tłuszcze dostarczają najwięcej energii na gram ze wszystkich makroskładników.</p>
+                    </div>
+                    <div class="card flex-col fragment fade-up" data-fragment-index="1">
+                        <i class="fas fa-capsules" style="font-size: 2em; color: var(--brand-blue); margin-bottom: 15px;"></i>
+                        <h4>Transport witamin</h4>
+                        <p style="font-size: 0.85em;">Umożliwiają wchłanianie witamin rozpuszczalnych w tłuszczach: <br><strong>A, D, E oraz K</strong>.</p>
+                    </div>
+                    <div class="card flex-col fragment fade-up" data-fragment-index="2">
+                        <i class="fas fa-shield-alt" style="font-size: 2em; color: var(--brand-green); margin-bottom: 15px;"></i>
+                        <h4>Ochrona i budowa</h4>
+                        <p style="font-size: 0.85em;">Chronią narządy wewnętrzne przed urazami i stanowią izolację termiczną.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLAJD 11: Zakończenie -->
+            <section class="center-content">
+                <i class="fas fa-check-circle icon-large" style="color: var(--brand-green);"></i>
+                <h1>Podsumowanie</h1>
+                <p style="font-size: 1.2em; max-width: 600px; margin-top: 20px;">
+                    Tłuszcze są niezbędnym elementem diety. Kluczem jest jednak <strong>umiar</strong> i wybór odpowiednich źródeł, bogatych w NNKT (Niezbędne Nienasycone Kwasy Tłuszczowe).
+                </p>
             </section>
 
         </div>
@@ -279,21 +353,23 @@
     <!-- Skrypty Reveal.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
     <script>
-        // Inicjalizacja biblioteki
         Reveal.initialize({
-            hash: false, // Opcja 'hash' musi być wyłączona w podglądzie (ograniczenia iframe/blob)
-            center: false,
-            transition: 'slide', // Zmiana z fade na łagodniejszy slide
+            hash: false, // Zablokowane dla bezpieczeństwa środowiska podglądu
+            center: true, // Lepsze centrowanie zawartości, zapobiega problemom ze skalowaniem
+            transition: 'slide',
             backgroundTransition: 'fade',
-            autoAnimate: true,
-            width: 1100,
-            height: 750,
-            margin: 0.1,
+            autoAnimate: true, // Włączenie płynnych animacji elementów
+            
+            // Poprawione proporcje skalowania - standard 16:9 
+            width: 1024,
+            height: 768,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+
             controls: true,
             progress: true,
-            slideNumber: 'c/t', // Dodanie numeracji slajdów
-            autoAnimateEasing: 'ease-out',
-            autoAnimateDuration: 0.8
+            slideNumber: 'c/t'
         });
     </script>
 </body>
