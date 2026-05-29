@@ -24,7 +24,6 @@
         * { box-sizing: border-box; user-select: none; }
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: var(--bg-dark); overflow: hidden; font-family: 'DM Sans', sans-serif; color: var(--text-main); }
 
-        /* AMBIENTOWE TŁO - Za całą prezentacją */
         #ambient-bg {
             position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
             background: 
@@ -37,14 +36,12 @@
         #progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 5px; background: rgba(255,255,255,0.05); z-index: 9999; }
         #progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); box-shadow: 0 0 10px var(--accent-secondary); transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); border-radius: 0 3px 3px 0; }
 
-        /* GŁÓWNY KONTENER SCENY - Skalowany (16:9) */
         #presentation-area {
             width: 1280px; height: 720px; position: absolute; top: 50%; left: 50%; transform-origin: center center;
             background: var(--slide-bg); box-shadow: 0 25px 80px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.4);
             overflow: hidden; border-radius: 12px; z-index: 10;
         }
 
-        /* CHEMICZNE TŁO I SZUM */
         #presentation-area::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='103.9' viewBox='0 0 60 103.9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 103.9L0 86.6V52l30-17.3L60 52v34.6L30 103.9zM30 52L0 34.6V0l30-17.3L60 0v34.6L30 52z' fill='none' stroke='%233b82f6' stroke-width='1.5' stroke-opacity='0.06'/%3E%3C/svg%3E");
@@ -56,7 +53,6 @@
             pointer-events: none; z-index: 0;
         }
 
-        /* POJEDYNCZY SLAJD */
         .slide-container {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 55px 85px; display: flex; flex-direction: column; justify-content: flex-start;
             opacity: 0; visibility: hidden; transition: opacity 0.6s ease, visibility 0.6s; cursor: default; z-index: 1;
@@ -72,7 +68,6 @@
         .slide-container.active .tiled-content .tile:nth-child(2) { transition-delay: 0.2s; }
         .slide-container.active .tiled-content .tile:nth-child(3) { transition-delay: 0.3s; }
 
-        /* TYPOGRAFIA */
         h1, h2, h3 { font-family: 'Merriweather', serif; margin: 0; position: relative; z-index: 2; color: var(--text-main); }
         h1 { font-size: 70px; line-height: 1.15; text-align: center; margin-bottom: 25px; font-weight: 900; letter-spacing: -1px; background: linear-gradient(135deg, #0f172a 0%, #334155 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         h2.slide-title { font-size: 42px; margin-bottom: 30px; text-align: left; font-weight: 700; letter-spacing: -0.5px; position: relative; display: inline-block; }
@@ -83,7 +78,6 @@
         .subtitle { font-size: 24px; color: #64748b; text-align: center; max-width: 900px; margin: 0 auto; line-height: 1.5; }
         .gradient-text { background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
 
-        /* UKŁADY */
         .two-column { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 50px; width: 100%; align-items: center; z-index: 2; position: relative; }
         .two-column.align-start { align-items: flex-start; }
         ul { list-style: none; padding: 0; margin: 0; }
@@ -92,7 +86,6 @@
         .custom-list li:last-child { margin-bottom: 0; }
         .custom-list li::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--accent-secondary); position: absolute; left: 0; top: 3px; font-size: 20px; filter: drop-shadow(0 2px 3px rgba(16, 185, 129, 0.2)); }
 
-        /* KAFELKI I SYMULACJE W KAFELKACH */
         .tiled-content { display: flex; gap: 30px; align-items: stretch; width: 100%; z-index: 2; position: relative; }
         .tile {
             background: var(--glass-bg); backdrop-filter: blur(10px); border-radius: 20px; display: flex; flex-direction: column; flex: 1;
@@ -102,125 +95,172 @@
         .tile::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent-primary); opacity: 0.8; z-index: 5; }
         .tile:hover { box-shadow: 0 25px 40px -12px rgba(15, 23, 42, 0.12); }
         
-        /* Przód Kafelka */
         .tile-front {
             padding: 35px 30px; text-align: center; display: flex; flex-direction: column; justify-content: flex-start;
             height: 100%; width: 100%; transition: opacity 0.4s ease, transform 0.4s ease; position: relative; z-index: 2;
         }
         .tile-front .icon { font-size: 50px; margin-bottom: 20px; background: linear-gradient(135deg, var(--accent-primary), #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; filter: drop-shadow(0 8px 10px rgba(59, 130, 246, 0.15)); }
         
-        /* Tył Kafelka (Z symulacją) */
         .tile-back {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff;
             opacity: 0; transform: scale(0.95); transition: opacity 0.4s ease, transform 0.4s ease;
             display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 3;
             padding: 15px;
         }
-        
         .tile:hover .tile-front { opacity: 0; transform: scale(0.95); pointer-events: none; }
         .tile:hover .tile-back { opacity: 1; transform: scale(1); pointer-events: auto; }
 
         .exception-box { background: linear-gradient(to right, #fef2f2, #fff); border-left: 4px solid var(--accent-danger); padding: 15px; margin-top: 20px; border-radius: 0 10px 10px 0; box-shadow: 0 8px 15px rgba(239, 68, 68, 0.05); }
 
-        /* SLAJD TYTUŁOWY SEKCJI */
         .section-title-layout { align-items: center; display: flex; flex-direction: column; justify-content: center; text-align: center; width: 100%; height: 100%; }
         .section-title-layout hr { background: linear-gradient(90deg, transparent, var(--accent-secondary), transparent); border: none; height: 3px; margin: 35px auto; width: 250px; border-radius: 2px; }
 
-        /* ILUSTRACJE WEKTOROWE SVG - Baza idealnie dopasowana */
         .svg-wrapper {
-            border-radius: 20px; 
-            height: 380px; /* Sztywna wyskość ratująca układ */
-            width: 100%; display: flex; justify-content: center; align-items: center;
+            border-radius: 20px; height: 380px; width: 100%; display: flex; justify-content: center; align-items: center;
             background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
             box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255,255,255,1);
-            border: 1px solid #e2e8f0; position: relative; overflow: hidden;
-            transition: transform 0.4s ease;
+            border: 1px solid #e2e8f0; position: relative; overflow: hidden; transition: transform 0.4s ease;
         }
         .svg-wrapper:hover { transform: translateY(-4px) scale(1.01); }
         .svg-wrapper svg { width: 90%; height: 90%; z-index: 2; }
 
-        /* ZAAWANSOWANE ANIMACJE DLA SVG (NIESYMULACYJNE) */
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         @keyframes float-light { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         @keyframes pulse-glow { 0%, 100% { filter: drop-shadow(0 0 8px rgba(253, 224, 71, 0.4)); transform: scale(1); } 50% { filter: drop-shadow(0 0 20px rgba(253, 224, 71, 0.8)); transform: scale(1.03); } }
         @keyframes pulse-heart { 0%, 100% { transform: translate(0, 20px) scale(0.9); } 15% { transform: translate(0, 20px) scale(0.96); } 30% { transform: translate(0, 20px) scale(0.9); } 45% { transform: translate(0, 20px) scale(0.94); } }
-        @keyframes bubble-rise { 0% { transform: translateY(0) scale(0.6); opacity: 0; } 20% { opacity: 0.9; } 100% { transform: translateY(-50px) scale(1.3); opacity: 0; } }
         @keyframes ambient-drift { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-3%, -3%) scale(1.1); } }
-        @keyframes drip { 0% { transform: translateY(-10px) scaleY(0.5); opacity: 0; } 50% { transform: translateY(15px) scaleY(1.2); opacity: 1; } 100% { transform: translateY(30px) scaleY(0.5); opacity: 0; } }
 
         .anim-float { animation: float 6s ease-in-out infinite; transform-origin: center; }
         .anim-float-light { animation: float-light 4s ease-in-out infinite; }
         .anim-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; transform-origin: center; }
         .anim-heart { animation: pulse-heart 2s ease-in-out infinite; transform-origin: center; }
-        
-        .bubble { animation: bubble-rise 2s ease-in infinite; }
-        .bubble-1 { animation-delay: 0s; animation-duration: 2s; }
-        .bubble-2 { animation-delay: 0.5s; animation-duration: 2.5s; }
-        .bubble-3 { animation-delay: 1.2s; animation-duration: 1.8s; }
-        .bubble-4 { animation-delay: 0.8s; animation-duration: 2.2s; }
-        .drip-anim { animation: drip 2.5s ease-in infinite; }
-
         .svg-glass-reflect { stroke: white; stroke-linecap: round; opacity: 0.6; }
 
         /* ======================================================== */
-        /* ZAAWANSOWANE SYMULACJE CSS                             */
+        /* SLAJD 2: ZAAWANSOWANE SYMULACJE WZORÓW STRUKTURALNYCH    */
         /* ======================================================== */
-        /* Slajd 2 - Mikro symulacje */
-        @keyframes simEster { 0%, 100% { stroke-dashoffset: 100; opacity: 0.2; } 50% { stroke-dashoffset: 0; opacity: 1; } }
-        .sim-ester-bond { stroke-dasharray: 100; animation: simEster 2s infinite ease-in-out; }
+        /* Glicerol budowanie */
+        @keyframes buildAtoms { 0%, 15% { opacity: 0; transform: scale(0.5); } 20%, 85% { opacity: 1; transform: scale(1); } 95%, 100% { opacity: 0; transform: scale(1.2); } }
+        @keyframes buildBonds { 0%, 25% { stroke-dashoffset: 50; opacity: 0; } 35%, 85% { stroke-dashoffset: 0; opacity: 1; } 95%, 100% { opacity: 0; } }
         
-        @keyframes simBounce { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-35px); } }
-        .sim-bounce { animation: simBounce 1.5s infinite ease-in-out; }
-        
-        @keyframes simReject { 0%, 100% { fill: #ef4444; filter: drop-shadow(0 0 5px #ef4444); } 50% { fill: #fca5a5; filter: drop-shadow(0 0 15px #ef4444); } }
-        .sim-barrier { animation: simReject 1.5s infinite ease-in-out; }
+        .sim-atom { animation: buildAtoms 6s infinite ease-in-out; transform-origin: center; }
+        .sim-bond { stroke: #94a3b8; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 50; stroke-dashoffset: 50; animation: buildBonds 6s infinite ease-in-out; }
+        .sim-bond-highlight { stroke: #3b82f6; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 50; stroke-dashoffset: 50; animation: buildBonds 6s infinite ease-in-out; animation-delay: 0.2s; }
 
-        /* Slajd 8 - Witaminy i tłuszcz */
-        @keyframes vitFloatAnim { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .vit-node { animation: vitFloatAnim 3s infinite ease-in-out; }
-        .vit-a { animation-delay: 0s; } .vit-d { animation-delay: 0.7s; } .vit-e { animation-delay: 1.4s; } .vit-k { animation-delay: 2.1s; }
-        @keyframes dropPulseAnim { 0%, 100% { transform: scale(1); filter: drop-shadow(0 15px 30px rgba(234, 179, 8, 0.2)); } 50% { transform: scale(1.02); filter: drop-shadow(0 25px 40px rgba(234, 179, 8, 0.4)); } }
-        .fat-drop { animation: dropPulseAnim 6s infinite ease-in-out; transform-origin: center; }
+        /* Przełączanie Nasycony / Nienasycony */
+        @keyframes switchSat { 0%, 40% { opacity: 1; } 50%, 90% { opacity: 0; } 100% { opacity: 1; } }
+        @keyframes switchUnsat { 0%, 40% { opacity: 0; } 50%, 90% { opacity: 1; } 100% { opacity: 0; } }
+        .sim-sat { animation: switchSat 8s infinite ease-in-out; }
+        .sim-unsat { animation: switchUnsat 8s infinite ease-in-out; }
+        .c-atom { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; fill: #1e293b; text-anchor: middle; dominant-baseline: central; }
+        .h-atom { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700; fill: #64748b; text-anchor: middle; dominant-baseline: central; }
 
-        /* Slajd 9 - Uwodornienie */
-        .sim-h-left { animation: simHLeft 5s infinite ease-in-out; }
-        .sim-h-right { animation: simHRight 5s infinite ease-in-out; }
-        .sim-pi-bond { animation: simPiBond 5s infinite ease-in-out; transform-origin: center; }
-        .sim-state-liquid { animation: simStateLiquid 5s infinite; }
-        .sim-state-solid { animation: simStateSolid 5s infinite; }
-        .sim-chain-transform { animation: simChainTransform 5s infinite ease-in-out; transform-origin: center; }
-
-        @keyframes simHLeft {
-            0%, 20% { transform: translate(40px, -100px); opacity: 0; }
-            30% { transform: translate(40px, -40px); opacity: 1; }
-            45%, 85% { transform: translate(0, 0); opacity: 1; }
-            100% { transform: translate(0, 0); opacity: 0; }
+        /* ======================================================== */
+        /* SLAJD 7: ZAAWANSOWANA SYMULACJA PIPETY                   */
+        /* ======================================================== */
+        @keyframes movePipette {
+            0%, 5% { transform: translate(100px, -150px); opacity: 0; } /* Wejście */
+            10% { transform: translate(75px, 0px); opacity: 1; } /* Nad probówką 1 */
+            20% { transform: translate(75px, 0px); opacity: 1; } /* Oczekiwanie na krople */
+            25% { transform: translate(75px, 0px); opacity: 1; }
+            35% { transform: translate(185px, 0px); opacity: 1; } /* Przelot nad probówką 2 */
+            45% { transform: translate(185px, 0px); opacity: 1; } /* Oczekiwanie */
+            50% { transform: translate(185px, 0px); opacity: 1; }
+            60%, 100% { transform: translate(250px, -150px); opacity: 0; } /* Wyjście */
         }
-        @keyframes simHRight {
-            0%, 20% { transform: translate(-40px, -100px); opacity: 0; }
-            30% { transform: translate(-40px, -40px); opacity: 1; }
-            45%, 85% { transform: translate(0, 0); opacity: 1; }
-            100% { transform: translate(0, 0); opacity: 0; }
+        @keyframes squeezeBulb {
+            0%, 12% { transform: scaleY(1); }
+            15% { transform: scaleY(0.7); } /* Wciśnięcie nad T1 */
+            18%, 37% { transform: scaleY(1); }
+            40% { transform: scaleY(0.7); } /* Wciśnięcie nad T2 */
+            43%, 100% { transform: scaleY(1); }
         }
-        @keyframes simPiBond {
-            0%, 40% { opacity: 1; transform: scaleX(1); stroke-width: 6; stroke: #ef4444; }
-            43% { opacity: 1; transform: scaleX(1.1); stroke-width: 10; stroke: #fff; filter: drop-shadow(0 0 10px #ef4444); }
-            48%, 100% { opacity: 0; transform: scaleX(0); }
+        @keyframes dropFallT1 {
+            0%, 14% { transform: translateY(0); opacity: 0; }
+            15% { transform: translateY(30px); opacity: 1; } /* Start opadania */
+            20% { transform: translateY(80px); opacity: 1; } /* Uderzenie w ciecz */
+            22%, 100% { transform: translateY(90px); opacity: 0; } /* Odbarwienie i zniknięcie */
         }
-        @keyframes simStateLiquid {
-            0%, 40% { opacity: 1; transform: scale(1); }
-            45%, 100% { opacity: 0; transform: scale(0.9); }
-        }
-        @keyframes simStateSolid {
-            0%, 40% { opacity: 0; transform: scale(0.9); }
-            45%, 85% { opacity: 1; transform: scale(1); }
+        @keyframes bubblesT1 {
+            0%, 20% { opacity: 0; transform: translateY(0) scale(0.5); }
+            22% { opacity: 1; }
+            35% { opacity: 0; transform: translateY(-40px) scale(1.5); }
             100% { opacity: 0; }
         }
-        @keyframes simChainTransform {
-            0%, 40% { transform: rotate(8deg); stroke: #3b82f6; }
-            50%, 85% { transform: rotate(0deg); stroke: #10b981; }
-            100% { transform: rotate(8deg); stroke: #3b82f6; }
+        @keyframes dropFallT2 {
+            0%, 39% { transform: translateY(0); opacity: 0; }
+            40% { transform: translateY(30px); opacity: 1; } /* Start opadania */
+            48% { transform: translateY(110px); opacity: 1; } /* Opadanie na dno */
+            50%, 100% { transform: translateY(120px); opacity: 0; } /* Wtopienie się w warstwę */
         }
+        @keyframes bromineLayerT2 {
+            0%, 48% { opacity: 0; }
+            52%, 95% { opacity: 1; } /* Utrzymanie barwy */
+            100% { opacity: 0; } /* Reset */
+        }
+        
+        .sim-pipette { animation: movePipette 12s infinite ease-in-out; }
+        .sim-bulb { animation: squeezeBulb 12s infinite ease-in-out; transform-origin: top; }
+        .sim-drop-t1 { animation: dropFallT1 12s infinite ease-in; }
+        .sim-drop-t2 { animation: dropFallT2 12s infinite ease-in; }
+        .sim-bromine-layer { animation: bromineLayerT2 12s infinite ease-in-out; }
+        .sim-bubbles { animation: bubblesT1 12s infinite ease-out; }
+        .sim-bubble-1 { animation-delay: 0.1s; } .sim-bubble-2 { animation-delay: 0.3s; } .sim-bubble-3 { animation-delay: 0.5s; }
+
+        /* ======================================================== */
+        /* SLAJD 9: PERFEKCYJNA SYMULACJA UWODORNIENIA              */
+        /* ======================================================== */
+        @keyframes simH2Fall {
+            0%, 5% { transform: translate(0px, -140px); opacity: 0; }
+            15% { transform: translate(0px, -140px); opacity: 1; }
+            28% { transform: translate(0px, -20px); opacity: 1; } /* Zbliża się pionowo do wiązania */
+            30%, 100% { opacity: 0; } /* Znika, zastąpiony przez pojedyncze H */
+        }
+        @keyframes simHLeftMove {
+            0%, 28% { transform: translate(0px, -20px); opacity: 0; }
+            30% { transform: translate(-15px, -20px); opacity: 1; } /* Rozszczepienie z H2 */
+            38% { transform: translate(-45px, -70px); opacity: 1; } /* Atak na atom węgla (lewy) */
+            42%, 75% { transform: translate(-45px, -70px); opacity: 1; } /* Trzyma się (Stan stały) */
+            85%, 100% { transform: translate(-80px, -150px); opacity: 0; } /* Odlatuje w przestrzeń */
+        }
+        @keyframes simHRightMove {
+            0%, 28% { transform: translate(0px, -20px); opacity: 0; }
+            30% { transform: translate(15px, -20px); opacity: 1; } /* Rozszczepienie z H2 */
+            38% { transform: translate(45px, -70px); opacity: 1; } /* Atak na atom węgla (prawy) */
+            42%, 75% { transform: translate(45px, -70px); opacity: 1; } /* Trzyma się (Stan stały) */
+            85%, 100% { transform: translate(80px, -150px); opacity: 0; } /* Odlatuje w przestrzeń */
+        }
+        @keyframes simPiBreak {
+            0%, 32% { stroke: #ef4444; stroke-width: 6; opacity: 1; filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.6)); }
+            36% { stroke: #fff; stroke-width: 12; opacity: 1; filter: drop-shadow(0 0 20px #ef4444); } /* Błysk pękania */
+            42%, 75% { opacity: 0; stroke-width: 6; filter: none; } /* Całkowicie znika (Margaryna) */
+            88%, 100% { stroke: #ef4444; stroke-width: 6; opacity: 1; filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.6)); } /* Płynnie powraca (Olej) */
+        }
+        @keyframes simChainTransform {
+            0%, 32% { transform: rotate(14deg); } /* Łańcuch zgięty (Ciekły, nienasycony) */
+            42%, 75% { transform: rotate(0deg); } /* Łańcuch prosty (Stały, nasycony) */
+            88%, 100% { transform: rotate(14deg); } /* Powraca do zgięcia */
+        }
+        @keyframes simUiBadgeLiquid {
+            0%, 32% { opacity: 1; transform: scale(1); filter: brightness(1); }
+            42%, 75% { opacity: 0; transform: scale(0.9); filter: brightness(0.5); }
+            85%, 100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+        }
+        @keyframes simUiBadgeSolid {
+            0%, 32% { opacity: 0; transform: scale(0.9); filter: brightness(0.5); }
+            42%, 75% { opacity: 1; transform: scale(1); filter: brightness(1); }
+            85%, 100% { opacity: 0; transform: scale(0.9); filter: brightness(0.5); }
+        }
+
+        /* 10 sekundowa płynna i czytelna pętla dla Slajdu 9 */
+        .sim-h2 { animation: simH2Fall 10s infinite cubic-bezier(0.2, 0, 0.4, 1); }
+        .sim-h-left { animation: simHLeftMove 10s infinite ease-in-out; }
+        .sim-h-right { animation: simHRightMove 10s infinite ease-in-out; }
+        .sim-pi-bond { animation: simPiBreak 10s infinite ease-in-out; }
+        .sim-chain-trans { animation: simChainTransform 10s infinite ease-in-out; transform-origin: center; }
+        .sim-badge-liquid { animation: simUiBadgeLiquid 10s infinite ease-in-out; }
+        .sim-badge-solid { animation: simUiBadgeSolid 10s infinite ease-in-out; }
+
 
         /* GUI - NIEZALEŻNE OD SKALOWANIA */
         .gui-hover-zone { position: fixed; bottom: 0; right: 0; width: 300px; height: 120px; z-index: 10000; }
@@ -252,7 +292,7 @@
         <div class="click-area-left" onclick="prevSlide(event)"></div>
         <div class="click-area-right" onclick="nextSlide(event)"></div>
 
-        <!-- Slide 1: Tytuł (Poprawiony - brak modułu biochemicznego) -->
+        <!-- Slide 1: Tytuł -->
         <div class="slide-container active">
             <div class="content-wrapper" style="text-align: center; pointer-events: none;">
                 <h1>Tłuszcze w ujęciu<br>chemii i biologii</h1>
@@ -260,58 +300,101 @@
             </div>
         </div>
 
-        <!-- Slide 2: Definicja (NOWE MIKRO-SYMULACJE W KAFELKACH) -->
+        <!-- Slide 2: Definicja (ZAAWANSOWANE SYMULACJE WZORÓW) -->
         <div class="slide-container" style="pointer-events: auto;">
             <div style="pointer-events: none;"><h2 class="slide-title">Definicja i natura chemiczna</h2></div>
             <div class="content-wrapper">
                 <div class="tiled-content">
-                    <!-- KAFELEK 1 -->
+                    
+                    <!-- KAFELEK 1: Glicerol -->
                     <div class="tile">
                         <div class="tile-front">
                             <div class="icon"><i class="fa-solid fa-flask"></i></div>
                             <h3>Fundament struktury</h3>
-                            <p>Tłuszcze to z chemicznego punktu widzenia estry <strong>propano-1,2,3-triolu</strong> (znanego potocznie jako glicerol) oraz wyższych kwasów tłuszczowych.</p>
+                            <p>Tłuszcze to z chemicznego punktu widzenia estry <strong>propano-1,2,3-triolu</strong> (glicerolu) oraz wyższych kwasów tłuszczowych.</p>
                         </div>
                         <div class="tile-back">
                             <svg viewBox="0 0 200 200" width="100%" height="100%">
-                                <text x="100" y="30" font-family="'DM Sans'" font-size="13" font-weight="bold" fill="#64748b" text-anchor="middle">Glicerol + Kwasy Tłuszczowe</text>
-                                <g transform="translate(45, 60)">
-                                    <circle cx="0" cy="0" r="14" fill="#cbd5e1"/><text x="0" y="5" font-family="sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">C</text>
-                                    <circle cx="0" cy="40" r="14" fill="#cbd5e1"/><text x="0" y="45" font-family="sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">C</text>
-                                    <circle cx="0" cy="80" r="14" fill="#cbd5e1"/><text x="0" y="85" font-family="sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">C</text>
-                                    <line x1="0" y1="14" x2="0" y2="26" stroke="#94a3b8" stroke-width="4"/>
-                                    <line x1="0" y1="54" x2="0" y2="66" stroke="#94a3b8" stroke-width="4"/>
-                                    <!-- Animowane Wiązania Estrowe -->
-                                    <line x1="14" y1="0" x2="50" y2="0" class="sim-ester-bond" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
-                                    <line x1="14" y1="40" x2="50" y2="40" class="sim-ester-bond" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
-                                    <line x1="14" y1="80" x2="50" y2="80" class="sim-ester-bond" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
-                                    <!-- Ogony kwasów -->
-                                    <rect x="55" y="-10" width="60" height="20" rx="10" fill="#10b981" opacity="0.9"/>
-                                    <rect x="55" y="30" width="60" height="20" rx="10" fill="#10b981" opacity="0.9"/>
-                                    <rect x="55" y="70" width="60" height="20" rx="10" fill="#10b981" opacity="0.9"/>
+                                <text x="100" y="30" font-family="'DM Sans'" font-size="13" font-weight="bold" fill="#64748b" text-anchor="middle">Tworzenie wiązań estrowych</text>
+                                
+                                <g transform="translate(60, 70)">
+                                    <!-- Szkielet Węglowy -->
+                                    <line x1="0" y1="0" x2="0" y2="30" class="sim-bond"/>
+                                    <line x1="0" y1="30" x2="0" y2="60" class="sim-bond"/>
+                                    
+                                    <!-- Wiązania C-H (Lewa strona) -->
+                                    <line x1="0" y1="0" x2="-20" y2="0" class="sim-bond"/>
+                                    <line x1="0" y1="30" x2="-20" y2="30" class="sim-bond"/>
+                                    <line x1="0" y1="60" x2="-20" y2="60" class="sim-bond"/>
+                                    
+                                    <!-- Wiązania C-O (Prawa strona - tworzące estr) -->
+                                    <line x1="0" y1="0" x2="25" y2="0" class="sim-bond-highlight"/>
+                                    <line x1="0" y1="30" x2="25" y2="30" class="sim-bond-highlight"/>
+                                    <line x1="0" y1="60" x2="25" y2="60" class="sim-bond-highlight"/>
+
+                                    <!-- Atomy Węgla -->
+                                    <circle cx="0" cy="0" r="10" fill="#fff" stroke="#1e293b" stroke-width="2" class="sim-atom"/><text x="0" y="0" class="c-atom sim-atom">C</text>
+                                    <circle cx="0" cy="30" r="10" fill="#fff" stroke="#1e293b" stroke-width="2" class="sim-atom"/><text x="0" y="30" class="c-atom sim-atom">C</text>
+                                    <circle cx="0" cy="60" r="10" fill="#fff" stroke="#1e293b" stroke-width="2" class="sim-atom"/><text x="0" y="60" class="c-atom sim-atom">C</text>
+
+                                    <!-- Atomy Wodoru -->
+                                    <circle cx="-20" cy="0" r="7" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" class="sim-atom"/><text x="-20" y="0" class="h-atom sim-atom">H</text>
+                                    <circle cx="-20" cy="30" r="7" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" class="sim-atom"/><text x="-20" y="30" class="h-atom sim-atom">H</text>
+                                    <circle cx="-20" cy="60" r="7" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" class="sim-atom"/><text x="-20" y="60" class="h-atom sim-atom">H</text>
+
+                                    <!-- Reszty Kwasowe (O-R) -->
+                                    <rect x="25" y="-8" width="55" height="16" rx="8" fill="#3b82f6" class="sim-atom"/>
+                                    <text x="52" y="0" font-family="'DM Sans'" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="central" class="sim-atom">O - R₁</text>
+                                    
+                                    <rect x="25" y="22" width="55" height="16" rx="8" fill="#3b82f6" class="sim-atom"/>
+                                    <text x="52" y="30" font-family="'DM Sans'" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="central" class="sim-atom">O - R₂</text>
+                                    
+                                    <rect x="25" y="52" width="55" height="16" rx="8" fill="#3b82f6" class="sim-atom"/>
+                                    <text x="52" y="60" font-family="'DM Sans'" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="central" class="sim-atom">O - R₃</text>
                                 </g>
                             </svg>
                         </div>
                     </div>
-                    <!-- KAFELEK 2 -->
+
+                    <!-- KAFELEK 2: Łańcuchy -->
                     <div class="tile" style="border-top-color: var(--accent-secondary);">
                         <div class="tile-front">
                             <div class="icon" style="background: linear-gradient(135deg, var(--accent-secondary), #34d399); -webkit-background-clip: text;"><i class="fa-solid fa-link"></i></div>
                             <h3>Długie łańcuchy</h3>
-                            <p>Reszty kwasowe tworzą w tłuszczach łańcuchy węglowodorowe. Mogą one być nasycone wodorem lub posiadać wiązania podwójne między atomami węgla.</p>
+                            <p>Reszty kwasowe tworzą łańcuchy węglowodorowe. Mogą być nasycone wodorem lub posiadać wiązania podwójne wyginające cząsteczkę.</p>
                         </div>
                         <div class="tile-back">
                             <svg viewBox="0 0 200 200" width="100%" height="100%">
-                                <text x="100" y="40" font-family="'DM Sans'" font-size="13" font-weight="bold" fill="#64748b" text-anchor="middle">Nasycone i Nienasycone</text>
-                                <!-- Prosty (nasycony) -->
-                                <path d="M 20 80 L 40 60 L 60 80 L 80 60 L 100 80 L 120 60 L 140 80 L 160 60 L 180 80" stroke="#10b981" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
-                                <!-- Wygięty (nienasycony) -->
-                                <path d="M 20 140 L 40 120 L 60 140 L 80 120 L 100 140 L 120 160 L 140 140 L 160 160 L 180 140" stroke="#3b82f6" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
-                                <line x1="95" y1="135" x2="115" y2="155" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/> <!-- Podwójne wiązanie -->
+                                <!-- Nasycony (Prosty) -->
+                                <g class="sim-sat">
+                                    <text x="100" y="50" font-family="'DM Sans'" font-size="14" font-weight="bold" fill="#10b981" text-anchor="middle">Kwas Nasycony (Prosty)</text>
+                                    <path d="M 20 120 L 40 100 L 60 120 L 80 100 L 100 120 L 120 100 L 140 120 L 160 100 L 180 120" stroke="#10b981" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+                                    <!-- Atomy węgla -->
+                                    <circle cx="20" cy="120" r="5" fill="#1e293b"/><circle cx="40" cy="100" r="5" fill="#1e293b"/>
+                                    <circle cx="60" cy="120" r="5" fill="#1e293b"/><circle cx="80" cy="100" r="5" fill="#1e293b"/>
+                                    <circle cx="100" cy="120" r="5" fill="#1e293b"/><circle cx="120" cy="100" r="5" fill="#1e293b"/>
+                                    <circle cx="140" cy="120" r="5" fill="#1e293b"/><circle cx="160" cy="100" r="5" fill="#1e293b"/>
+                                    <circle cx="180" cy="120" r="5" fill="#1e293b"/>
+                                </g>
+
+                                <!-- Nienasycony (Wygięty z wiązaniem Pi) -->
+                                <g class="sim-unsat">
+                                    <text x="100" y="50" font-family="'DM Sans'" font-size="14" font-weight="bold" fill="#3b82f6" text-anchor="middle">Kwas Nienasycony (Zgięty)</text>
+                                    <path d="M 20 100 L 40 80 L 60 100 L 80 80 L 100 100 L 115 130 L 135 110 L 155 130 L 175 110" stroke="#3b82f6" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+                                    <line x1="93" y1="102" x2="108" y2="132" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/> <!-- Podwójne wiązanie (Czerwone) -->
+                                    
+                                    <circle cx="20" cy="100" r="5" fill="#1e293b"/><circle cx="40" cy="80" r="5" fill="#1e293b"/>
+                                    <circle cx="60" cy="100" r="5" fill="#1e293b"/><circle cx="80" cy="80" r="5" fill="#1e293b"/>
+                                    <circle cx="100" cy="100" r="6" fill="#0f172a" stroke="#fff" stroke-width="1.5"/><circle cx="115" cy="130" r="6" fill="#0f172a" stroke="#fff" stroke-width="1.5"/>
+                                    <circle cx="135" cy="110" r="5" fill="#1e293b"/><circle cx="155" cy="130" r="5" fill="#1e293b"/>
+                                    <circle cx="175" cy="110" r="5" fill="#1e293b"/>
+                                    <text x="130" y="145" font-family="'DM Sans'" font-size="10" font-weight="bold" fill="#ef4444">C=C</text>
+                                </g>
                             </svg>
                         </div>
                     </div>
-                    <!-- KAFELEK 3 -->
+
+                    <!-- KAFELEK 3: Niuans -->
                     <div class="tile" style="border-top-color: var(--accent-warm);">
                         <div class="tile-front">
                             <div class="icon" style="background: linear-gradient(135deg, var(--accent-warm), #fbbf24); -webkit-background-clip: text;"><i class="fa-solid fa-microscope"></i></div>
@@ -320,16 +403,32 @@
                         </div>
                         <div class="tile-back">
                             <svg viewBox="0 0 200 200" width="100%" height="100%">
-                                <text x="100" y="40" font-family="'DM Sans'" font-size="13" font-weight="bold" fill="#64748b" text-anchor="middle">Zbyt krótki łańcuch</text>
-                                <!-- Bariera minimalnej długości -->
-                                <rect x="140" y="60" width="6" height="100" class="sim-barrier" rx="3"/>
-                                <text x="143" y="180" font-family="'DM Sans'" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">Bariera C>4</text>
+                                <text x="100" y="40" font-family="'DM Sans'" font-size="13" font-weight="bold" fill="#b45309" text-anchor="middle">Kwas masłowy (Butanowy)</text>
                                 
-                                <g class="sim-bounce" transform="translate(0, 110)">
-                                    <line x1="30" y1="0" x2="110" y2="0" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
-                                    <circle cx="30" cy="0" r="10" fill="#0f172a"/><circle cx="56" cy="0" r="10" fill="#0f172a"/>
-                                    <circle cx="83" cy="0" r="10" fill="#0f172a"/><circle cx="110" cy="0" r="10" fill="#0f172a"/>
-                                    <text x="70" y="-18" font-family="'DM Sans'" font-size="12" font-weight="bold" fill="#b45309" text-anchor="middle">Kwas Masłowy (C4)</text>
+                                <g transform="translate(30, 100)">
+                                    <!-- Wzór strukturalny CH3-CH2-CH2-COOH -->
+                                    <line x1="0" y1="0" x2="35" y2="-20" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+                                    <line x1="35" y1="-20" x2="70" y2="0" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+                                    <line x1="70" y1="0" x2="105" y2="-20" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+                                    
+                                    <!-- Podwójne do tlenu (=O) -->
+                                    <line x1="103" y1="-22" x2="115" y2="-45" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+                                    <line x1="110" y1="-18" x2="122" y2="-41" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+                                    <text x="120" y="-50" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ef4444">O</text>
+                                    
+                                    <!-- Pojedyncze do grupy OH -->
+                                    <line x1="105" y1="-20" x2="125" y2="-5" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+                                    <text x="135" y="0" font-family="sans-serif" font-size="14" font-weight="bold" fill="#3b82f6">OH</text>
+
+                                    <!-- Atomy Węgla -->
+                                    <circle cx="0" cy="0" r="12" fill="#fff" stroke="#1e293b" stroke-width="2"/><text x="0" y="0" class="c-atom">C</text>
+                                    <circle cx="35" cy="-20" r="12" fill="#fff" stroke="#1e293b" stroke-width="2"/><text x="35" y="-20" class="c-atom">C</text>
+                                    <circle cx="70" cy="0" r="12" fill="#fff" stroke="#1e293b" stroke-width="2"/><text x="70" y="0" class="c-atom">C</text>
+                                    <circle cx="105" cy="-20" r="12" fill="#fff" stroke="#1e293b" stroke-width="2"/><text x="105" y="-20" class="c-atom">C</text>
+
+                                    <!-- Klamra pod spodem i napis "Tylko C4" -->
+                                    <path d="M 0 20 L 0 30 L 52.5 35 L 105 30 L 105 20" fill="none" stroke="#94a3b8" stroke-width="2"/>
+                                    <text x="52.5" y="50" font-family="'DM Sans'" font-size="12" font-weight="bold" fill="#ef4444" text-anchor="middle">Zbyt krótki (Tylko C4)</text>
                                 </g>
                             </svg>
                         </div>
@@ -469,7 +568,7 @@
             </div>
         </div>
 
-        <!-- Slide 7: Doświadczenie Analiza -->
+        <!-- Slide 7: Doświadczenie Analiza (ZAAWANSOWANA PIPETA) -->
         <div class="slide-container" style="pointer-events: none;">
             <div><h2 class="slide-title">Badanie stopnia nasycenia</h2></div>
             <div class="content-wrapper">
@@ -477,8 +576,8 @@
                     <div>
                         <p style="margin-bottom: 20px;">Reakcja addycji (przyłączenia) pozwala na błyskawiczne odróżnienie tłuszczu nasyconego od nienasyconego.</p>
                         <ul class="custom-list glass-list" style="padding: 20px 30px;">
-                            <li style="margin-bottom: 15px;"><strong>Olej rzepakowy (nienasycony):</strong> Woda bromowa odbarwia się. Atomy bromu rozrywają podwójne wiązania i łączą się z łańcuchem.</li>
-                            <li><strong>Stopiony olej kokosowy (nasycony):</strong> Brak wiązań podwójnych. Woda bromowa zachowuje herbacianą barwę, brak reakcji.</li>
+                            <li style="margin-bottom: 15px;"><strong>Olej rzepakowy (nienasycony):</strong> Dodana woda bromowa odbarwia się. Atomy bromu rozrywają podwójne wiązania i łączą się z łańcuchem.</li>
+                            <li><strong>Olej kokosowy (nasycony):</strong> Brak wiązań podwójnych. Woda bromowa zachowuje barwę i opada na dno (brak reakcji).</li>
                         </ul>
                     </div>
                     <div>
@@ -492,9 +591,6 @@
                                     <linearGradient id="bromine" x1="0%" y1="0%" x2="100%" y2="0%">
                                         <stop offset="0%" stop-color="#b45309" /><stop offset="100%" stop-color="#d97706" />
                                     </linearGradient>
-                                    <linearGradient id="clearLiq" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" stop-color="#e2e8f0" /><stop offset="100%" stop-color="#f1f5f9" />
-                                    </linearGradient>
                                     <linearGradient id="oilLiq" x1="0%" y1="0%" x2="100%" y2="0%">
                                         <stop offset="0%" stop-color="#fef08a" /><stop offset="100%" stop-color="#eab308" />
                                     </linearGradient>
@@ -502,45 +598,80 @@
                                         <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#3b82f6" flood-opacity="0.1"/>
                                     </filter>
                                 </defs>
-                                <rect x="50" y="210" width="200" height="12" rx="4" fill="#cbd5e1"/>
-                                <rect x="70" y="115" width="160" height="8" rx="2" fill="#cbd5e1"/>
+                                
+                                <!-- Statyw -->
+                                <rect x="30" y="210" width="240" height="12" rx="4" fill="#cbd5e1"/>
+                                <rect x="50" y="115" width="200" height="8" rx="2" fill="#cbd5e1"/>
 
-                                <!-- PROBÓWKA 1 -->
-                                <g transform="translate(80, 60)" filter="url(#glow-tube)">
+                                <!-- PROBÓWKA 1 (Rzepakowy - Reakcja) -->
+                                <g transform="translate(60, 60)" filter="url(#glow-tube)">
                                     <rect x="0" y="0" width="36" height="150" rx="18" fill="url(#glassTube)" stroke="#94a3b8" stroke-width="1.5"/>
-                                    <path d="M 2 100 L 34 100 L 34 132 A 16 16 0 0 1 2 132 Z" fill="url(#clearLiq)" opacity="0.8"/>
-                                    <ellipse cx="18" cy="100" rx="16" ry="3" fill="#cbd5e1" opacity="0.9"/>
-                                    <circle cx="12" cy="125" r="2" fill="#fff" class="bubble bubble-1"/>
-                                    <circle cx="24" cy="120" r="1.5" fill="#fff" class="bubble bubble-2"/>
-                                    <circle cx="18" cy="110" r="3" fill="#fff" class="bubble bubble-3"/>
-                                    <circle cx="10" cy="105" r="1.5" fill="#fff" class="bubble bubble-4"/>
-                                    <path d="M 2 65 L 34 65 L 34 98 L 2 98 Z" fill="url(#oilLiq)" opacity="0.8"/>
-                                    <ellipse cx="18" cy="65" rx="16" ry="3" fill="#fde047" opacity="0.9"/>
+                                    
+                                    <!-- Olej i Animacja Bąbelków w oleju -->
+                                    <path d="M 2 80 L 34 80 L 34 132 A 16 16 0 0 1 2 132 Z" fill="url(#oilLiq)" opacity="0.8"/>
+                                    <ellipse cx="18" cy="80" rx="16" ry="3" fill="#fde047" opacity="0.9"/>
+                                    
+                                    <g class="sim-bubbles">
+                                        <circle cx="12" cy="125" r="2" fill="#fff" class="sim-bubble-1"/>
+                                        <circle cx="24" cy="115" r="1.5" fill="#fff" class="sim-bubble-2"/>
+                                        <circle cx="18" cy="100" r="3" fill="#fff" class="sim-bubble-3"/>
+                                    </g>
+
+                                    <!-- Spadająca Kropla Br2 -->
+                                    <path class="sim-drop-t1" d="M 18 10 Q 22 20 18 25 Q 14 20 18 10" fill="url(#bromine)"/>
+
                                     <path d="M 5 15 L 5 130" class="svg-glass-reflect" stroke-width="2"/>
                                     <ellipse cx="18" cy="0" rx="20" ry="4" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-                                    <path d="M 18 -15 Q 22 -7 18 -3 Q 14 -7 18 -15" fill="#f59e0b" class="drip-anim"/>
                                 </g>
-                                <text x="98" y="240" font-family="sans-serif" font-size="12" text-anchor="middle" fill="#475569" font-weight="bold">Olej rzepakowy</text>
-                                <text x="98" y="255" font-family="sans-serif" font-size="10" text-anchor="middle" fill="#10b981" font-weight="bold">ODBARWIA</text>
+                                <text x="78" y="240" font-family="'DM Sans', sans-serif" font-size="12" text-anchor="middle" fill="#475569" font-weight="bold">Olej rzepakowy</text>
+                                <text x="78" y="255" font-family="'DM Sans', sans-serif" font-size="10" text-anchor="middle" fill="#10b981" font-weight="bold">ODBARWIA SIĘ</text>
 
-                                <!-- PROBÓWKA 2 -->
-                                <g transform="translate(184, 60)" filter="url(#glow-tube)">
+                                <!-- PROBÓWKA 2 (Kokosowy - Brak reakcji) -->
+                                <g transform="translate(170, 60)" filter="url(#glow-tube)">
                                     <rect x="0" y="0" width="36" height="150" rx="18" fill="url(#glassTube)" stroke="#94a3b8" stroke-width="1.5"/>
-                                    <path d="M 2 100 L 34 100 L 34 132 A 16 16 0 0 1 2 132 Z" fill="url(#bromine)" opacity="0.95"/>
-                                    <ellipse cx="18" cy="100" rx="16" ry="3" fill="#f59e0b" opacity="0.9"/>
-                                    <path d="M 2 65 L 34 65 L 34 98 L 2 98 Z" fill="url(#oilLiq)" opacity="0.8"/>
-                                    <ellipse cx="18" cy="65" rx="16" ry="3" fill="#fde047" opacity="0.9"/>
+                                    
+                                    <!-- Warstwa Bromu na dnie (pojawia się po opadnięciu) -->
+                                    <g class="sim-bromine-layer">
+                                        <path d="M 2 115 L 34 115 L 34 132 A 16 16 0 0 1 2 132 Z" fill="url(#bromine)" opacity="0.95"/>
+                                        <ellipse cx="18" cy="115" rx="16" ry="3" fill="#f59e0b" opacity="0.9"/>
+                                    </g>
+
+                                    <!-- Olej -->
+                                    <path d="M 2 80 L 34 80 L 34 115 L 2 115 Z" fill="url(#oilLiq)" opacity="0.8"/>
+                                    <ellipse cx="18" cy="80" rx="16" ry="3" fill="#fde047" opacity="0.9"/>
+
+                                    <!-- Spadająca Kropla Br2 -->
+                                    <path class="sim-drop-t2" d="M 18 10 Q 22 20 18 25 Q 14 20 18 10" fill="url(#bromine)"/>
+
                                     <path d="M 5 15 L 5 130" class="svg-glass-reflect" stroke-width="2"/>
                                     <ellipse cx="18" cy="0" rx="20" ry="4" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-                                    <path d="M 18 -15 Q 22 -7 18 -3 Q 14 -7 18 -15" fill="#b45309" class="drip-anim"/>
                                 </g>
-                                <text x="202" y="240" font-family="sans-serif" font-size="12" text-anchor="middle" fill="#475569" font-weight="bold">Olej kokosowy</text>
-                                <text x="202" y="255" font-family="sans-serif" font-size="10" text-anchor="middle" fill="#ef4444" font-weight="bold">BRAK ZMIAN</text>
+                                <text x="188" y="240" font-family="'DM Sans', sans-serif" font-size="12" text-anchor="middle" fill="#475569" font-weight="bold">Olej kokosowy</text>
+                                <text x="188" y="255" font-family="'DM Sans', sans-serif" font-size="10" text-anchor="middle" fill="#ef4444" font-weight="bold">BRAK REAKCJI</text>
 
-                                <!-- Statyw Przód -->
-                                <rect x="60" y="117" width="180" height="5" rx="2" fill="#94a3b8" opacity="0.8"/>
-                                <rect x="80" y="115" width="8" height="95" fill="#cbd5e1"/>
-                                <rect x="210" y="115" width="8" height="95" fill="#cbd5e1"/>
+                                <!-- Ruchoma Pipeta -->
+                                <g class="sim-pipette">
+                                    <g transform="translate(0, 0)">
+                                        <!-- Etykieta Pipety -->
+                                        <rect x="15" y="-15" width="80" height="20" rx="4" fill="#fff" stroke="#d97706" stroke-width="1"/>
+                                        <text x="55" y="-1" font-family="'DM Sans', sans-serif" font-size="9" font-weight="bold" fill="#b45309" text-anchor="middle">Woda bromowa</text>
+                                        <line x1="15" y1="-5" x2="-2" y2="0" stroke="#d97706" stroke-width="1" stroke-dasharray="2,2"/>
+
+                                        <!-- Pompka czerwona animowana -->
+                                        <g class="sim-bulb">
+                                            <rect x="-12" y="-40" width="24" height="20" rx="5" fill="#ef4444"/>
+                                            <rect x="-8" y="-45" width="16" height="5" rx="2" fill="#dc2626"/>
+                                        </g>
+                                        <!-- Szklana rurka -->
+                                        <path d="M -6 -20 L -6 40 L -2 55 L 2 55 L 6 40 L 6 -20 Z" fill="url(#glassTube)" stroke="#94a3b8" stroke-width="1.5"/>
+                                        <path d="M -3 -15 L -3 38 L -1 50 L 1 50 L 3 38 L 3 -15 Z" fill="url(#bromine)" opacity="0.8"/>
+                                    </g>
+                                </g>
+
+                                <!-- Statyw Przód (Żeby zakrywał pipete/probówki z tyłu) -->
+                                <rect x="40" y="117" width="220" height="4" rx="2" fill="#94a3b8" opacity="0.8"/>
+                                <rect x="60" y="115" width="8" height="95" fill="#cbd5e1"/>
+                                <rect x="232" y="115" width="8" height="95" fill="#cbd5e1"/>
                             </svg>
                         </div>
                     </div>
@@ -548,7 +679,7 @@
             </div>
         </div>
 
-        <!-- Slide 8: Rola Biologiczna (NOWA, PIĘKNA ILUSTRACJA) -->
+        <!-- Slide 8: Rola Biologiczna (BOSKA KROPLA Z WITAMINAMI) -->
         <div class="slide-container" style="pointer-events: none;">
             <div><h2 class="slide-title">Rola w organizmach żywych</h2></div>
             <div class="content-wrapper">
@@ -576,14 +707,10 @@
 
                                 <!-- Abstraktowe ikony źródeł jedzenia w tle -->
                                 <g opacity="0.15" fill="#64748b">
-                                    <!-- Ryba -->
-                                    <text x="60" y="80" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="45">&#xf578;</text>
-                                    <!-- Owoc / Awokado / Orzech -->
-                                    <text x="310" y="110" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="40">&#xf5d1;</text>
-                                    <!-- Roślina / Słonecznik -->
-                                    <text x="80" y="250" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="45">&#xf4d8;</text>
-                                    <!-- Kropla oliwy -->
-                                    <text x="300" y="240" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="40">&#xf043;</text>
+                                    <text x="60" y="80" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="45">&#xf578;</text> <!-- Ryba -->
+                                    <text x="310" y="110" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="40">&#xf5d1;</text> <!-- Owoc -->
+                                    <text x="80" y="250" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="45">&#xf4d8;</text> <!-- Roślina -->
+                                    <text x="300" y="240" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="40">&#xf043;</text> <!-- Kropla -->
                                 </g>
 
                                 <!-- Centralna Kropla Tłuszczu z animacją pulsowania -->
@@ -614,7 +741,7 @@
             </div>
         </div>
 
-        <!-- Slide 9: Od oleju do margaryny (CZYSTA I ZROZUMIAŁA SYMULACJA) -->
+        <!-- Slide 9: Od oleju do margaryny (PERFEKCYJNA ZAPĘTLONA SYMULACJA) -->
         <div class="slide-container" style="pointer-events: none;">
             <div><h2 class="slide-title">Proces utwardzania tłuszczów</h2></div>
             <div class="content-wrapper">
@@ -625,31 +752,25 @@
                         <p>Reakcja ta, aby zaszła skutecznie, wymaga odpowiednio wysokiej temperatury, ciśnienia oraz zastosowania katalizatora niklowego.</p>
                     </div>
                     <div>
-                        <!-- Złożona Symulacja Chemiczna (Tylko molekuły) -->
+                        <!-- Złożona Symulacja Chemiczna (Czysta Molekuła) -->
                         <div class="svg-wrapper" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); position: relative;">
                             
                             <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-                                <defs>
-                                    <filter id="neon-red" x="-50%" y="-50%" width="200%" height="200%">
-                                        <feGaussianBlur stdDeviation="4" result="blur" /><feComposite in="SourceGraphic" in2="blur" operator="over" />
-                                    </filter>
-                                </defs>
-
-                                <!-- Interfejs Stanu Skupienia (Zmienia się w czasie animacji) -->
+                                <!-- Interfejs Stanu Skupienia (Zmienia się płynnie w czasie animacji) -->
                                 <g transform="translate(200, 50)">
-                                    <g class="sim-state-liquid">
+                                    <g class="sim-badge-liquid">
                                         <rect x="-80" y="-16" width="160" height="32" rx="16" fill="rgba(59, 130, 246, 0.15)" stroke="#3b82f6" stroke-width="1.5"/>
                                         <text x="0" y="4" font-family="'DM Sans'" font-size="12" font-weight="bold" fill="#93c5fd" text-anchor="middle" letter-spacing="1">STAN: CIEKŁY (OLEJ)</text>
                                     </g>
-                                    <g class="sim-state-solid">
+                                    <g class="sim-badge-solid">
                                         <rect x="-100" y="-16" width="200" height="32" rx="16" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="1.5"/>
                                         <text x="0" y="4" font-family="'DM Sans'" font-size="12" font-weight="bold" fill="#6ee7b7" text-anchor="middle" letter-spacing="1">STAN: STAŁY (MARGARYNA)</text>
                                     </g>
                                 </g>
 
-                                <!-- Główny szkielet węglowy z animacją transformacji -->
+                                <!-- Główny szkielet węglowy z animacją transformacji wygięcia -->
                                 <g transform="translate(200, 170)">
-                                    <g class="sim-chain-transform">
+                                    <g class="sim-chain-trans">
                                         <!-- Linie kontynuacji łańcucha -->
                                         <line x1="-130" y1="50" x2="-60" y2="0" stroke="inherit" stroke-width="8" stroke-linecap="round"/>
                                         <line x1="130" y1="50" x2="60" y2="0" stroke="inherit" stroke-width="8" stroke-linecap="round"/>
@@ -664,21 +785,29 @@
                                         <!-- Stałe pojedyncze wiązanie Sigma -->
                                         <line x1="-35" y1="0" x2="35" y2="0" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/>
                                         
-                                        <!-- Pękające wiązanie Pi (Podwójne) -->
-                                        <line class="sim-pi-bond" x1="-32" y1="-16" x2="32" y2="-16" stroke="#ef4444" stroke-width="6" stroke-linecap="round" filter="url(#neon-red)"/>
+                                        <!-- Pękające i powracające wiązanie Pi (Podwójne) -->
+                                        <line class="sim-pi-bond" x1="-32" y1="-16" x2="32" y2="-16" stroke="#ef4444" stroke-width="6" stroke-linecap="round"/>
                                     </g>
                                     
-                                    <!-- Animowane Atomy Wodoru włączające się do cząsteczki -->
+                                    <!-- Animowana Cząsteczka H2 z góry -->
+                                    <g class="sim-h2">
+                                        <line x1="-12" y1="0" x2="12" y2="0" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+                                        <circle cx="-16" cy="0" r="11" fill="#f8fafc" style="filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.8));"/>
+                                        <circle cx="16" cy="0" r="11" fill="#f8fafc" style="filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.8));"/>
+                                        <text x="0" y="-18" font-family="'DM Sans'" font-size="14" font-weight="bold" fill="#cbd5e1" text-anchor="middle">H₂</text>
+                                    </g>
+
+                                    <!-- Atomy Wodoru rozdzielające się i przyłączające do C -->
                                     <g class="sim-h-left">
-                                        <circle cx="-60" cy="-70" r="14" fill="#f8fafc"/>
+                                        <circle cx="-60" cy="-70" r="14" fill="#f8fafc" style="filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.8));"/>
                                         <text x="-60" y="-64" font-family="'DM Sans'" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">H</text>
-                                        <line x1="-60" y1="-30" x2="-60" y2="-55" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+                                        <line x1="-60" y1="-30" x2="-60" y2="-55" stroke="#94a3b8" stroke-width="4" stroke-linecap="round" stroke-dasharray="4 4"/>
                                     </g>
 
                                     <g class="sim-h-right">
-                                        <circle cx="60" cy="-70" r="14" fill="#f8fafc"/>
+                                        <circle cx="60" cy="-70" r="14" fill="#f8fafc" style="filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.8));"/>
                                         <text x="60" y="-64" font-family="'DM Sans'" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">H</text>
-                                        <line x1="60" y1="-30" x2="60" y2="-55" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+                                        <line x1="60" y1="-30" x2="60" y2="-55" stroke="#94a3b8" stroke-width="4" stroke-linecap="round" stroke-dasharray="4 4"/>
                                     </g>
                                 </g>
                                 
@@ -817,3 +946,4 @@
     </script>
 </body>
 </html>
+```
