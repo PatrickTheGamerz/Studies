@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tłuszcze - Chemia i Biologia</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>AI w Web Developmencie</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Merriweather:wght@300;400;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             --bg-dark: #06090e;
             --text-main: #0f172a;
             --text-muted: #475569;
-            --accent-primary: #3b82f6;
-            --accent-secondary: #10b981;
-            --accent-warm: #f59e0b;
-            --accent-danger: #ef4444;
+            --accent-primary: #8b5cf6;
+            --accent-secondary: #3b82f6;
+            --accent-warm: #f43f5e;
+            --accent-success: #10b981;
             --glass-bg: rgba(255, 255, 255, 0.75);
             --glass-border: rgba(255, 255, 255, 0.5);
             --glass-shadow: 0 15px 35px -10px rgba(15, 23, 42, 0.08);
@@ -27,14 +27,14 @@
         #ambient-bg {
             position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
             background: 
-                radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 70% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 40%);
+                radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(244, 63, 94, 0.08) 0%, transparent 40%);
             z-index: 0; animation: ambient-drift 40s ease-in-out infinite alternate;
         }
 
         #progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 5px; background: rgba(255,255,255,0.05); z-index: 9999; }
-        #progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); box-shadow: 0 0 10px var(--accent-secondary); transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); border-radius: 0 3px 3px 0; }
+        #progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); box-shadow: 0 0 10px var(--accent-primary); transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); border-radius: 0 3px 3px 0; }
 
         #presentation-area {
             width: 1280px; height: 720px; position: absolute; top: 50%; left: 50%; transform-origin: center center;
@@ -44,7 +44,7 @@
 
         #presentation-area::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='103.9' viewBox='0 0 60 103.9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 103.9L0 86.6V52l30-17.3L60 52v34.6L30 103.9zM30 52L0 34.6V0l30-17.3L60 0v34.6L30 52z' fill='none' stroke='%233b82f6' stroke-width='1.5' stroke-opacity='0.06'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='103.9' viewBox='0 0 60 103.9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 103.9L0 86.6V52l30-17.3L60 52v34.6L30 103.9zM30 52L0 34.6V0l30-17.3L60 0v34.6L30 52z' fill='none' stroke='%238b5cf6' stroke-width='1.5' stroke-opacity='0.06'/%3E%3C/svg%3E");
             background-size: 80px 138.5px; pointer-events: none; z-index: 0;
         }
         #presentation-area::after {
@@ -77,14 +77,15 @@
         strong { color: var(--text-main); font-weight: 700; }
         .subtitle { font-size: 24px; color: #64748b; text-align: center; max-width: 900px; margin: 0 auto; line-height: 1.5; }
         .gradient-text { background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+        .code-font { font-family: 'Fira Code', monospace; font-size: 14px; fill: #64748b; }
 
-        .two-column { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 50px; width: 100%; align-items: center; z-index: 2; position: relative; }
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; width: 100%; align-items: center; z-index: 2; position: relative; }
         .two-column.align-start { align-items: flex-start; }
         ul { list-style: none; padding: 0; margin: 0; }
         .glass-list { background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 16px; padding: 25px 35px; box-shadow: var(--glass-shadow); }
         .custom-list li { padding-left: 35px; position: relative; margin-bottom: 18px; }
         .custom-list li:last-child { margin-bottom: 0; }
-        .custom-list li::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--accent-secondary); position: absolute; left: 0; top: 3px; font-size: 20px; filter: drop-shadow(0 2px 3px rgba(16, 185, 129, 0.2)); }
+        .custom-list li::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--accent-primary); position: absolute; left: 0; top: 3px; font-size: 20px; filter: drop-shadow(0 2px 3px rgba(139, 92, 246, 0.2)); }
 
         .tiled-content { display: flex; gap: 30px; align-items: stretch; width: 100%; z-index: 2; position: relative; }
         .tile {
@@ -99,7 +100,7 @@
             padding: 35px 30px; text-align: center; display: flex; flex-direction: column; justify-content: flex-start;
             height: 100%; width: 100%; transition: opacity 0.4s ease, transform 0.4s ease; position: relative; z-index: 2;
         }
-        .tile-front .icon { font-size: 50px; margin-bottom: 20px; background: linear-gradient(135deg, var(--accent-primary), #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; filter: drop-shadow(0 8px 10px rgba(59, 130, 246, 0.15)); }
+        .tile-front .icon { font-size: 50px; margin-bottom: 20px; background: linear-gradient(135deg, var(--accent-primary), #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; filter: drop-shadow(0 8px 10px rgba(139, 92, 246, 0.15)); }
         
         .tile-back {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff;
@@ -110,10 +111,10 @@
         .tile:hover .tile-front { opacity: 0; transform: scale(0.95); pointer-events: none; }
         .tile:hover .tile-back { opacity: 1; transform: scale(1); pointer-events: auto; }
 
-        .exception-box { background: linear-gradient(to right, #fef2f2, #fff); border-left: 4px solid var(--accent-danger); padding: 15px; margin-top: 20px; border-radius: 0 10px 10px 0; box-shadow: 0 8px 15px rgba(239, 68, 68, 0.05); }
+        .exception-box { background: linear-gradient(to right, #f8fafc, #fff); border-left: 4px solid var(--accent-primary); padding: 15px; margin-top: 20px; border-radius: 0 10px 10px 0; box-shadow: 0 8px 15px rgba(15, 23, 42, 0.05); }
 
         .section-title-layout { align-items: center; display: flex; flex-direction: column; justify-content: center; text-align: center; width: 100%; height: 100%; }
-        .section-title-layout hr { background: linear-gradient(90deg, transparent, var(--accent-secondary), transparent); border: none; height: 3px; margin: 35px auto; width: 250px; border-radius: 2px; }
+        .section-title-layout hr { background: linear-gradient(90deg, transparent, var(--accent-primary), transparent); border: none; height: 3px; margin: 35px auto; width: 250px; border-radius: 2px; }
 
         .svg-wrapper {
             border-radius: 20px; height: 380px; width: 100%; display: flex; justify-content: center; align-items: center;
@@ -126,143 +127,37 @@
 
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         @keyframes float-light { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-        @keyframes pulse-glow { 0%, 100% { filter: drop-shadow(0 0 8px rgba(253, 224, 71, 0.4)); transform: scale(1); } 50% { filter: drop-shadow(0 0 20px rgba(253, 224, 71, 0.8)); transform: scale(1.03); } }
-        @keyframes pulse-heart { 0%, 100% { transform: translate(0, 20px) scale(0.9); } 15% { transform: translate(0, 20px) scale(0.96); } 30% { transform: translate(0, 20px) scale(0.9); } 45% { transform: translate(0, 20px) scale(0.94); } }
+        @keyframes pulse-glow { 0%, 100% { filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4)); transform: scale(1); } 50% { filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.8)); transform: scale(1.03); } }
         @keyframes ambient-drift { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-3%, -3%) scale(1.1); } }
+        @keyframes code-type { 0%, 10% { opacity: 0; transform: translateX(-10px); } 20%, 90% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(10px); } }
+        @keyframes node-pulse { 0%, 100% { stroke-width: 2; stroke-opacity: 0.5; } 50% { stroke-width: 6; stroke-opacity: 1; } }
+        @keyframes slide-up-fade { 0% { opacity: 0; transform: translateY(20px); } 20%, 80% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-20px); } }
+        @keyframes build-block { 0%, 20% { height: 0; opacity: 0; } 30%, 80% { height: 30px; opacity: 1; } 90%, 100% { height: 0; opacity: 0; } }
+        @keyframes scan-line { 0% { transform: translateX(-100%); } 50%, 100% { transform: translateX(400%); } }
+        @keyframes fix-code { 0%, 45% { stroke: #ef4444; stroke-dasharray: 5 5; } 50%, 100% { stroke: #10b981; stroke-dasharray: none; } }
+        @keyframes glow-shift { 0% { fill: #8b5cf6; } 50% { fill: #3b82f6; } 100% { fill: #8b5cf6; } }
 
         .anim-float { animation: float 6s ease-in-out infinite; transform-origin: center; }
         .anim-float-light { animation: float-light 4s ease-in-out infinite; }
         .anim-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; transform-origin: center; }
-        .anim-heart { animation: pulse-heart 2s ease-in-out infinite; transform-origin: center; }
-        .svg-glass-reflect { stroke: white; stroke-linecap: round; opacity: 0.6; }
-
-        /* ======================================================== */
-        /* SLAJD 2: ZAAWANSOWANE SYMULACJE WZORÓW STRUKTURALNYCH    */
-        /* ======================================================== */
-        /* Glicerol budowanie */
-        @keyframes buildAtoms { 0%, 15% { opacity: 0; transform: scale(0.5); } 20%, 85% { opacity: 1; transform: scale(1); } 95%, 100% { opacity: 0; transform: scale(1.2); } }
-        @keyframes buildBonds { 0%, 25% { stroke-dashoffset: 50; opacity: 0; } 35%, 85% { stroke-dashoffset: 0; opacity: 1; } 95%, 100% { opacity: 0; } }
         
-        .sim-atom { animation: buildAtoms 6s infinite ease-in-out; transform-origin: center; }
-        .sim-bond { stroke: #94a3b8; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 50; stroke-dashoffset: 50; animation: buildBonds 6s infinite ease-in-out; }
-        .sim-bond-highlight { stroke: #3b82f6; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 50; stroke-dashoffset: 50; animation: buildBonds 6s infinite ease-in-out; animation-delay: 0.2s; }
-
-        /* Przełączanie Nasycony / Nienasycony */
-        @keyframes switchSat { 0%, 40% { opacity: 1; } 50%, 90% { opacity: 0; } 100% { opacity: 1; } }
-        @keyframes switchUnsat { 0%, 40% { opacity: 0; } 50%, 90% { opacity: 1; } 100% { opacity: 0; } }
-        .sim-sat { animation: switchSat 8s infinite ease-in-out; }
-        .sim-unsat { animation: switchUnsat 8s infinite ease-in-out; }
-        .c-atom { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; fill: #1e293b; text-anchor: middle; dominant-baseline: central; }
-        .h-atom { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700; fill: #64748b; text-anchor: middle; dominant-baseline: central; }
-
-        /* ======================================================== */
-        /* SLAJD 7: ZAAWANSOWANA SYMULACJA PIPETY                   */
-        /* ======================================================== */
-        @keyframes movePipette {
-            0%, 5% { transform: translate(100px, -150px); opacity: 0; } /* Wejście */
-            10% { transform: translate(75px, 0px); opacity: 1; } /* Nad probówką 1 */
-            20% { transform: translate(75px, 0px); opacity: 1; } /* Oczekiwanie na krople */
-            25% { transform: translate(75px, 0px); opacity: 1; }
-            35% { transform: translate(185px, 0px); opacity: 1; } /* Przelot nad probówką 2 */
-            45% { transform: translate(185px, 0px); opacity: 1; } /* Oczekiwanie */
-            50% { transform: translate(185px, 0px); opacity: 1; }
-            60%, 100% { transform: translate(250px, -150px); opacity: 0; } /* Wyjście */
-        }
-        @keyframes squeezeBulb {
-            0%, 12% { transform: scaleY(1); }
-            15% { transform: scaleY(0.7); } /* Wciśnięcie nad T1 */
-            18%, 37% { transform: scaleY(1); }
-            40% { transform: scaleY(0.7); } /* Wciśnięcie nad T2 */
-            43%, 100% { transform: scaleY(1); }
-        }
-        @keyframes dropFallT1 {
-            0%, 14% { transform: translateY(0); opacity: 0; }
-            15% { transform: translateY(30px); opacity: 1; } /* Start opadania */
-            20% { transform: translateY(80px); opacity: 1; } /* Uderzenie w ciecz */
-            22%, 100% { transform: translateY(90px); opacity: 0; } /* Odbarwienie i zniknięcie */
-        }
-        @keyframes bubblesT1 {
-            0%, 20% { opacity: 0; transform: translateY(0) scale(0.5); }
-            22% { opacity: 1; }
-            35% { opacity: 0; transform: translateY(-40px) scale(1.5); }
-            100% { opacity: 0; }
-        }
-        @keyframes dropFallT2 {
-            0%, 39% { transform: translateY(0); opacity: 0; }
-            40% { transform: translateY(30px); opacity: 1; } /* Start opadania */
-            48% { transform: translateY(110px); opacity: 1; } /* Opadanie na dno */
-            50%, 100% { transform: translateY(120px); opacity: 0; } /* Wtopienie się w warstwę */
-        }
-        @keyframes bromineLayerT2 {
-            0%, 48% { opacity: 0; }
-            52%, 95% { opacity: 1; } /* Utrzymanie barwy */
-            100% { opacity: 0; } /* Reset */
-        }
+        .sim-node { animation: node-pulse 3s infinite ease-in-out; }
+        .sim-code-1 { animation: code-type 5s infinite ease-in-out; animation-delay: 0.2s; }
+        .sim-code-2 { animation: code-type 5s infinite ease-in-out; animation-delay: 0.6s; }
+        .sim-code-3 { animation: code-type 5s infinite ease-in-out; animation-delay: 1.0s; }
         
-        .sim-pipette { animation: movePipette 12s infinite ease-in-out; }
-        .sim-bulb { animation: squeezeBulb 12s infinite ease-in-out; transform-origin: top; }
-        .sim-drop-t1 { animation: dropFallT1 12s infinite ease-in; }
-        .sim-drop-t2 { animation: dropFallT2 12s infinite ease-in; }
-        .sim-bromine-layer { animation: bromineLayerT2 12s infinite ease-in-out; }
-        .sim-bubbles { animation: bubblesT1 12s infinite ease-out; }
-        .sim-bubble-1 { animation-delay: 0.1s; } .sim-bubble-2 { animation-delay: 0.3s; } .sim-bubble-3 { animation-delay: 0.5s; }
+        .sim-block-1 { animation: build-block 6s infinite ease-in-out; animation-delay: 0s; transform-origin: top; }
+        .sim-block-2 { animation: build-block 6s infinite ease-in-out; animation-delay: 0.5s; transform-origin: top; }
+        .sim-block-3 { animation: build-block 6s infinite ease-in-out; animation-delay: 1s; transform-origin: top; }
+        
+        .sim-prompt { animation: slide-up-fade 8s infinite ease-in-out; animation-delay: 0s; }
+        .sim-process { animation: pulse-glow 8s infinite ease-in-out; animation-delay: 2s; }
+        .sim-result { animation: slide-up-fade 8s infinite ease-in-out; animation-delay: 4s; }
+        
+        .sim-scan { animation: scan-line 4s infinite linear; }
+        .sim-fix { animation: fix-code 4s infinite ease-in-out; stroke-width: 3; stroke-linecap: round; }
+        .sim-core-glow { animation: glow-shift 4s infinite ease-in-out; }
 
-        /* ======================================================== */
-        /* SLAJD 9: PERFEKCYJNA SYMULACJA UWODORNIENIA              */
-        /* ======================================================== */
-        @keyframes simH2Fall {
-            0%, 5% { transform: translate(0px, -140px); opacity: 0; }
-            15% { transform: translate(0px, -140px); opacity: 1; }
-            28% { transform: translate(0px, -20px); opacity: 1; } /* Zbliża się pionowo do wiązania */
-            30%, 100% { opacity: 0; } /* Znika, zastąpiony przez pojedyncze H */
-        }
-        @keyframes simHLeftMove {
-            0%, 28% { transform: translate(0px, -20px); opacity: 0; }
-            30% { transform: translate(-15px, -20px); opacity: 1; } /* Rozszczepienie z H2 */
-            38% { transform: translate(-45px, -70px); opacity: 1; } /* Atak na atom węgla (lewy) */
-            42%, 75% { transform: translate(-45px, -70px); opacity: 1; } /* Trzyma się (Stan stały) */
-            85%, 100% { transform: translate(-80px, -150px); opacity: 0; } /* Odlatuje w przestrzeń */
-        }
-        @keyframes simHRightMove {
-            0%, 28% { transform: translate(0px, -20px); opacity: 0; }
-            30% { transform: translate(15px, -20px); opacity: 1; } /* Rozszczepienie z H2 */
-            38% { transform: translate(45px, -70px); opacity: 1; } /* Atak na atom węgla (prawy) */
-            42%, 75% { transform: translate(45px, -70px); opacity: 1; } /* Trzyma się (Stan stały) */
-            85%, 100% { transform: translate(80px, -150px); opacity: 0; } /* Odlatuje w przestrzeń */
-        }
-        @keyframes simPiBreak {
-            0%, 32% { stroke: #ef4444; stroke-width: 6; opacity: 1; filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.6)); }
-            36% { stroke: #fff; stroke-width: 12; opacity: 1; filter: drop-shadow(0 0 20px #ef4444); } /* Błysk pękania */
-            42%, 75% { opacity: 0; stroke-width: 6; filter: none; } /* Całkowicie znika (Margaryna) */
-            88%, 100% { stroke: #ef4444; stroke-width: 6; opacity: 1; filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.6)); } /* Płynnie powraca (Olej) */
-        }
-        @keyframes simChainTransform {
-            0%, 32% { transform: rotate(14deg); } /* Łańcuch zgięty (Ciekły, nienasycony) */
-            42%, 75% { transform: rotate(0deg); } /* Łańcuch prosty (Stały, nasycony) */
-            88%, 100% { transform: rotate(14deg); } /* Powraca do zgięcia */
-        }
-        @keyframes simUiBadgeLiquid {
-            0%, 32% { opacity: 1; transform: scale(1); filter: brightness(1); }
-            42%, 75% { opacity: 0; transform: scale(0.9); filter: brightness(0.5); }
-            85%, 100% { opacity: 1; transform: scale(1); filter: brightness(1); }
-        }
-        @keyframes simUiBadgeSolid {
-            0%, 32% { opacity: 0; transform: scale(0.9); filter: brightness(0.5); }
-            42%, 75% { opacity: 1; transform: scale(1); filter: brightness(1); }
-            85%, 100% { opacity: 0; transform: scale(0.9); filter: brightness(0.5); }
-        }
-
-        /* 10 sekundowa płynna i czytelna pętla dla Slajdu 9 */
-        .sim-h2 { animation: simH2Fall 10s infinite cubic-bezier(0.2, 0, 0.4, 1); }
-        .sim-h-left { animation: simHLeftMove 10s infinite ease-in-out; }
-        .sim-h-right { animation: simHRightMove 10s infinite ease-in-out; }
-        .sim-pi-bond { animation: simPiBreak 10s infinite ease-in-out; }
-        .sim-chain-trans { animation: simChainTransform 10s infinite ease-in-out; transform-origin: center; }
-        .sim-badge-liquid { animation: simUiBadgeLiquid 10s infinite ease-in-out; }
-        .sim-badge-solid { animation: simUiBadgeSolid 10s infinite ease-in-out; }
-
-
-        /* GUI - NIEZALEŻNE OD SKALOWANIA */
         .gui-hover-zone { position: fixed; bottom: 0; right: 0; width: 300px; height: 120px; z-index: 10000; }
         .gui-controls {
             position: absolute; bottom: 25px; right: 25px;
@@ -292,143 +187,77 @@
         <div class="click-area-left" onclick="prevSlide(event)"></div>
         <div class="click-area-right" onclick="nextSlide(event)"></div>
 
-        <!-- Slide 1: Tytuł -->
         <div class="slide-container active">
             <div class="content-wrapper" style="text-align: center; pointer-events: none;">
-                <h1>Tłuszcze w ujęciu<br>chemii i biologii</h1>
-                <p class="subtitle">Złożone estry absolutnie niezbędne dla prawidłowego funkcjonowania organizmu. Budowa, naturalna klasyfikacja oraz fascynujące właściwości fizyko-chemiczne.</p>
+                <h1>Sztuczna Inteligencja<br>w Web Developmencie</h1>
+                <p class="subtitle">Jak nowoczesne modele językowe rewolucjonizują proces tworzenia stron internetowych, generowania struktury HTML i logiki aplikacji.</p>
             </div>
         </div>
 
-        <!-- Slide 2: Definicja (ZAAWANSOWANE SYMULACJE WZORÓW) -->
         <div class="slide-container" style="pointer-events: auto;">
-            <div style="pointer-events: none;"><h2 class="slide-title">Definicja i natura chemiczna</h2></div>
+            <div style="pointer-events: none;"><h2 class="slide-title">Fundamenty Generatywnej AI</h2></div>
             <div class="content-wrapper">
                 <div class="tiled-content">
                     
-                    <!-- KAFELEK 1: Glicerol -->
                     <div class="tile">
                         <div class="tile-front">
-                            <div class="icon"><i class="fa-solid fa-flask"></i></div>
-                            <h3>Fundament struktury</h3>
-                            <p>Tłuszcze to z chemicznego punktu widzenia estry <strong>propano-1,2,3-triolu</strong> (glicerolu) oraz wyższych kwasów tłuszczowych.</p>
+                            <div class="icon"><i class="fa-solid fa-network-wired"></i></div>
+                            <h3>Modele Językowe</h3>
+                            <p>LLM (Large Language Models) analizują ogromne zbiory kodu, ucząc się składni, wzorców architektonicznych i dobrych praktyk webowych.</p>
                         </div>
                         <div class="tile-back">
                             <svg viewBox="0 0 200 200" width="100%" height="100%">
-                                <text x="100" y="30" font-family="'DM Sans'" font-size="13" font-weight="bold" fill="#64748b" text-anchor="middle">Tworzenie wiązań estrowych</text>
-                                
-                                <g transform="translate(60, 70)">
-                                    <!-- Szkielet Węglowy -->
-                                    <line x1="0" y1="0" x2="0" y2="30" class="sim-bond"/>
-                                    <line x1="0" y1="30" x2="0" y2="60" class="sim-bond"/>
-                                    
-                                    <!-- Wiązania C-H (Lewa strona) -->
-                                    <line x1="0" y1="0" x2="-20" y2="0" class="sim-bond"/>
-                                    <line x1="0" y1="30" x2="-20" y2="30" class="sim-bond"/>
-                                    <line x1="0" y1="60" x2="-20" y2="60" class="sim-bond"/>
-                                    
-                                    <!-- Wiązania C-O (Prawa strona - tworzące estr) -->
-                                    <line x1="0" y1="0" x2="25" y2="0" class="sim-bond-highlight"/>
-                                    <line x1="0" y1="30" x2="25" y2="30" class="sim-bond-highlight"/>
-                                    <line x1="0" y1="60" x2="25" y2="60" class="sim-bond-highlight"/>
-
-                                    <!-- Atomy Węgla -->
-                                    <circle cx="0" cy="0" r="10" fill="#fff" stroke="#1e293b" stroke-width="2" class="sim-atom"/><text x="0" y="0" class="c-atom sim-atom">C</text>
-                                    <circle cx="0" cy="30" r="10" fill="#fff" stroke="#1e293b" stroke-width="2" class="sim-atom"/><text x="0" y="30" class="c-atom sim-atom">C</text>
-                                    <circle cx="0" cy="60" r="10" fill="#fff" stroke="#1e293b" stroke-width="2" class="sim-atom"/><text x="0" y="60" class="c-atom sim-atom">C</text>
-
-                                    <!-- Atomy Wodoru -->
-                                    <circle cx="-20" cy="0" r="7" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" class="sim-atom"/><text x="-20" y="0" class="h-atom sim-atom">H</text>
-                                    <circle cx="-20" cy="30" r="7" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" class="sim-atom"/><text x="-20" y="30" class="h-atom sim-atom">H</text>
-                                    <circle cx="-20" cy="60" r="7" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" class="sim-atom"/><text x="-20" y="60" class="h-atom sim-atom">H</text>
-
-                                    <!-- Reszty Kwasowe (O-R) -->
-                                    <rect x="25" y="-8" width="55" height="16" rx="8" fill="#3b82f6" class="sim-atom"/>
-                                    <text x="52" y="0" font-family="'DM Sans'" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="central" class="sim-atom">O - R₁</text>
-                                    
-                                    <rect x="25" y="22" width="55" height="16" rx="8" fill="#3b82f6" class="sim-atom"/>
-                                    <text x="52" y="30" font-family="'DM Sans'" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="central" class="sim-atom">O - R₂</text>
-                                    
-                                    <rect x="25" y="52" width="55" height="16" rx="8" fill="#3b82f6" class="sim-atom"/>
-                                    <text x="52" y="60" font-family="'DM Sans'" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="central" class="sim-atom">O - R₃</text>
+                                <text x="100" y="30" font-family="'DM Sans'" font-size="13" font-weight="bold" fill="#64748b" text-anchor="middle">Sieć Neuronowa LLM</text>
+                                <g transform="translate(100, 110)">
+                                    <line x1="-50" y1="-40" x2="0" y2="-10" stroke="#cbd5e1" class="sim-node" />
+                                    <line x1="50" y1="-40" x2="0" y2="-10" stroke="#cbd5e1" class="sim-node" style="animation-delay: 0.5s;" />
+                                    <line x1="-30" y1="40" x2="0" y2="10" stroke="#cbd5e1" class="sim-node" style="animation-delay: 1s;" />
+                                    <line x1="30" y1="40" x2="0" y2="10" stroke="#cbd5e1" class="sim-node" style="animation-delay: 1.5s;" />
+                                    <circle cx="-50" cy="-40" r="8" fill="#8b5cf6" />
+                                    <circle cx="50" cy="-40" r="8" fill="#3b82f6" />
+                                    <circle cx="-30" cy="40" r="8" fill="#10b981" />
+                                    <circle cx="30" cy="40" r="8" fill="#f43f5e" />
+                                    <circle cx="0" cy="0" r="16" fill="#0f172a" stroke="#fff" stroke-width="2" class="anim-pulse-glow" />
                                 </g>
                             </svg>
                         </div>
                     </div>
 
-                    <!-- KAFELEK 2: Łańcuchy -->
                     <div class="tile" style="border-top-color: var(--accent-secondary);">
                         <div class="tile-front">
-                            <div class="icon" style="background: linear-gradient(135deg, var(--accent-secondary), #34d399); -webkit-background-clip: text;"><i class="fa-solid fa-link"></i></div>
-                            <h3>Długie łańcuchy</h3>
-                            <p>Reszty kwasowe tworzą łańcuchy węglowodorowe. Mogą być nasycone wodorem lub posiadać wiązania podwójne wyginające cząsteczkę.</p>
+                            <div class="icon" style="background: linear-gradient(135deg, var(--accent-secondary), #60a5fa); -webkit-background-clip: text;"><i class="fa-solid fa-code"></i></div>
+                            <h3>Generowanie Kodu</h3>
+                            <p>Na podstawie opisu w języku naturalnym, sztuczna inteligencja potrafi wygenerować semantyczny kod HTML, style CSS oraz skrypty JS.</p>
                         </div>
                         <div class="tile-back">
                             <svg viewBox="0 0 200 200" width="100%" height="100%">
-                                <!-- Nasycony (Prosty) -->
-                                <g class="sim-sat">
-                                    <text x="100" y="50" font-family="'DM Sans'" font-size="14" font-weight="bold" fill="#10b981" text-anchor="middle">Kwas Nasycony (Prosty)</text>
-                                    <path d="M 20 120 L 40 100 L 60 120 L 80 100 L 100 120 L 120 100 L 140 120 L 160 100 L 180 120" stroke="#10b981" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
-                                    <!-- Atomy węgla -->
-                                    <circle cx="20" cy="120" r="5" fill="#1e293b"/><circle cx="40" cy="100" r="5" fill="#1e293b"/>
-                                    <circle cx="60" cy="120" r="5" fill="#1e293b"/><circle cx="80" cy="100" r="5" fill="#1e293b"/>
-                                    <circle cx="100" cy="120" r="5" fill="#1e293b"/><circle cx="120" cy="100" r="5" fill="#1e293b"/>
-                                    <circle cx="140" cy="120" r="5" fill="#1e293b"/><circle cx="160" cy="100" r="5" fill="#1e293b"/>
-                                    <circle cx="180" cy="120" r="5" fill="#1e293b"/>
-                                </g>
-
-                                <!-- Nienasycony (Wygięty z wiązaniem Pi) -->
-                                <g class="sim-unsat">
-                                    <text x="100" y="50" font-family="'DM Sans'" font-size="14" font-weight="bold" fill="#3b82f6" text-anchor="middle">Kwas Nienasycony (Zgięty)</text>
-                                    <path d="M 20 100 L 40 80 L 60 100 L 80 80 L 100 100 L 115 130 L 135 110 L 155 130 L 175 110" stroke="#3b82f6" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
-                                    <line x1="93" y1="102" x2="108" y2="132" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/> <!-- Podwójne wiązanie (Czerwone) -->
-                                    
-                                    <circle cx="20" cy="100" r="5" fill="#1e293b"/><circle cx="40" cy="80" r="5" fill="#1e293b"/>
-                                    <circle cx="60" cy="100" r="5" fill="#1e293b"/><circle cx="80" cy="80" r="5" fill="#1e293b"/>
-                                    <circle cx="100" cy="100" r="6" fill="#0f172a" stroke="#fff" stroke-width="1.5"/><circle cx="115" cy="130" r="6" fill="#0f172a" stroke="#fff" stroke-width="1.5"/>
-                                    <circle cx="135" cy="110" r="5" fill="#1e293b"/><circle cx="155" cy="130" r="5" fill="#1e293b"/>
-                                    <circle cx="175" cy="110" r="5" fill="#1e293b"/>
-                                    <text x="130" y="145" font-family="'DM Sans'" font-size="10" font-weight="bold" fill="#ef4444">C=C</text>
+                                <text x="100" y="30" font-family="'DM Sans'" font-size="13" font-weight="bold" fill="#3b82f6" text-anchor="middle">Struktura Dokumentu</text>
+                                <g transform="translate(30, 70)">
+                                    <text x="0" y="0" class="code-font sim-code-1">&lt;header class="nav"&gt;</text>
+                                    <text x="20" y="25" class="code-font sim-code-2">&lt;h1&gt;Witaj AI&lt;/h1&gt;</text>
+                                    <text x="0" y="50" class="code-font sim-code-1">&lt;/header&gt;</text>
+                                    <text x="0" y="80" class="code-font sim-code-3">&lt;main id="content"&gt;</text>
+                                    <text x="20" y="105" class="code-font sim-code-2">&lt;!-- Wygenerowane --&gt;</text>
                                 </g>
                             </svg>
                         </div>
                     </div>
 
-                    <!-- KAFELEK 3: Niuans -->
-                    <div class="tile" style="border-top-color: var(--accent-warm);">
+                    <div class="tile" style="border-top-color: var(--accent-success);">
                         <div class="tile-front">
-                            <div class="icon" style="background: linear-gradient(135deg, var(--accent-warm), #fbbf24); -webkit-background-clip: text;"><i class="fa-solid fa-microscope"></i></div>
-                            <h3 style="color: #b45309;">Ważny niuans</h3>
-                            <p>Kwas masłowy formalnie jest kwasem tłuszczowym, lecz ma zbyt krótki łańcuch węglowy. Z tego powodu <strong>nie wchodzi</strong> w skład tłuszczów właściwych.</p>
+                            <div class="icon" style="background: linear-gradient(135deg, var(--accent-success), #34d399); -webkit-background-clip: text;"><i class="fa-solid fa-gears"></i></div>
+                            <h3>Automatyzacja</h3>
+                            <p>AI przejmuje powtarzalne zadania: tworzenie formularzy, responsywnych siatek oraz pisanie testów jednostkowych dla interfejsu.</p>
                         </div>
                         <div class="tile-back">
                             <svg viewBox="0 0 200 200" width="100%" height="100%">
-                                <text x="100" y="40" font-family="'DM Sans'" font-size="13" font-weight="bold" fill="#b45309" text-anchor="middle">Kwas masłowy (Butanowy)</text>
-                                
-                                <g transform="translate(30, 100)">
-                                    <!-- Wzór strukturalny CH3-CH2-CH2-COOH -->
-                                    <line x1="0" y1="0" x2="35" y2="-20" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
-                                    <line x1="35" y1="-20" x2="70" y2="0" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
-                                    <line x1="70" y1="0" x2="105" y2="-20" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
-                                    
-                                    <!-- Podwójne do tlenu (=O) -->
-                                    <line x1="103" y1="-22" x2="115" y2="-45" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
-                                    <line x1="110" y1="-18" x2="122" y2="-41" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
-                                    <text x="120" y="-50" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ef4444">O</text>
-                                    
-                                    <!-- Pojedyncze do grupy OH -->
-                                    <line x1="105" y1="-20" x2="125" y2="-5" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
-                                    <text x="135" y="0" font-family="sans-serif" font-size="14" font-weight="bold" fill="#3b82f6">OH</text>
-
-                                    <!-- Atomy Węgla -->
-                                    <circle cx="0" cy="0" r="12" fill="#fff" stroke="#1e293b" stroke-width="2"/><text x="0" y="0" class="c-atom">C</text>
-                                    <circle cx="35" cy="-20" r="12" fill="#fff" stroke="#1e293b" stroke-width="2"/><text x="35" y="-20" class="c-atom">C</text>
-                                    <circle cx="70" cy="0" r="12" fill="#fff" stroke="#1e293b" stroke-width="2"/><text x="70" y="0" class="c-atom">C</text>
-                                    <circle cx="105" cy="-20" r="12" fill="#fff" stroke="#1e293b" stroke-width="2"/><text x="105" y="-20" class="c-atom">C</text>
-
-                                    <!-- Klamra pod spodem i napis "Tylko C4" -->
-                                    <path d="M 0 20 L 0 30 L 52.5 35 L 105 30 L 105 20" fill="none" stroke="#94a3b8" stroke-width="2"/>
-                                    <text x="52.5" y="50" font-family="'DM Sans'" font-size="12" font-weight="bold" fill="#ef4444" text-anchor="middle">Zbyt krótki (Tylko C4)</text>
+                                <text x="100" y="40" font-family="'DM Sans'" font-size="13" font-weight="bold" fill="#10b981" text-anchor="middle">Skrócenie czasu pracy</text>
+                                <g transform="translate(100, 110)">
+                                    <circle cx="0" cy="0" r="40" fill="none" stroke="#e2e8f0" stroke-width="8" />
+                                    <path d="M 0 -40 A 40 40 0 0 1 40 0" fill="none" stroke="#10b981" stroke-width="8" stroke-linecap="round">
+                                        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="2s" repeatCount="indefinite" />
+                                    </path>
+                                    <text x="0" y="6" font-family="'DM Sans'" font-size="18" font-weight="bold" fill="#0f172a" text-anchor="middle">90%</text>
                                 </g>
                             </svg>
                         </div>
@@ -437,58 +266,37 @@
             </div>
         </div>
 
-        <!-- Slide 3: Pochodzenie -->
         <div class="slide-container" style="pointer-events: none;">
-            <div><h2 class="slide-title">Klasyfikacja i pochodzenie</h2></div>
+            <div><h2 class="slide-title">Architektura wspierana przez AI</h2></div>
             <div class="content-wrapper">
                 <div class="two-column align-start">
                     <div>
-                        <p style="margin-bottom: 25px;">Główne kryterium podziału tłuszczów to ich źródło występowania w naturze. Aspekt ten determinuje ogólny skład i właściwości.</p>
+                        <p style="margin-bottom: 25px;">Sztuczna inteligencja doskonale radzi sobie z pełnym cyklem życia front-endu, asystując w każdym elemencie klasycznej triady technologicznej.</p>
                         <ul class="custom-list glass-list">
-                            <li><strong>Tłuszcze roślinne:</strong> Pozyskiwane głównie z nasion i miąższu owoców. Zalicza się do nich olej słonecznikowy, rzepakowy, sojowy, oliwę z oliwek oraz stały olej kokosowy.</li>
-                            <li><strong>Tłuszcze zwierzęce:</strong> Wyodrębniane bezpośrednio z tkanek zwierząt. Do grupy tej należy masło, smalec, słonina, łój oraz płynny tran.</li>
+                            <li><strong>Semantyczny HTML:</strong> Model rozumie kontekst i dobiera odpowiednie znaczniki (nav, article, section), co poprawia dostępność i SEO.</li>
+                            <li><strong>Stylowanie CSS/Tailwind:</strong> Generowanie responsywnych układów (Flexbox, Grid) i nowoczesnych interfejsów za pomocą frameworków użytkowych.</li>
+                            <li><strong>Logika JavaScript:</strong> Pisanie funkcji asynchronicznych, manipulacja modelem DOM oraz łączenie widoku z zewnętrznymi interfejsami API.</li>
                         </ul>
                     </div>
                     <div>
                         <div class="svg-wrapper">
                             <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="oil" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#fef08a" /><stop offset="50%" stop-color="#eab308" /><stop offset="100%" stop-color="#a16207" />
-                                    </linearGradient>
-                                    <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" stop-color="rgba(255,255,255,0.8)" /><stop offset="20%" stop-color="rgba(255,255,255,0.1)" />
-                                        <stop offset="80%" stop-color="rgba(255,255,255,0)" /><stop offset="100%" stop-color="rgba(0,0,0,0.1)" />
-                                    </linearGradient>
-                                    <filter id="drop-shadow" x="-20%" y="-20%" width="140%" height="140%">
-                                        <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity="0.1"/>
-                                    </filter>
-                                    <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
-                                        <feGaussianBlur stdDeviation="20" result="blur" /><feComposite in="SourceGraphic" in2="blur" operator="over" />
-                                    </filter>
-                                </defs>
-                                <circle cx="150" cy="150" r="90" fill="#fef9c3" filter="url(#glow-green)" opacity="0.6" class="anim-pulse-glow"/>
-                                <g class="anim-float-light">
-                                    <path d="M 220 100 Q 240 80 260 110 Q 240 120 220 100 Z" fill="#fcd34d" opacity="0.7"/>
-                                    <path d="M 240 130 Q 270 140 250 160 Q 230 140 240 130 Z" fill="#fcd34d" opacity="0.7"/>
+                                <rect x="30" y="50" width="240" height="180" rx="8" fill="#1e293b" />
+                                <rect x="30" y="50" width="240" height="25" rx="8" fill="#0f172a" />
+                                <circle cx="45" cy="62.5" r="4" fill="#ef4444" />
+                                <circle cx="60" cy="62.5" r="4" fill="#eab308" />
+                                <circle cx="75" cy="62.5" r="4" fill="#10b981" />
+                                
+                                <g transform="translate(45, 90)">
+                                    <rect x="0" y="0" width="210" height="30" rx="4" fill="#334155" class="sim-block-1" />
+                                    <rect x="0" y="45" width="100" height="80" rx="4" fill="#334155" class="sim-block-2" />
+                                    <rect x="110" y="45" width="100" height="80" rx="4" fill="#334155" class="sim-block-3" />
                                 </g>
-                                <g filter="url(#drop-shadow)">
-                                    <path d="M 130 50 L 170 50 L 170 100 Q 170 120 190 140 L 200 240 A 15 15 0 0 1 185 255 L 115 255 A 15 15 0 0 1 100 240 L 110 140 Q 130 120 130 100 Z" fill="url(#oil)" stroke="#854d0e" stroke-width="2"/>
-                                    <path d="M 130 50 L 170 50 L 170 100 Q 170 120 190 140 L 200 240 A 15 15 0 0 1 185 255 L 115 255 A 15 15 0 0 1 100 240 L 110 140 Q 130 120 130 100 Z" fill="url(#glass)"/>
-                                    <path d="M 115 145 L 105 235" fill="none" class="svg-glass-reflect" stroke-width="3"/>
-                                    <path d="M 135 60 L 135 90" fill="none" class="svg-glass-reflect" stroke-width="2"/>
-                                </g>
-                                <path d="M 125 35 L 175 35 C 180 35 180 50 175 50 L 125 50 C 120 50 120 35 125 35 Z" fill="#b45309"/>
-                                <line x1="130" y1="42" x2="170" y2="42" stroke="#78350f" stroke-width="1.5" opacity="0.5"/>
-                                <rect x="105" y="160" width="90" height="45" rx="3" fill="#f8fafc" opacity="0.95" transform="rotate(-2 150 185)"/>
-                                <line x1="115" y1="170" x2="185" y2="170" stroke="#10b981" stroke-width="2" transform="rotate(-2 150 185)"/>
-                                <circle cx="150" cy="187" r="10" fill="#eab308" transform="rotate(-2 150 185)"/>
-                                <g class="anim-float">
-                                    <path d="M 40 190 Q 90 230 140 220" fill="none" stroke="#166534" stroke-width="3" stroke-linecap="round"/>
-                                    <path d="M 60 200 Q 50 170 75 180 Q 85 190 60 200 Z" fill="#22c55e" stroke="#166534" stroke-width="1"/>
-                                    <path d="M 90 210 Q 100 180 115 195 Q 105 215 90 210 Z" fill="#4ade80" stroke="#166534" stroke-width="1"/>
-                                    <ellipse cx="80" cy="220" rx="9" ry="13" fill="#064e3b" transform="rotate(30 80 220)"/>
-                                    <ellipse cx="77" cy="216" rx="2.5" ry="4" fill="#34d399" transform="rotate(30 77 216)"/>
+
+                                <g transform="translate(150, 150)" class="anim-float">
+                                    <circle cx="0" cy="0" r="30" fill="rgba(139, 92, 246, 0.2)" class="anim-pulse-glow" />
+                                    <path d="M -15 -5 L -5 -15 L 5 -15 L 15 -5 L 15 5 L 5 15 L -5 15 L -15 5 Z" fill="#8b5cf6" />
+                                    <text x="0" y="4" font-family="'Fira Code'" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">AI</text>
                                 </g>
                             </svg>
                         </div>
@@ -497,181 +305,108 @@
             </div>
         </div>
 
-        <!-- Slide 4: Stan Skupienia -->
         <div class="slide-container" style="pointer-events: none;">
             <div>
-                <h2 class="slide-title">Stan skupienia w 20°C</h2>
-                <p style="margin-bottom: 30px;">Fizyczny stan skupienia zależy od budowy chemicznej. Warto zapamiętać dwa strategiczne wyjątki zacierające reguły między roślinami a zwierzętami.</p>
+                <h2 class="slide-title">Techniki Inżynierii Promptów</h2>
+                <p style="margin-bottom: 30px;">Sposób komunikacji z modelem decyduje o jakości wygenerowanego kodu HTML. Wyróżniamy dwa główne podejścia w projektowaniu webowym.</p>
             </div>
             <div class="content-wrapper">
                 <div class="two-column align-start">
                     <div class="tile" style="text-align: left; border-top-color: var(--accent-primary); padding: 30px 25px;">
                         <h3 style="border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; display: flex; align-items: center; font-size: 20px;">
-                            <span style="background: #eff6ff; padding: 12px; border-radius: 12px; margin-right: 15px; box-shadow: inset 0 1px 3px rgba(255,255,255,0.8), 0 3px 5px rgba(59,130,246,0.1);">
-                                <i class="fa-solid fa-droplet" style="color: var(--accent-primary);"></i>
-                            </span>Tłuszcze ciekłe
+                            <span style="background: #f5f3ff; padding: 12px; border-radius: 12px; margin-right: 15px; box-shadow: inset 0 1px 3px rgba(255,255,255,0.8), 0 3px 5px rgba(139, 92, 246, 0.1);">
+                                <i class="fa-solid fa-bolt" style="color: var(--accent-primary);"></i>
+                            </span>Zero-shot Prompting
                         </h3>
-                        <p style="margin-top: 15px; font-size: 17px;">Przewaga reszt <strong>kwasów nienasyconych</strong>. Zazwyczaj oleje tłoczone z roślin.</p>
+                        <p style="margin-top: 15px; font-size: 17px;">Polega na zleceniu całego zadania w jednym, rozbudowanym poleceniu. Wymaga niezwykle precyzyjnego opisu struktury i stylów.</p>
                         <div class="exception-box">
-                            <p style="color: #b91c1c; font-weight: 900; margin: 0; font-size: 18px;">WYJĄTEK: TRAN</p>
-                            <p style="color: #991b1b; font-size: 15px; margin: 5px 0 0 0;">Ciekły tłuszcz zwierzęcy (wątroba ryb).</p>
+                            <p style="color: #4338ca; font-weight: 900; margin: 0; font-size: 18px;">ZASTOSOWANIE</p>
+                            <p style="color: #3730a3; font-size: 15px; margin: 5px 0 0 0;">Proste landing page, powtarzalne komponenty interfejsu.</p>
                         </div>
                     </div>
                     <div class="tile" style="text-align: left; border-top-color: var(--accent-secondary); padding: 30px 25px;">
                         <h3 style="border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; display: flex; align-items: center; font-size: 20px;">
-                            <span style="background: #ecfdf5; padding: 12px; border-radius: 12px; margin-right: 15px; box-shadow: inset 0 1px 3px rgba(255,255,255,0.8), 0 3px 5px rgba(16,185,129,0.1);">
-                                <i class="fa-solid fa-cube" style="color: var(--accent-secondary);"></i>
-                            </span>Tłuszcze stałe
+                            <span style="background: #eff6ff; padding: 12px; border-radius: 12px; margin-right: 15px; box-shadow: inset 0 1px 3px rgba(255,255,255,0.8), 0 3px 5px rgba(59, 130, 246, 0.1);">
+                                <i class="fa-solid fa-rotate" style="color: var(--accent-secondary);"></i>
+                            </span>Iterative Prompting
                         </h3>
-                        <p style="margin-top: 15px; font-size: 17px;">Gęsto upakowane reszty <strong>kwasów nasyconych</strong>. Wysokokaloryczne tłuszcze zwierzęce.</p>
+                        <p style="margin-top: 15px; font-size: 17px;">Podejście krok po kroku. Najpierw generowany jest szkielet HTML, następnie dodawany jest CSS, a na końcu implementowana logika JS.</p>
                         <div class="exception-box">
-                            <p style="color: #b91c1c; font-weight: 900; margin: 0; font-size: 18px;">WYJĄTEK: OLEJ KOKOSOWY</p>
-                            <p style="color: #991b1b; font-size: 15px; margin: 5px 0 0 0;">Stały, mimo że roślinny (tłoczony z miąższu).</p>
+                            <p style="color: #4338ca; font-weight: 900; margin: 0; font-size: 18px;">ZASTOSOWANIE</p>
+                            <p style="color: #3730a3; font-size: 15px; margin: 5px 0 0 0;">Złożone aplikacje webowe i wieloplatformowe dashboardy.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 5: Właściwości -->
         <div class="slide-container" style="pointer-events: none;">
-            <div><h2 class="slide-title">Uniwersalne właściwości fizykochemiczne</h2></div>
+            <div><h2 class="slide-title">Zalety i Ograniczenia</h2></div>
             <div class="content-wrapper">
                 <div class="glass-list" style="padding: 35px 45px;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
                         <div>
-                            <h4 style="color: var(--accent-primary); font-family: 'DM Sans'; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; margin-top:0;">Wizualne i Sensoryczne</h4>
-                            <p style="margin-bottom: 20px;"><strong>Barwa i zapach:</strong> Czyste tłuszcze są bezbarwne i bezwonne. Żółtawy odcień to obecność naturalnych domieszek i barwników.</p>
-                            <h4 style="color: var(--accent-primary); font-family: 'DM Sans'; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Fizyczne</h4>
-                            <p><strong>Gęstość:</strong> Zauważalnie mniejsza od gęstości wody. Warstwa tłuszczu zawsze wypływa na powierzchnię.</p>
+                            <h4 style="color: var(--accent-success); font-family: 'DM Sans'; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; margin-top:0;">Potencjał i Korzyści</h4>
+                            <p style="margin-bottom: 20px;"><strong>Błyskawiczne prototypowanie:</strong> Przekształcanie pomysłów w działające szablony HTML w ułamku sekundy, bez ręcznego pisania powtarzalnego kodu.</p>
+                            <p><strong>Bariera wejścia:</strong> Modele ułatwiają naukę nowym programistom, objaśniając skomplikowane zagnieżdżenia tagów i zasady dostępności.</p>
                         </div>
                         <div>
-                            <h4 style="color: var(--accent-secondary); font-family: 'DM Sans'; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; margin-top:0;">Chemiczne zachowanie</h4>
-                            <p style="margin-bottom: 20px;"><strong>Stosunek do wody (Hydrofobowość):</strong> Po dodaniu do wody w ogóle się w niej nie rozpuszczają, odpychając jej cząsteczki.</p>
-                            <h4 style="color: var(--accent-secondary); font-family: 'DM Sans'; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Rozpuszczalność</h4>
-                            <p><strong>Dedykowane rozpuszczalniki:</strong> Doskonale rozpuszczają się w rozpuszczalnikach organicznych (benzyna, nafta medyczna, eter).</p>
+                            <h4 style="color: var(--accent-warm); font-family: 'DM Sans'; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; margin-top:0;">Wyzwania w produkcji</h4>
+                            <p style="margin-bottom: 20px;"><strong>Halucynacje kodu:</strong> AI potrafi wymyślić nieistniejące klasy CSS lub wywołać metody z bibliotek, które nie zostały poprawnie zaimplementowane.</p>
+                            <p><strong>Kontekst domenowy:</strong> Ograniczona pamięć powoduje problemy z utrzymaniem spójności w dużych projektach z wieloma powiązanymi plikami HTML.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 6: Doświadczenie Wstęp -->
         <div class="slide-container" style="pointer-events: none;">
             <div class="content-wrapper">
                 <div class="section-title-layout">
-                    <span class="gradient-text" style="font-size: 18px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; font-family: 'DM Sans', sans-serif;">Analiza Chemiczna w Praktyce</span>
-                    <h2 style="font-size: 80px; margin-bottom: 0; line-height: 1.1;">Doświadczenie Chemiczne</h2>
+                    <span class="gradient-text" style="font-size: 18px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; font-family: 'DM Sans', sans-serif;">Praktyczna Implementacja</span>
+                    <h2 style="font-size: 80px; margin-bottom: 0; line-height: 1.1;">Generowanie Widoku</h2>
                     <hr>
-                    <p class="subtitle" style="font-size: 24px;">Wykrywanie obecności wiązań wielokrotnych w łańcuchach kwasów tłuszczowych z wykorzystaniem roztworu wody bromowej.</p>
+                    <p class="subtitle" style="font-size: 24px;">Jak język naturalny zamieniany jest na precyzyjne drzewo obiektowe dokumentu (DOM) przez procesory językowe.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 7: Doświadczenie Analiza (ZAAWANSOWANA PIPETA) -->
         <div class="slide-container" style="pointer-events: none;">
-            <div><h2 class="slide-title">Badanie stopnia nasycenia</h2></div>
+            <div><h2 class="slide-title">Proces Translacji Promptu</h2></div>
             <div class="content-wrapper">
                 <div class="two-column align-start">
                     <div>
-                        <p style="margin-bottom: 20px;">Reakcja addycji (przyłączenia) pozwala na błyskawiczne odróżnienie tłuszczu nasyconego od nienasyconego.</p>
+                        <p style="margin-bottom: 20px;">Wygenerowanie optymalnego elementu interfejsu wymaga przejścia przez złożony proces interpretacji intencji użytkownika.</p>
                         <ul class="custom-list glass-list" style="padding: 20px 30px;">
-                            <li style="margin-bottom: 15px;"><strong>Olej rzepakowy (nienasycony):</strong> Dodana woda bromowa odbarwia się. Atomy bromu rozrywają podwójne wiązania i łączą się z łańcuchem.</li>
-                            <li><strong>Olej kokosowy (nasycony):</strong> Brak wiązań podwójnych. Woda bromowa zachowuje barwę i opada na dno (brak reakcji).</li>
+                            <li style="margin-bottom: 15px;"><strong>Faza Wejścia:</strong> Przyjęcie polecenia w języku polskim ("stwórz zielony przycisk akcji z ikoną koszyka").</li>
+                            <li style="margin-bottom: 15px;"><strong>Przetwarzanie (LLM):</strong> Model analizuje semantykę i mapuje żądanie na znane wzorce i frameworki (np. Tailwind CSS).</li>
+                            <li><strong>Faza Wyjścia:</strong> Wyplucie czystego kodu HTML gotowego do renderowania w przeglądarce klienta.</li>
                         </ul>
                     </div>
                     <div>
                         <div class="svg-wrapper">
                             <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="glassTube" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" stop-color="rgba(255,255,255,0.9)" /><stop offset="15%" stop-color="rgba(255,255,255,0.2)" />
-                                        <stop offset="85%" stop-color="rgba(255,255,255,0.1)" /><stop offset="100%" stop-color="rgba(148,163,184,0.4)" />
-                                    </linearGradient>
-                                    <linearGradient id="bromine" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" stop-color="#b45309" /><stop offset="100%" stop-color="#d97706" />
-                                    </linearGradient>
-                                    <linearGradient id="oilLiq" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" stop-color="#fef08a" /><stop offset="100%" stop-color="#eab308" />
-                                    </linearGradient>
-                                    <filter id="glow-tube" x="-20%" y="-20%" width="140%" height="140%">
-                                        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#3b82f6" flood-opacity="0.1"/>
-                                    </filter>
-                                </defs>
+                                <g class="sim-prompt" transform="translate(50, 40)">
+                                    <rect x="0" y="0" width="200" height="40" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" />
+                                    <text x="100" y="24" font-family="'DM Sans'" font-size="12" font-weight="bold" fill="#1e40af" text-anchor="middle">"Zrób responsywną kartę produktu"</text>
+                                </g>
+
+                                <g transform="translate(150, 150)">
+                                    <circle cx="0" cy="0" r="45" fill="#1e293b" />
+                                    <path d="M 0 -25 L 20 15 L -20 15 Z" fill="#8b5cf6" class="sim-process" />
+                                    <circle cx="0" cy="0" r="10" fill="#3b82f6" class="sim-process" />
+                                    <text x="0" y="30" font-family="'Fira Code'" font-size="10" fill="#94a3b8" text-anchor="middle">LLM Engine</text>
+                                </g>
                                 
-                                <!-- Statyw -->
-                                <rect x="30" y="210" width="240" height="12" rx="4" fill="#cbd5e1"/>
-                                <rect x="50" y="115" width="200" height="8" rx="2" fill="#cbd5e1"/>
+                                <path d="M 150 90 L 150 100" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4" />
+                                <path d="M 150 200 L 150 210" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4" />
 
-                                <!-- PROBÓWKA 1 (Rzepakowy - Reakcja) -->
-                                <g transform="translate(60, 60)" filter="url(#glow-tube)">
-                                    <rect x="0" y="0" width="36" height="150" rx="18" fill="url(#glassTube)" stroke="#94a3b8" stroke-width="1.5"/>
-                                    
-                                    <!-- Olej i Animacja Bąbelków w oleju -->
-                                    <path d="M 2 80 L 34 80 L 34 132 A 16 16 0 0 1 2 132 Z" fill="url(#oilLiq)" opacity="0.8"/>
-                                    <ellipse cx="18" cy="80" rx="16" ry="3" fill="#fde047" opacity="0.9"/>
-                                    
-                                    <g class="sim-bubbles">
-                                        <circle cx="12" cy="125" r="2" fill="#fff" class="sim-bubble-1"/>
-                                        <circle cx="24" cy="115" r="1.5" fill="#fff" class="sim-bubble-2"/>
-                                        <circle cx="18" cy="100" r="3" fill="#fff" class="sim-bubble-3"/>
-                                    </g>
-
-                                    <!-- Spadająca Kropla Br2 -->
-                                    <path class="sim-drop-t1" d="M 18 10 Q 22 20 18 25 Q 14 20 18 10" fill="url(#bromine)"/>
-
-                                    <path d="M 5 15 L 5 130" class="svg-glass-reflect" stroke-width="2"/>
-                                    <ellipse cx="18" cy="0" rx="20" ry="4" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                                <g class="sim-result" transform="translate(50, 220)">
+                                    <rect x="0" y="0" width="200" height="60" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2" />
+                                    <text x="20" y="20" font-family="'Fira Code'" font-size="10" fill="#34d399">&lt;div class="flex flex-col"&gt;</text>
+                                    <text x="30" y="35" font-family="'Fira Code'" font-size="10" fill="#60a5fa">&lt;img src="..." alt="Produkt"&gt;</text>
+                                    <text x="20" y="50" font-family="'Fira Code'" font-size="10" fill="#34d399">&lt;/div&gt;</text>
                                 </g>
-                                <text x="78" y="240" font-family="'DM Sans', sans-serif" font-size="12" text-anchor="middle" fill="#475569" font-weight="bold">Olej rzepakowy</text>
-                                <text x="78" y="255" font-family="'DM Sans', sans-serif" font-size="10" text-anchor="middle" fill="#10b981" font-weight="bold">ODBARWIA SIĘ</text>
-
-                                <!-- PROBÓWKA 2 (Kokosowy - Brak reakcji) -->
-                                <g transform="translate(170, 60)" filter="url(#glow-tube)">
-                                    <rect x="0" y="0" width="36" height="150" rx="18" fill="url(#glassTube)" stroke="#94a3b8" stroke-width="1.5"/>
-                                    
-                                    <!-- Warstwa Bromu na dnie (pojawia się po opadnięciu) -->
-                                    <g class="sim-bromine-layer">
-                                        <path d="M 2 115 L 34 115 L 34 132 A 16 16 0 0 1 2 132 Z" fill="url(#bromine)" opacity="0.95"/>
-                                        <ellipse cx="18" cy="115" rx="16" ry="3" fill="#f59e0b" opacity="0.9"/>
-                                    </g>
-
-                                    <!-- Olej -->
-                                    <path d="M 2 80 L 34 80 L 34 115 L 2 115 Z" fill="url(#oilLiq)" opacity="0.8"/>
-                                    <ellipse cx="18" cy="80" rx="16" ry="3" fill="#fde047" opacity="0.9"/>
-
-                                    <!-- Spadająca Kropla Br2 -->
-                                    <path class="sim-drop-t2" d="M 18 10 Q 22 20 18 25 Q 14 20 18 10" fill="url(#bromine)"/>
-
-                                    <path d="M 5 15 L 5 130" class="svg-glass-reflect" stroke-width="2"/>
-                                    <ellipse cx="18" cy="0" rx="20" ry="4" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-                                </g>
-                                <text x="188" y="240" font-family="'DM Sans', sans-serif" font-size="12" text-anchor="middle" fill="#475569" font-weight="bold">Olej kokosowy</text>
-                                <text x="188" y="255" font-family="'DM Sans', sans-serif" font-size="10" text-anchor="middle" fill="#ef4444" font-weight="bold">BRAK REAKCJI</text>
-
-                                <!-- Ruchoma Pipeta -->
-                                <g class="sim-pipette">
-                                    <g transform="translate(0, 0)">
-                                        <!-- Etykieta Pipety -->
-                                        <rect x="15" y="-15" width="80" height="20" rx="4" fill="#fff" stroke="#d97706" stroke-width="1"/>
-                                        <text x="55" y="-1" font-family="'DM Sans', sans-serif" font-size="9" font-weight="bold" fill="#b45309" text-anchor="middle">Woda bromowa</text>
-                                        <line x1="15" y1="-5" x2="-2" y2="0" stroke="#d97706" stroke-width="1" stroke-dasharray="2,2"/>
-
-                                        <!-- Pompka czerwona animowana -->
-                                        <g class="sim-bulb">
-                                            <rect x="-12" y="-40" width="24" height="20" rx="5" fill="#ef4444"/>
-                                            <rect x="-8" y="-45" width="16" height="5" rx="2" fill="#dc2626"/>
-                                        </g>
-                                        <!-- Szklana rurka -->
-                                        <path d="M -6 -20 L -6 40 L -2 55 L 2 55 L 6 40 L 6 -20 Z" fill="url(#glassTube)" stroke="#94a3b8" stroke-width="1.5"/>
-                                        <path d="M -3 -15 L -3 38 L -1 50 L 1 50 L 3 38 L 3 -15 Z" fill="url(#bromine)" opacity="0.8"/>
-                                    </g>
-                                </g>
-
-                                <!-- Statyw Przód (Żeby zakrywał pipete/probówki z tyłu) -->
-                                <rect x="40" y="117" width="220" height="4" rx="2" fill="#94a3b8" opacity="0.8"/>
-                                <rect x="60" y="115" width="8" height="95" fill="#cbd5e1"/>
-                                <rect x="232" y="115" width="8" height="95" fill="#cbd5e1"/>
                             </svg>
                         </div>
                     </div>
@@ -679,60 +414,46 @@
             </div>
         </div>
 
-        <!-- Slide 8: Rola Biologiczna (BOSKA KROPLA Z WITAMINAMI) -->
         <div class="slide-container" style="pointer-events: none;">
-            <div><h2 class="slide-title">Rola w organizmach żywych</h2></div>
+            <div><h2 class="slide-title">Ekosystem Narzędziowy</h2></div>
             <div class="content-wrapper">
                 <div class="two-column align-start">
                     <div>
-                        <h3 style="margin-bottom: 20px; color: var(--accent-secondary); font-size: 26px;">Niezbędny składnik odżywczy</h3>
-                        <p>Tłuszcze stanowią bezkonkurencyjne źródło skoncentrowanej energii oraz tworzą długoterminowy materiał zapasowy organizmu.</p>
-                        <p>Są jedynym naturalnym środowiskiem ułatwiającym przyswajanie kluczowych witamin: <strong style="color: var(--accent-warm); font-size: 22px;">A, D, E, K</strong>.</p>
-                        <p>Zapewniają doskonałą izolację termiczną, chroniąc przed wychłodzeniem, a także tworzą elastyczną osłonę amortyzującą dla narządów wewnętrznych.</p>
+                        <h3 style="margin-bottom: 20px; color: var(--accent-primary); font-size: 26px;">Nowoczesne asystenty kodu</h3>
+                        <p>Zintegrowane środowiska programistyczne (IDE) ewoluują, stając się przestrzenią do dialogu ze sztuczną inteligencją.</p>
+                        <p>Platformy takie jak <strong style="color: var(--accent-secondary); font-size: 20px;">GitHub Copilot, Cursor czy v0.dev</strong> pozwalają na generowanie całych komponentów interfejsu bezpośrednio w pliku, znacznie skracając pętlę zwrotną od pomysłu do wdrożenia.</p>
+                        <p>Chatboty oparte o potężne modele (GPT-4, Claude 3, Gemini) służą jako niezastąpione wsparcie przy rozwiązywaniu błędów CSS i optymalizacji układów Grid.</p>
                     </div>
                     <div>
-                        <div class="svg-wrapper" style="background: linear-gradient(180deg, #f8fafc 0%, #fef3c7 100%); position: relative;">
+                        <div class="svg-wrapper" style="background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%); position: relative;">
                             <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-                                <defs>
-                                    <linearGradient id="oilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#fde047" />
-                                        <stop offset="50%" stop-color="#eab308" />
-                                        <stop offset="100%" stop-color="#ca8a04" />
-                                    </linearGradient>
-                                    <filter id="glow-vit" x="-30%" y="-30%" width="160%" height="160%">
-                                        <feGaussianBlur stdDeviation="6" result="blur" />
-                                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                                    </filter>
-                                </defs>
-
-                                <!-- Abstraktowe ikony źródeł jedzenia w tle -->
-                                <g opacity="0.15" fill="#64748b">
-                                    <text x="60" y="80" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="45">&#xf578;</text> <!-- Ryba -->
-                                    <text x="310" y="110" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="40">&#xf5d1;</text> <!-- Owoc -->
-                                    <text x="80" y="250" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="45">&#xf4d8;</text> <!-- Roślina -->
-                                    <text x="300" y="240" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="40">&#xf043;</text> <!-- Kropla -->
+                                <g stroke="#cbd5e1" stroke-width="2" stroke-dasharray="5 5">
+                                    <line x1="200" y1="150" x2="100" y2="80" />
+                                    <line x1="200" y1="150" x2="300" y2="80" />
+                                    <line x1="200" y1="150" x2="200" y2="250" />
                                 </g>
 
-                                <!-- Centralna Kropla Tłuszczu z animacją pulsowania -->
-                                <path class="fat-drop" d="M 200 40 C 260 110 290 170 290 220 C 290 270 250 300 200 300 C 150 300 110 270 110 220 C 110 170 140 110 200 40 Z" fill="url(#oilGrad)" opacity="0.85"/>
-                                <path class="fat-drop" d="M 200 55 C 240 115 260 170 260 215 C 260 250 230 275 200 275 C 170 275 140 250 140 215 C 140 170 160 115 200 55 Z" fill="#fef08a" opacity="0.5"/>
+                                <g transform="translate(200, 150)">
+                                    <path d="M 0 -35 L 30 -17 L 30 17 L 0 35 L -30 17 L -30 -17 Z" fill="#1e293b" class="sim-core-glow" />
+                                    <text x="0" y="6" font-family="'DM Sans'" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">LLM API</text>
+                                </g>
 
-                                <!-- Witaminy A, D, E, K swobodnie unoszące się w tłuszczu -->
-                                <g class="vit-node vit-a" transform="translate(160, 180)">
-                                    <circle cx="0" cy="0" r="18" fill="#ffffff" filter="url(#glow-vit)"/>
-                                    <text x="0" y="6" font-family="'DM Sans'" font-size="16" font-weight="900" text-anchor="middle" fill="#ca8a04">A</text>
+                                <g transform="translate(100, 80)" class="anim-float">
+                                    <circle cx="0" cy="0" r="35" fill="#fff" stroke="#e2e8f0" stroke-width="2" />
+                                    <text x="0" y="-5" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="20" fill="#3b82f6" text-anchor="middle">&#xf121;</text>
+                                    <text x="0" y="15" font-family="'DM Sans'" font-size="12" font-weight="bold" fill="#475569" text-anchor="middle">IDE Plugin</text>
                                 </g>
-                                <g class="vit-node vit-d" transform="translate(240, 180)">
-                                    <circle cx="0" cy="0" r="18" fill="#ffffff" filter="url(#glow-vit)"/>
-                                    <text x="0" y="6" font-family="'DM Sans'" font-size="16" font-weight="900" text-anchor="middle" fill="#ca8a04">D</text>
+
+                                <g transform="translate(300, 80)" class="anim-float-light" style="animation-delay: 1s;">
+                                    <circle cx="0" cy="0" r="35" fill="#fff" stroke="#e2e8f0" stroke-width="2" />
+                                    <text x="0" y="-5" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="20" fill="#8b5cf6" text-anchor="middle">&#xf0e6;</text>
+                                    <text x="0" y="15" font-family="'DM Sans'" font-size="12" font-weight="bold" fill="#475569" text-anchor="middle">Chat UI</text>
                                 </g>
-                                <g class="vit-node vit-e" transform="translate(180, 240)">
-                                    <circle cx="0" cy="0" r="18" fill="#ffffff" filter="url(#glow-vit)"/>
-                                    <text x="0" y="6" font-family="'DM Sans'" font-size="16" font-weight="900" text-anchor="middle" fill="#ca8a04">E</text>
-                                </g>
-                                <g class="vit-node vit-k" transform="translate(230, 230)">
-                                    <circle cx="0" cy="0" r="15" fill="#ffffff" filter="url(#glow-vit)"/>
-                                    <text x="0" y="5" font-family="'DM Sans'" font-size="14" font-weight="900" text-anchor="middle" fill="#ca8a04">K</text>
+
+                                <g transform="translate(200, 250)" class="anim-float" style="animation-delay: 2s;">
+                                    <circle cx="0" cy="0" r="35" fill="#fff" stroke="#e2e8f0" stroke-width="2" />
+                                    <text x="0" y="-5" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="20" fill="#10b981" text-anchor="middle">&#xf0c2;</text>
+                                    <text x="0" y="15" font-family="'DM Sans'" font-size="12" font-weight="bold" fill="#475569" text-anchor="middle">Platforma</text>
                                 </g>
                             </svg>
                         </div>
@@ -741,76 +462,34 @@
             </div>
         </div>
 
-        <!-- Slide 9: Od oleju do margaryny (PERFEKCYJNA ZAPĘTLONA SYMULACJA) -->
         <div class="slide-container" style="pointer-events: none;">
-            <div><h2 class="slide-title">Proces utwardzania tłuszczów</h2></div>
+            <div><h2 class="slide-title">Zarządzanie Długiem Technicznym</h2></div>
             <div class="content-wrapper">
                 <div class="two-column align-start">
                     <div>
-                        <p>Przemysł spożywczy stosuje proces zwany <strong>uwodornieniem</strong>, by przekształcić płynne, łatwo psujące się oleje roślinne w wysoce stabilną, stałą margarynę.</p>
-                        <p>Polega on na przyłączaniu atomów wodoru do wiązań podwójnych węgla (C=C), trwale zmieniając je w wiązania pojedyncze (C-C).</p>
-                        <p>Reakcja ta, aby zaszła skutecznie, wymaga odpowiednio wysokiej temperatury, ciśnienia oraz zastosowania katalizatora niklowego.</p>
+                        <p>AI to nie tylko narzędzie do tworzenia od zera, to również potężny mechanizm do <strong>refaktoryzacji kodu</strong> (czyszczenia i optymalizacji).</p>
+                        <p>Sztuczna inteligencja potrafi przyjąć niezoptymalizowany, stary kod (np. głęboko zagnieżdżone `<div>`, style inline) i przekształcić go w nowoczesny standard używający semantycznych znaczników i responsywnego systemu Grid.</p>
+                        <p>Proces ten diametralnie zwiększa czytelność bazy kodowej oraz przyspiesza ładowanie stron w przeglądarkach klientów.</p>
                     </div>
                     <div>
-                        <!-- Złożona Symulacja Chemiczna (Czysta Molekuła) -->
                         <div class="svg-wrapper" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); position: relative;">
                             
                             <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-                                <!-- Interfejs Stanu Skupienia (Zmienia się płynnie w czasie animacji) -->
-                                <g transform="translate(200, 50)">
-                                    <g class="sim-badge-liquid">
-                                        <rect x="-80" y="-16" width="160" height="32" rx="16" fill="rgba(59, 130, 246, 0.15)" stroke="#3b82f6" stroke-width="1.5"/>
-                                        <text x="0" y="4" font-family="'DM Sans'" font-size="12" font-weight="bold" fill="#93c5fd" text-anchor="middle" letter-spacing="1">STAN: CIEKŁY (OLEJ)</text>
-                                    </g>
-                                    <g class="sim-badge-solid">
-                                        <rect x="-100" y="-16" width="200" height="32" rx="16" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="1.5"/>
-                                        <text x="0" y="4" font-family="'DM Sans'" font-size="12" font-weight="bold" fill="#6ee7b7" text-anchor="middle" letter-spacing="1">STAN: STAŁY (MARGARYNA)</text>
-                                    </g>
+                                <g transform="translate(50, 80)">
+                                    <path d="M 0 0 Q 50 50 100 0 T 200 0 T 300 50" fill="none" class="sim-fix" />
+                                    <path d="M 0 40 Q 60 -20 120 40 T 220 10 T 300 40" fill="none" class="sim-fix" style="animation-delay: 0.5s;" />
+                                    <path d="M 0 80 Q 40 120 100 80 T 180 50 T 300 100" fill="none" class="sim-fix" style="animation-delay: 1s;" />
                                 </g>
 
-                                <!-- Główny szkielet węglowy z animacją transformacji wygięcia -->
-                                <g transform="translate(200, 170)">
-                                    <g class="sim-chain-trans">
-                                        <!-- Linie kontynuacji łańcucha -->
-                                        <line x1="-130" y1="50" x2="-60" y2="0" stroke="inherit" stroke-width="8" stroke-linecap="round"/>
-                                        <line x1="130" y1="50" x2="60" y2="0" stroke="inherit" stroke-width="8" stroke-linecap="round"/>
-                                        
-                                        <!-- Atomy Węgla w centrum reakcji -->
-                                        <circle cx="-60" cy="0" r="22" fill="#1e293b" stroke="#cbd5e1" stroke-width="3"/>
-                                        <text x="-60" y="6" font-family="'DM Sans'" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">C</text>
-                                        
-                                        <circle cx="60" cy="0" r="22" fill="#1e293b" stroke="#cbd5e1" stroke-width="3"/>
-                                        <text x="60" y="6" font-family="'DM Sans'" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">C</text>
-
-                                        <!-- Stałe pojedyncze wiązanie Sigma -->
-                                        <line x1="-35" y1="0" x2="35" y2="0" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/>
-                                        
-                                        <!-- Pękające i powracające wiązanie Pi (Podwójne) -->
-                                        <line class="sim-pi-bond" x1="-32" y1="-16" x2="32" y2="-16" stroke="#ef4444" stroke-width="6" stroke-linecap="round"/>
-                                    </g>
-                                    
-                                    <!-- Animowana Cząsteczka H2 z góry -->
-                                    <g class="sim-h2">
-                                        <line x1="-12" y1="0" x2="12" y2="0" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
-                                        <circle cx="-16" cy="0" r="11" fill="#f8fafc" style="filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.8));"/>
-                                        <circle cx="16" cy="0" r="11" fill="#f8fafc" style="filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.8));"/>
-                                        <text x="0" y="-18" font-family="'DM Sans'" font-size="14" font-weight="bold" fill="#cbd5e1" text-anchor="middle">H₂</text>
-                                    </g>
-
-                                    <!-- Atomy Wodoru rozdzielające się i przyłączające do C -->
-                                    <g class="sim-h-left">
-                                        <circle cx="-60" cy="-70" r="14" fill="#f8fafc" style="filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.8));"/>
-                                        <text x="-60" y="-64" font-family="'DM Sans'" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">H</text>
-                                        <line x1="-60" y1="-30" x2="-60" y2="-55" stroke="#94a3b8" stroke-width="4" stroke-linecap="round" stroke-dasharray="4 4"/>
-                                    </g>
-
-                                    <g class="sim-h-right">
-                                        <circle cx="60" cy="-70" r="14" fill="#f8fafc" style="filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.8));"/>
-                                        <text x="60" y="-64" font-family="'DM Sans'" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">H</text>
-                                        <line x1="60" y1="-30" x2="60" y2="-55" stroke="#94a3b8" stroke-width="4" stroke-linecap="round" stroke-dasharray="4 4"/>
-                                    </g>
+                                <g>
+                                    <rect x="-10" y="0" width="20" height="300" fill="rgba(59, 130, 246, 0.3)" class="sim-scan" />
+                                    <line x1="0" y1="0" x2="0" y2="300" stroke="#60a5fa" stroke-width="4" class="sim-scan" style="filter: drop-shadow(0 0 10px #3b82f6);" />
                                 </g>
                                 
+                                <g transform="translate(200, 250)">
+                                    <rect x="-80" y="-16" width="160" height="32" rx="16" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="1.5"/>
+                                    <text x="0" y="4" font-family="'DM Sans'" font-size="12" font-weight="bold" fill="#6ee7b7" text-anchor="middle" letter-spacing="1">AI REFAKTORYZACJA</text>
+                                </g>
                             </svg>
                         </div>
                     </div>
@@ -818,16 +497,15 @@
             </div>
         </div>
 
-        <!-- Slide 10: Zakończenie -->
         <div class="slide-container" style="pointer-events: none;">
             <div class="content-wrapper">
                 <div class="section-title-layout">
-                    <div class="anim-float" style="width: 80px; height: 80px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; box-shadow: 0 15px 30px rgba(16, 185, 129, 0.3);">
-                        <i class="fa-solid fa-leaf" style="font-size: 40px; color: #ffffff;"></i>
+                    <div class="anim-float" style="width: 80px; height: 80px; background: linear-gradient(135deg, #8b5cf6, #4f46e5); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; box-shadow: 0 15px 30px rgba(139, 92, 246, 0.3);">
+                        <i class="fa-solid fa-rocket" style="font-size: 35px; color: #ffffff;"></i>
                     </div>
                     <h2 style="font-size: 65px; margin-bottom: 0; font-weight: 900; color: #0f172a;">Podsumowanie</h2>
-                    <hr style="width: 150px; height: 4px; background: #10b981;">
-                    <p class="subtitle" style="font-size: 24px; max-width: 800px; color: #475569;">Zrozumienie chemicznej natury tłuszczów pozwala nam podejmować świadome i odpowiedzialne decyzje dotyczące codziennej diety i naszego zdrowia.</p>
+                    <hr style="width: 150px; height: 4px; background: #8b5cf6;">
+                    <p class="subtitle" style="font-size: 24px; max-width: 800px; color: #475569;">Sztuczna inteligencja nie zastępuje programistów webowych – staje się zaawansowanym asystentem, który przesuwa granice kreatywności, uwalniając nas od monotonii pisania powtarzalnego kodu HTML.</p>
                     <h3 class="gradient-text" style="margin-top: 40px; font-size: 26px; letter-spacing: 3px; text-transform: uppercase;">Dziękuję za uwagę</h3>
                 </div>
             </div>
@@ -835,7 +513,6 @@
 
     </div>
 
-    <!-- GUI (Kontrola slajdów na dole ekranu) -->
     <div class="gui-hover-zone">
         <div class="gui-controls" id="gui-controls">
             <button id="btn-prev" title="Poprzedni slajd" onclick="prevSlide(event)"><i class="fa-solid fa-chevron-left"></i></button>
@@ -946,4 +623,3 @@
     </script>
 </body>
 </html>
-```
