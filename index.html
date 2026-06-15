@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYMULACJA AI</title>
+    <title>SYMULACJA</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -58,13 +58,11 @@
 
         /* Slajd 1: Tytuł */
         .glitch-text { text-shadow: 2px 2px 0px rgba(139, 92, 246, 0.5), -2px -2px 0px rgba(59, 130, 246, 0.5); }
-        .crt-line { position: absolute; top: 0; left: 0; width: 100%; height: 10px; background: rgba(255,255,255,0.05); opacity: 0.5; animation: scanline 6s linear infinite; pointer-events: none; z-index: 5; }
-        @keyframes scanline { 0% { transform: translateY(-10px); } 100% { transform: translateY(720px); } }
 
         /* Stylizacja ogólna układów */
         .split-layout { display: flex; width: 100%; height: 100%; }
         .half-panel { flex: 1; height: 100%; display: flex; flex-direction: column; position: relative; }
-        .panel-header { padding: 12px 20px; background: var(--vs-panel); border-bottom: 1px solid var(--vs-border); display: flex; align-items: center; font-size: 13px; color: #a3a3a3; font-family: 'DM Sans'; gap: 10px; }
+        .panel-header { padding: 12px 20px; background: var(--vs-panel); border-bottom: 1px solid var(--vs-border); display: flex; align-items: center; font-size: 14px; color: #d4d4d4; font-family: 'DM Sans'; gap: 10px; }
         
         /* Slajd 2: AI Generacja */
         .s2-cursor { display: inline-block; width: 2px; height: 1.1em; background: #fff; vertical-align: middle; margin-left: 2px; animation: blink 1s step-end infinite; }
@@ -76,10 +74,10 @@
         .s3-phase-code { position: absolute; inset: 0; display: flex; opacity: 1; transition: opacity 0.5s; z-index: 2; background: #0f172a; }
         .s3-phase-game { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s; z-index: 1; background: #050505; }
         .s3-game-active .s3-phase-code { opacity: 0; pointer-events: none; }
-        .s3-game-active .s3-phase-game { opacity: 1; }
+        .s3-game-active .s3-phase-game { opacity: 1; pointer-events: auto; }
         
         .code-container { display: flex; flex: 1; overflow: hidden; background: var(--vs-bg); }
-        .line-numbers { width: 40px; padding: 20px 10px 20px 0; text-align: right; color: #6e7681; border-right: 1px solid #333; font-size: 13px; line-height: 1.6; }
+        .line-numbers { width: 45px; padding: 20px 10px 20px 0; text-align: right; color: #6e7681; border-right: 1px solid #333; font-size: 13px; line-height: 1.6; }
         .code-content { flex: 1; padding: 20px; overflow-y: auto; color: #d4d4d4; font-size: 13px; line-height: 1.6; white-space: pre-wrap; word-break: break-all; }
         .s3-chat-msg { display: flex; gap: 15px; margin-bottom: 20px; opacity: 0; transform: translateY(10px); transition: all 0.3s; }
         .s3-chat-msg.show { opacity: 1; transform: translateY(0); }
@@ -88,16 +86,25 @@
         @keyframes s3glitch { 0% { transform: translate(2px, 2px); } 50% { transform: translate(-2px, -2px); } 100% { transform: translate(2px, -2px); } }
 
         /* Slajd 4: Copilot/Cursor Debug */
-        .s4-panel-ai { position: absolute; right: -400px; top: 0; width: 380px; height: 100%; background: #1e293b; border-left: 1px solid #334155; box-shadow: -10px 0 30px rgba(0,0,0,0.5); z-index: 20; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); display: flex; flex-direction: column; }
+        .s4-panel-ai { position: absolute; right: -400px; top: 0; width: 380px; height: 100%; background: #161b22; border-left: 1px solid #30363d; box-shadow: -10px 0 30px rgba(0,0,0,0.5); z-index: 20; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); display: flex; flex-direction: column; }
         .s4-panel-ai.open { transform: translateX(-400px); }
         
-        .diff-remove { background: rgba(244, 63, 94, 0.15); border-left: 3px solid #f43f5e; color: #cbd5e1; }
-        .diff-add { background: rgba(16, 185, 129, 0.15); border-left: 3px solid #10b981; color: #cbd5e1; }
-        .diff-line { display: flex; padding: 0 20px; }
-        .diff-line .sign { width: 20px; display: inline-block; color: inherit; opacity: 0.7; }
+        /* Czyste i perfekcyjne stylowanie kodu Slajdu 4 */
+        .s4-code-block { font-family: 'Fira Code', monospace; font-size: 14px; line-height: 1.6; width: 100%; display: flex; flex-direction: column; }
+        .s4-line { display: flex; width: 100%; }
+        .s4-line .pad { width: 35px; flex-shrink: 0; text-align: center; color: #6e7681; font-weight: bold; }
+        .s4-line .code { white-space: pre; flex: 1; color: #d4d4d4; }
+        
+        .diff-remove { background: rgba(248, 81, 73, 0.15); }
+        .diff-remove .code { color: #ff7b72; }
+        .diff-remove .pad { color: #ff7b72; border-left: 3px solid #ff7b72; }
+        
+        .diff-add { background: rgba(46, 160, 67, 0.15); }
+        .diff-add .code { color: #7ee787; }
+        .diff-add .pad { color: #7ee787; border-left: 3px solid #7ee787; }
         
         .s4-cursor { position: absolute; width: 24px; height: 24px; z-index: 100; pointer-events: none; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6)); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); left: 1000px; top: 600px; opacity: 0; }
-        .s4-btn { background: #10b981; color: #000; padding: 6px 16px; border-radius: 4px; font-weight: bold; cursor: pointer; transition: transform 0.1s, filter 0.1s; display: inline-block; }
+        .s4-btn { background: #238636; color: #fff; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: transform 0.1s, filter 0.1s; display: inline-block; font-family: 'DM Sans'; border: 1px solid rgba(240, 246, 252, 0.1); }
         .s4-btn.clicked { transform: scale(0.92); filter: brightness(0.8); }
 
         /* Składnia kodu ogólna */
@@ -120,7 +127,6 @@
 
         <!-- SLAJD 1: TYTUŁ -->
         <div class="slide-container active" id="slide-1">
-            <div class="crt-line"></div>
             <div style="flex: 1; display: flex; align-items: center; justify-content: center; pointer-events: none;">
                 <h1 id="s1-title" data-text="SYMULACJA" class="code-font glitch-text" style="font-size: 130px; letter-spacing: 25px; margin: 0; font-weight: 900; color: #fff;">010101010</h1>
             </div>
@@ -130,8 +136,8 @@
         <div class="slide-container" id="slide-2">
             <div class="split-layout">
                 <div class="half-panel" style="background: var(--vs-bg); border-right: 1px solid var(--vs-border);">
-                    <div class="panel-header">
-                        <i class="fa-solid fa-bolt" style="color: #facc15;"></i> AI Assistant Chat
+                    <div class="panel-header" style="background: #1e1e24;">
+                        <i class="fa-solid fa-sparkles" style="color: #8b5cf6;"></i> Gemini
                     </div>
                     <div style="flex: 1; padding: 30px; display: flex; flex-direction: column; overflow-y: auto;" id="s2-chat-flow">
                         <!-- Generowane przez JS -->
@@ -166,11 +172,11 @@
         <div class="slide-container" id="slide-3">
             <!-- Pasek postępu na górze -->
             <div style="position: absolute; top: 15px; left: 50%; transform: translateX(-50%); z-index: 50; display: flex; gap: 40px;">
-                <div style="background: rgba(0,0,0,0.8); padding: 5px 15px; border-radius: 6px; border: 1px solid #333; font-family: 'Fira Code'; font-size: 14px; display: flex; align-items: center; gap: 10px;">
-                    <i class="fa-solid fa-user" style="color: #94a3b8;"></i> <span id="s3-t-human" style="color: #fff;">00:00:00</span>
+                <div style="background: rgba(0,0,0,0.85); padding: 5px 15px; border-radius: 6px; border: 1px solid #333; font-family: 'Fira Code'; font-size: 14px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+                    <i class="fa-solid fa-user" style="color: #94a3b8;"></i> <span id="s3-t-human" style="color: #fff; width: 70px; text-align: right;">00:00:00</span>
                 </div>
-                <div style="background: rgba(0,0,0,0.8); padding: 5px 15px; border-radius: 6px; border: 1px solid #333; font-family: 'Fira Code'; font-size: 14px; display: flex; align-items: center; gap: 10px;">
-                    <i class="fa-solid fa-bolt" style="color: #10a37f;"></i> <span id="s3-t-ai" style="color: #fff;">00:00:00</span>
+                <div style="background: rgba(0,0,0,0.85); padding: 5px 15px; border-radius: 6px; border: 1px solid #333; font-family: 'Fira Code'; font-size: 14px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+                    <i class="fa-solid fa-bolt" style="color: #8b5cf6;"></i> <span id="s3-t-ai" style="color: #fff; width: 70px; text-align: right;">00:00:00</span>
                 </div>
             </div>
 
@@ -178,16 +184,16 @@
             <div class="s3-phase-code split-layout">
                 <!-- Człowiek IDE -->
                 <div class="half-panel" style="border-right: 1px solid var(--vs-border);">
-                    <div class="panel-header"><i class="fa-brands fa-js" style="color: #facc15;"></i> index.html - IDE</div>
+                    <div class="panel-header"><i class="fa-brands fa-html5" style="color: #e34f26;"></i> index.html - IDE</div>
                     <div class="code-container">
                         <div class="line-numbers code-font" id="s3-h-lines">1</div>
-                        <div class="code-content code-font" id="s3-h-code" style="overflow-y: auto;"></div>
+                        <div class="code-content code-font" id="s3-h-code"></div>
                     </div>
                 </div>
                 <!-- AI Chat -->
-                <div class="half-panel" style="background: #343541;">
-                    <div class="panel-header" style="background: #343541; border-color: #444; color: #ececec; font-weight: bold;">
-                        <i class="fa-solid fa-sparkles" style="color: #10a37f;"></i> Chat AI v4
+                <div class="half-panel" style="background: #1e1e24;">
+                    <div class="panel-header" style="background: #1e1e24; border-color: #333; font-weight: bold;">
+                        <i class="fa-solid fa-sparkles" style="color: #8b5cf6;"></i> Gemini Advanced
                     </div>
                     <div style="flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column;" id="s3-ai-chat">
                     </div>
@@ -206,10 +212,10 @@
                     </div>
                 </div>
                 <div class="half-panel" style="align-items: center; justify-content: center; background: #050505;">
-                    <div style="border: 4px solid #10a37f; border-radius: 8px; box-shadow: 0 0 40px rgba(16,163,127,0.3); position: relative; background: #000;">
+                    <div style="border: 4px solid #8b5cf6; border-radius: 8px; box-shadow: 0 0 40px rgba(139,92,246,0.3); position: relative; background: #000;">
                         <canvas id="cvs-ai" width="400" height="400"></canvas>
                         <div id="over-ai" class="s3-bug-overlay">
-                            <div style="background: #ef4444; color: #fff; font-family: 'Fira Code'; font-size: 14px; padding: 4px 10px; font-weight: bold;">[ERR] COLLISION_BOUNDS</div>
+                            <div style="background: #ef4444; color: #fff; font-family: 'Fira Code'; font-size: 14px; padding: 4px 10px; font-weight: bold;">[ERR] GLITCH DETECTED</div>
                         </div>
                     </div>
                 </div>
@@ -224,59 +230,62 @@
                     <div style="padding: 6px 20px; font-size: 13px; background: rgba(255,255,255,0.05); border-left: 2px solid #3b82f6; color: #fff;"><i class="fa-brands fa-js" style="color: #facc15; width: 20px;"></i> physics.js</div>
                 </div>
                 
-                <div class="half-panel" style="background: var(--vs-bg); overflow: hidden;">
+                <div class="half-panel" style="background: var(--vs-bg); overflow: hidden; position: relative;">
                     <div class="panel-header"><i class="fa-brands fa-js" style="color: #facc15;"></i> physics.js</div>
-                    <div class="code-container code-font" style="font-size: 15px; position: relative;">
-                        <div class="line-numbers" style="padding-left: 10px;">
-                            <div>42</div><div>43</div><div>44</div><div>45</div><div>46</div><div>47</div><div>48</div><div>49</div><div>50</div><div>51</div>
+                    <div style="display: flex; padding: 20px 0;">
+                        <!-- Numery Linii -->
+                        <div class="line-numbers code-font" style="width: 50px; padding: 0 15px 0 0; text-align: right; color: #6e7681; border-right: 1px solid #333; font-size: 14px; line-height: 1.6;">
+                            42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52
                         </div>
-                        <div class="code-content" style="padding: 20px 0; position: relative; overflow: hidden;">
-                            <div style="padding-left: 20px;"><span class="k-fn">function</span> <span class="k-vr">updateEntity</span>(ent, dt) {</div>
-                            <div style="padding-left: 40px;">ent.x += ent.vx * dt;</div>
-                            <div style="padding-left: 40px;">ent.y += ent.vy * dt;</div>
-                            <br>
+                        
+                        <!-- Perfekcyjnie wyrównany kod -->
+                        <div class="s4-code-block" style="padding-left: 10px;">
+                            <div class="s4-line"><div class="pad"></div><div class="code"><span class="k-fn">function</span> <span class="k-vr">updateEntity</span>(ent, dt) {</div></div>
+                            <div class="s4-line"><div class="pad"></div><div class="code">  ent.x += ent.vx * dt;</div></div>
+                            <div class="s4-line"><div class="pad"></div><div class="code">  ent.y += ent.vy * dt;</div></div>
                             
-                            <!-- Stan przed naprawą -->
-                            <div id="s4-code-old" style="display: block;">
-                                <div style="padding-left: 40px; background: rgba(255,255,255,0.05);"><span class="k-kw">if</span> (ent.x > canvas.width) {</div>
-                                <div style="padding-left: 60px; background: rgba(255,255,255,0.05);">ent.x = <span class="k-nm">0</span>;</div>
-                                <div style="padding-left: 40px; background: rgba(255,255,255,0.05);">}</div>
+                            <!-- Stan stary z precyzyjnym podświetleniem -->
+                            <div id="s4-code-old" style="position: relative;">
+                                <div id="s4-highlight" style="position: absolute; inset: 0; background: rgba(255,255,255,0.08); width: 0; transition: width 0.5s ease; border-radius: 4px; pointer-events: none;"></div>
+                                <div class="s4-line"><div class="pad"></div><div class="code">  <span class="k-kw">if</span> (ent.x > canvas.width) {</div></div>
+                                <div class="s4-line"><div class="pad"></div><div class="code">    ent.x = <span class="k-nm">0</span>;</div></div>
+                                <div class="s4-line"><div class="pad"></div><div class="code">  }</div></div>
                             </div>
 
                             <!-- Stan DIFF -->
                             <div id="s4-code-diff" style="display: none;">
-                                <div class="diff-remove diff-line"><span class="sign">-</span><div style="padding-left: 20px;"><span class="k-kw">if</span> (ent.x > canvas.width) {</div></div>
-                                <div class="diff-remove diff-line"><span class="sign">-</span><div style="padding-left: 40px;">ent.x = <span class="k-nm">0</span>;</div></div>
-                                <div class="diff-remove diff-line"><span class="sign">-</span><div style="padding-left: 20px;">}</div></div>
-                                
-                                <div class="diff-add diff-line"><span class="sign">+</span><div style="padding-left: 20px;"><span class="k-kw">if</span> (ent.x + ent.w > canvas.width) {</div></div>
-                                <div class="diff-add diff-line"><span class="sign">+</span><div style="padding-left: 40px;">ent.x = canvas.width - ent.w;</div></div>
-                                <div class="diff-add diff-line"><span class="sign">+</span><div style="padding-left: 40px;">ent.vx *= <span class="k-nm">-1</span>;</div></div>
-                                <div class="diff-add diff-line"><span class="sign">+</span><div style="padding-left: 20px;">}</div></div>
+                                <div class="s4-line diff-remove"><div class="pad">-</div><div class="code">  <span class="k-kw">if</span> (ent.x > canvas.width) {</div></div>
+                                <div class="s4-line diff-remove"><div class="pad">-</div><div class="code">    ent.x = <span class="k-nm">0</span>;</div></div>
+                                <div class="s4-line diff-remove"><div class="pad">-</div><div class="code">  }</div></div>
+                                <div class="s4-line diff-add"><div class="pad">+</div><div class="code">  <span class="k-kw">if</span> (ent.x + ent.w > canvas.width) {</div></div>
+                                <div class="s4-line diff-add"><div class="pad">+</div><div class="code">    ent.x = canvas.width - ent.w;</div></div>
+                                <div class="s4-line diff-add"><div class="pad">+</div><div class="code">    ent.vx *= <span class="k-nm">-1</span>;</div></div>
+                                <div class="s4-line diff-add"><div class="pad">+</div><div class="code">  }</div></div>
                             </div>
 
-                            <!-- Stan po naprawie -->
+                            <!-- Stan nowy -->
                             <div id="s4-code-new" style="display: none;">
-                                <div style="padding-left: 40px;"><span class="k-kw">if</span> (ent.x + ent.w > canvas.width) {</div>
-                                <div style="padding-left: 60px;">ent.x = canvas.width - ent.w;</div>
-                                <div style="padding-left: 60px;">ent.vx *= <span class="k-nm">-1</span>;</div>
-                                <div style="padding-left: 40px;">}</div>
+                                <div class="s4-line"><div class="pad"></div><div class="code">  <span class="k-kw">if</span> (ent.x + ent.w > canvas.width) {</div></div>
+                                <div class="s4-line"><div class="pad"></div><div class="code">    ent.x = canvas.width - ent.w;</div></div>
+                                <div class="s4-line"><div class="pad"></div><div class="code">    ent.vx *= <span class="k-nm">-1</span>;</div></div>
+                                <div class="s4-line"><div class="pad"></div><div class="code">  }</div></div>
                             </div>
-                            
-                            <br>
-                            <div style="padding-left: 20px;">}</div>
+
+                            <div class="s4-line"><div class="pad"></div><div class="code">}</div></div>
                         </div>
                     </div>
 
-                    <!-- Panel AI -->
+                    <!-- Panel AI w stylu GitHub Copilot -->
                     <div id="s4-ai-panel" class="s4-panel-ai">
-                        <div class="panel-header" style="justify-content: space-between; background: #1e293b; color: #fff;">
-                            <div><i class="fa-solid fa-robot" style="color: #8b5cf6;"></i> AI Fix</div>
-                            <i class="fa-solid fa-xmark"></i>
+                        <div class="panel-header" style="justify-content: space-between; background: #161b22; color: #fff; font-weight: bold; border-bottom: 1px solid #30363d;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-brands fa-github" style="font-size: 16px;"></i> GitHub Copilot
+                            </div>
+                            <i class="fa-solid fa-xmark" style="color: #8b949e; cursor: pointer;"></i>
                         </div>
                         <div style="padding: 20px; display: flex; flex-direction: column; gap: 15px;">
-                            <div style="font-size: 14px; color: #cbd5e1; line-height: 1.5;">
-                                Zauważyłem, że obiekt znika poza ekranem zamiast się odbijać. Dodałem uwzględnienie szerokości (<code>ent.w</code>) oraz odwrócenie wektora prędkości (<code>vx</code>).
+                            <div style="font-size: 14px; color: #c9d1d9; line-height: 1.5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+                                Zauważyłem, że obiekt znika poza ekranem zamiast się odbijać. Dodałem uwzględnienie szerokości (<code>ent.w</code>) oraz odwrócenie wektora prędkości (<code>vx *= -1</code>).
                             </div>
                             <div>
                                 <div id="s4-btn-apply" class="s4-btn">Zastosuj zmiany</div>
@@ -286,7 +295,7 @@
                 </div>
             </div>
 
-            <!-- Kursor Myszki przeniesiony na poziom całego slajdu 4 dla idealnego pozycjonowania -->
+            <!-- Globalny kursor dla idealnego namierzania -->
             <div id="s4-cursor" class="s4-cursor">
                 <svg viewBox="0 0 24 24" fill="#fff" stroke="#000" stroke-width="1.5"><path d="M4 2l6.5 19 3-7 7-3z"/></svg>
             </div>
@@ -295,7 +304,8 @@
         <!-- SLAJD 5: ZAKOŃCZENIE -->
         <div class="slide-container">
             <div class="sim-fullscreen" style="background-color: #050814; overflow: hidden; position: relative;">
-                <canvas id="s5-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 0 15px rgba(0,240,255,0.15)); mix-blend-mode: screen; z-index: 1;"></canvas>
+                <!-- Usunięto mix-blend-mode: screen, tło rysowane w JS -->
+                <canvas id="s5-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
                 <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: none;">
                     <div style="background: rgba(10, 15, 30, 0.65); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.1); padding: 4rem; border-radius: 2.5rem; text-align: center;">
                         <div style="font-size: 4.5rem; font-weight: 900; background: linear-gradient(135deg, #00f0ff 0%, #ff007a 50%, #7928ca 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem;">Dziękuję za uwagę</div>
@@ -328,11 +338,8 @@
         let currentSlide = 0;
         let slides = [];
         let totalSlides = 5;
-
-        // Pomocnicza funkcja do asynchronicznego czekania (Sleep)
         const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
         
-        // Zmienne globalne kontrolujące bieżący stan slajdów
         let s2_active = false;
         let s3_active = false;
         let s4_active = false;
@@ -363,8 +370,6 @@
 
         function showSlide(index) {
             if(index < 0 || index >= totalSlides) return;
-            
-            // Czyszczenie starych stanów
             s2_active = false; s3_active = false; s4_active = false;
             
             slides.forEach(s => s.classList.remove('active'));
@@ -374,7 +379,6 @@
             document.getElementById('current-slide-num').textContent = currentSlide + 1;
             document.getElementById('progress-bar').style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
 
-            // Uruchomienie dedykowanych skryptów dla danego slajdu
             if(index === 0) runSlide1();
             if(index === 1) runSlide2();
             if(index === 2) runSlide3();
@@ -393,7 +397,6 @@
             else if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
         });
 
-        // Kolorowanie składni
         function highlight(code) {
             return code.replace(/(const|let|var|function|class|constructor|if|else|return|for|while)\b/g, '<span class="k-kw">$1</span>')
                        .replace(/([a-zA-Z0-9_]+)\s*\(/g, '<span class="k-fn">$1</span>(')
@@ -412,7 +415,7 @@
         }
 
         // ==========================================
-        // SLAJD 1: TYTUŁ
+        // SLAJD 1
         // ==========================================
         async function runSlide1() {
             const titleEl = document.getElementById('s1-title');
@@ -426,7 +429,7 @@
         }
 
         // ==========================================
-        // SLAJD 2: AI GENERATOR
+        // SLAJD 2: AI GENERATOR (Gemini)
         // ==========================================
         async function runSlide2() {
             s2_active = true;
@@ -437,46 +440,42 @@
             
             await wait(500); if(!s2_active) return;
             
-            // Wiadomość użytkownika
             const usrMsg = document.createElement('div');
             usrMsg.style.cssText = "align-self: flex-end; background: #2f2f2f; padding: 15px 20px; border-radius: 20px 20px 0 20px; max-width: 80%; font-size: 16px; margin-bottom: 30px;";
             chat.appendChild(usrMsg);
-            await typeText(usrMsg, "Wygeneruj nowoczesną, szklaną kartę płatniczą używając HTML i Tailwind. Dodaj logo i chip.", 30);
+            await typeText(usrMsg, "Napisz kod nowoczesnej, szklanej karty płatniczej używając HTML i Tailwind CSS. Dodaj logo i chip.", 30);
             
             await wait(400); if(!s2_active) return;
             
-            // Odpowiedź AI
             const aiMsg = document.createElement('div');
             aiMsg.style.cssText = "align-self: flex-start; width: 100%; display: flex; gap: 15px;";
-            aiMsg.innerHTML = `<div style="width: 35px; height: 35px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fa-solid fa-sparkles" style="color: #212121; font-size: 16px;"></i></div>
+            aiMsg.innerHTML = `<div style="width: 35px; height: 35px; border-radius: 50%; background: #1e1e24; border: 1px solid #333; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fa-solid fa-sparkles" style="color: #8b5cf6; font-size: 16px;"></i></div>
                                <div style="flex: 1; max-width: 100%; overflow: hidden;" id="s2-ai-content">
                                  <div id="s2-ai-text" style="margin-bottom: 15px;"></div>
                                </div>`;
             chat.appendChild(aiMsg);
-            await typeText(document.getElementById('s2-ai-text'), "Oto gotowy kod, o który prosiłeś:", 20);
+            await typeText(document.getElementById('s2-ai-text'), "Oto kompletny kod, o który prosiłeś:", 20);
 
             await wait(200); if(!s2_active) return;
 
-            // Okno z kodem
             const codeBox = document.createElement('div');
             codeBox.style.cssText = "background: #0d0d0d; border-radius: 8px; border: 1px solid #333; overflow: hidden;";
             codeBox.innerHTML = `<div style="background: #2f2f2f; padding: 8px 15px; display: flex; justify-content: space-between; font-family: 'Fira Code'; font-size: 12px; color: #b4b4b4;"><span>html</span><span>Copy</span></div>
-                                 <div id="s2-ai-code" style="padding: 15px; font-family: 'Fira Code', monospace; font-size: 13px; color: #d4d4d4; line-height: 1.6; white-space: pre-wrap;"></div>`;
+                                 <div id="s2-ai-code" style="padding: 15px; font-family: 'Fira Code', monospace; font-size: 13px; color: #d4d4d4; line-height: 1.6; white-space: pre-wrap; max-height: 400px; overflow-y: auto;"></div>`;
             document.getElementById('s2-ai-content').appendChild(codeBox);
 
-            const rawCode = `<div class="relative w-96 h-60 rounded-2xl overflow-hidden">\n  <div class="absolute inset-0 bg-gradient-to-br from-purple-500/40 to-blue-500/40 backdrop-blur-xl border border-white/20"></div>\n  <div class="relative z-10 flex flex-col justify-between h-full p-6 text-white">\n    <div class="flex justify-between items-start">\n      <i class="fa-brands fa-cc-visa text-4xl"></i>\n      <i class="fa-solid fa-wifi rotate-90"></i>\n    </div>\n    <div class="font-mono text-2xl tracking-widest mt-4">\n      4000 1234 5678 9010\n    </div>\n    <div class="flex justify-between items-end">\n      <div class="uppercase tracking-wider">Jan Kowalski</div>\n      <div class="font-mono">12/25</div>\n    </div>\n  </div>\n</div>`;
+            const rawCode = `<div class="relative w-96 h-60 rounded-2xl overflow-hidden">\n  <div class="absolute inset-0 bg-gradient-to-br from-purple-500/40 to-blue-500/40 backdrop-blur-xl border border-white/20"></div>\n  <div class="relative z-10 flex flex-col justify-between h-full p-6 text-white">\n    <div class="flex justify-between items-start">\n      <i class="fa-brands fa-cc-visa text-4xl"></i>\n      <i class="fa-solid fa-wifi rotate-90"></i>\n    </div>\n    <div class="font-mono text-2xl tracking-widest mt-4">\n      4000 1234 5678 9010\n    </div>\n    <div class="flex justify-between items-end">\n      <div class="uppercase tracking-wider font-bold">Jan Kowalski</div>\n      <div class="font-mono">12/25</div>\n    </div>\n  </div>\n</div>`;
             
             const codeEl = document.getElementById('s2-ai-code');
-            // Szybkie strumieniowanie z kolorowaniem
             for(let i=0; i<=rawCode.length; i+=3) {
                 if(!s2_active) return;
-                codeEl.innerHTML = highlight(rawCode.substring(0, i)) + '<span class="s2-cursor"></span>';
+                codeEl.innerHTML = highlight(rawCode.substring(0, i).replace(/</g, "&lt;").replace(/>/g, "&gt;")) + '<span class="s2-cursor"></span>';
+                codeEl.scrollTop = codeEl.scrollHeight;
                 chat.scrollTop = chat.scrollHeight;
                 await wait(10);
             }
-            codeEl.innerHTML = highlight(rawCode);
+            codeEl.innerHTML = highlight(rawCode.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
 
-            // Po wygenerowaniu, pokazujemy podgląd
             await wait(300); if(!s2_active) return;
             preview.classList.add('show');
         }
@@ -484,13 +483,10 @@
         // ==========================================
         // SLAJD 3: CZŁOWIEK VS AI
         // ==========================================
-        
-        // Prawdziwy, kompletny kod użytkownika (wyodrębniony JS)
         const humanRawCode = `<!DOCTYPE html>\n<html lang="pl">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">\n<title>Snake</title>\n<style>\nbody {\n    margin: 0;\n    padding: 0;\n    background-color: #222;\n    color: #fff;\n    font-family: 'Courier New', Courier, monospace;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    height: 100vh;\n    overflow: hidden;\n    touch-action: none;\n}\n#game-container {\n    position: relative;\n    max-width: 100%;\n}\ncanvas {\n    background-color: #000;\n    border: 4px solid #444;\n    box-shadow: 0 0 20px rgba(0,0,0,0.8);\n    display: block;\n}\n#ui {\n    display: flex;\n    justify-content: space-between;\n    width: 100%;\n    margin-bottom: 10px;\n    font-size: 20px;\n    font-weight: bold;\n}\n#game-over {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(20, 20, 20, 0.9);\n    backdrop-filter: blur(4px);\n    display: none;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    font-size: 32px;\n    color: #ff5555;\n    text-align: center;\n    border: 4px solid transparent;\n    box-sizing: border-box;\n}\n#restart-btn {\n    margin-top: 25px;\n    padding: 12px 24px;\n    font-size: 18px;\n    cursor: pointer;\n    background-color: #55ff55;\n    color: #000;\n    font-weight: bold;\n    border: none;\n    border-radius: 4px;\n    font-family: inherit;\n    transition: background-color 0.2s;\n}\n#restart-btn:hover {\n    background-color: #33cc33;\n}\n@media (max-width: 600px) {\n    canvas {\n        width: 90vw;\n        height: 90vw;\n    }\n    #ui {\n        width: 90vw;\n        font-size: 16px;\n    }\n}\n</style>\n</head>\n<body>\n<div id="game-container">\n    <div id="ui">\n        <span>Wynik: <span id="score">0</span></span>\n        <span>Rekord: <span id="highscore">0</span></span>\n    </div>\n    <canvas id="gameCanvas" width="400" height="400"></canvas>\n    <div id="game-over">\n        <div style="text-shadow: 2px 2px 0 #000;">KONIEC GRY</div>\n        <button id="restart-btn">Zagraj ponownie</button>\n    </div>\n</div>\n<script>\nconst canvas = document.getElementById('gameCanvas');\nconst ctx = canvas.getContext('2d');\nconst scoreElement = document.getElementById('score');\nconst highScoreElement = document.getElementById('highscore');\nconst gameOverScreen = document.getElementById('game-over');\nconst restartBtn = document.getElementById('restart-btn');\n\nconst gridSize = 20;\nlet tileCountX = canvas.width / gridSize;\nlet tileCountY = canvas.height / gridSize;\n\nlet snake = [];\nlet velocity = { x: 0, y: 0 };\nlet food = { x: 15, y: 15 };\nlet score = 0;\nlet highScore = localStorage.getItem('klasyczny_snake_rekord') || 0;\nlet gameLoop;\nlet isGameOver = false;\nlet moveQueue = [];\n\nhighScoreElement.textContent = highScore;\n\nfunction initGame() {\n    snake = [\n        { x: 10, y: 10 },\n        { x: 10, y: 11 },\n        { x: 10, y: 12 }\n    ];\n    velocity = { x: 0, y: -1 };\n    moveQueue = [];\n    score = 0;\n    scoreElement.textContent = score;\n    isGameOver = false;\n    gameOverScreen.style.display = 'none';\n    placeFood();\n    clearInterval(gameLoop);\n    gameLoop = setInterval(update, 110);\n}\n\nfunction update() {\n    if (isGameOver) return;\n\n    if (moveQueue.length > 0) {\n        velocity = moveQueue.shift();\n    }\n\n    let headX = snake[0].x + velocity.x;\n    let headY = snake[0].y + velocity.y;\n\n    if (headX < 0) headX = tileCountX - 1;\n    else if (headX >= tileCountX) headX = 0;\n    \n    if (headY < 0) headY = tileCountY - 1;\n    else if (headY >= tileCountY) headY = 0;\n\n    for (let i = 0; i < snake.length; i++) {\n        if (headX === snake[i].x && headY === snake[i].y) {\n            gameOver();\n            return;\n        }\n    }\n\n    snake.unshift({ x: headX, y: headY });\n\n    if (headX === food.x && headY === food.y) {\n        score += 10;\n        scoreElement.textContent = score;\n        if (score > highScore) {\n            highScore = score;\n            highScoreElement.textContent = highScore;\n            localStorage.setItem('klasyczny_snake_rekord', highScore);\n        }\n        placeFood();\n    } else {\n        snake.pop();\n    }\n\n    draw();\n}\n\nfunction draw() {\n    ctx.fillStyle = '#000';\n    ctx.fillRect(0, 0, canvas.width, canvas.height);\n\n    ctx.fillStyle = '#ff3333';\n    ctx.fillRect(food.x * gridSize + 1, food.y * gridSize + 1, gridSize - 2, gridSize - 2);\n\n    for (let i = 0; i < snake.length; i++) {\n        ctx.fillStyle = i === 0 ? '#55ff55' : '#22cc22';\n        ctx.fillRect(snake[i].x * gridSize + 1, snake[i].y * gridSize + 1, gridSize - 2, gridSize - 2);\n    }\n}\n\nfunction placeFood() {\n    let valid = false;\n    while (!valid) {\n        food.x = Math.floor(Math.random() * tileCountX);\n        food.y = Math.floor(Math.random() * tileCountY);\n        valid = true;\n        for (let segment of snake) {\n            if (segment.x === food.x && segment.y === food.y) {\n                valid = false;\n                break;\n            }\n        }\n    }\n}\n\nfunction gameOver() {\n    isGameOver = true;\n    clearInterval(gameLoop);\n    gameOverScreen.style.display = 'flex';\n}\n\nfunction addMove(x, y) {\n    let lastVel = moveQueue.length > 0 ? moveQueue[moveQueue.length - 1] : velocity;\n    \n    if ((lastVel.x !== 0 && x === -lastVel.x) || (lastVel.y !== 0 && y === -lastVel.y)) return;\n    \n    if (lastVel.x === x && lastVel.y === y) return;\n\n    if (moveQueue.length < 3) {\n        moveQueue.push({ x, y });\n    }\n}\n\nwindow.addEventListener('keydown', e => {\n    switch (e.key) {\n        case 'ArrowUp':\n        case 'w':\n        case 'W':\n            addMove(0, -1);\n            e.preventDefault();\n            break;\n        case 'ArrowDown':\n        case 's':\n        case 'S':\n            addMove(0, 1);\n            e.preventDefault();\n            break;\n        case 'ArrowLeft':\n        case 'a':\n        case 'A':\n            addMove(-1, 0);\n            e.preventDefault();\n            break;\n        case 'ArrowRight':\n        case 'd':\n        case 'D':\n            addMove(1, 0);\n            e.preventDefault();\n            break;\n    }\n});\n\nlet touchStartX = 0;\nlet touchStartY = 0;\n\nwindow.addEventListener('touchstart', e => {\n    touchStartX = e.changedTouches[0].screenX;\n    touchStartY = e.changedTouches[0].screenY;\n}, {passive: false});\n\nwindow.addEventListener('touchmove', e => {\n    e.preventDefault();\n}, {passive: false});\n\nwindow.addEventListener('touchend', e => {\n    let touchEndX = e.changedTouches[0].screenX;\n    let touchEndY = e.changedTouches[0].screenY;\n    handleSwipe(touchStartX, touchStartY, touchEndX, touchEndY);\n}, {passive: false});\n\nfunction handleSwipe(startX, startY, endX, endY) {\n    let dx = endX - startX;\n    let dy = endY - startY;\n    \n    if (Math.abs(dx) > Math.abs(dy)) {\n        if (dx > 30) addMove(1, 0);\n        else if (dx < -30) addMove(-1, 0);\n    } else {\n        if (dy > 30) addMove(0, 1);\n        else if (dy < -30) addMove(0, -1);\n    }\n}\n\nrestartBtn.addEventListener('click', initGame);\n\ninitGame();\n<\/script>\n</body>\n</html>`;
 
-        const aiRawCode = `class OptimalSnake {\n  constructor() {\n    this.ctx = document.getElementById('cvs-ai').getContext('2d');\n    this.init();\n  }\n  init() {\n    this.s = [{x:10,y:10}]; this.dx=1; this.dy=0;\n    this.food = {x:15, y:10};\n    requestAnimationFrame(()=>this.loop());\n  }\n  loop() {\n    // Błyskawiczna logika!\n    let nx = this.s[0].x + this.dx;\n    let ny = this.s[0].y + this.dy;\n    this.s.unshift({x:nx, y:ny});\n    if(nx==this.food.x && ny==this.food.y) this.food={x:Math.random()*20, y:Math.random()*20};\n    else this.s.pop();\n    // Render...\n  }\n}`;
+        const aiRawCode = `<!DOCTYPE html>\n<html lang="pl">\n<head>\n<meta charset="UTF-8">\n<title>Snake AI</title>\n<style>\n  body { background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }\n  canvas { border: 2px solid #8b5cf6; box-shadow: 0 0 20px rgba(139,92,246,0.3); }\n</style>\n</head>\n<body>\n  <canvas id="cvs-ai" width="400" height="400"></canvas>\n  <script>\n    const ctx = document.getElementById('cvs-ai').getContext('2d');\n    let s = [{x:10, y:10}], dx = 1, dy = 0, food = {x:15, y:10};\n\n    function loop() {\n      requestAnimationFrame(loop);\n      let nx = s[0].x + dx, ny = s[0].y + dy;\n      s.unshift({x:nx, y:ny});\n\n      if (nx === food.x && ny === food.y) {\n        food = {x: Math.floor(Math.random()*20), y: Math.floor(Math.random()*20)};\n      } else {\n        s.pop();\n      }\n\n      ctx.fillStyle = '#111'; ctx.fillRect(0,0,400,400);\n      ctx.fillStyle = '#ef4444'; ctx.fillRect(food.x*20, food.y*20, 18, 18);\n      ctx.fillStyle = '#8b5cf6'; s.forEach(p => ctx.fillRect(p.x*20, p.y*20, 18, 18));\n    }\n    requestAnimationFrame(loop);\n  <\/script>\n</body>\n</html>`;
 
-        // Symulacja gry z fizyką (Człowiek vs AI)
         class SnakeSim {
             constructor(cvsId, overId, isAI) {
                 this.cvs = document.getElementById(cvsId);
@@ -512,24 +508,19 @@
                 if(this.dead) return;
                 let h = this.s[0];
                 
-                // Ruch logiczny
                 if(this.isAI) {
-                    // AI jest agresywne, idzie prosto do jedzenia
                     if(this.f.x > h.x && this.dx!== -1) { this.dx=1; this.dy=0; }
                     else if(this.f.x < h.x && this.dx!== 1) { this.dx=-1; this.dy=0; }
                     else if(this.f.y > h.y && this.dy!== -1) { this.dx=0; this.dy=1; }
                     else if(this.f.y < h.y && this.dy!== 1) { this.dx=0; this.dy=-1; }
                     
-                    // CELOWY BŁĄD AI: czasem nie zauważa ściany z powodu "zbyt płytkiej kalkulacji"
-                    if(Math.random() < 0.02) { this.dx = this.dx; /* zignoruj sprawdzanie ścian na chwilę */ } 
+                    if(Math.random() < 0.02) { this.dx = this.dx; } 
                     else {
-                        // Podstawowe unikanie
                         if(h.x+this.dx < 0 || h.x+this.dx >= 20 || h.y+this.dy < 0 || h.y+this.dy >= 20) {
                             if(this.dx!==0) { this.dx=0; this.dy=h.y>10?-1:1; } else { this.dy=0; this.dx=h.x>10?-1:1; }
                         }
                     }
                 } else {
-                    // Człowiek - gra naturalnie, skręca lekko losowo lub do jabłka, rzadko wpada
                     if(Math.random() < 0.8) {
                         if(this.f.x > h.x && this.dx!== -1) { this.dx=1; this.dy=0; }
                         else if(this.f.x < h.x && this.dx!== 1) { this.dx=-1; this.dy=0; }
@@ -543,7 +534,6 @@
 
                 let nx = h.x + this.dx, ny = h.y + this.dy;
 
-                // Śmierć
                 if(nx<0 || nx>=20 || ny<0 || ny>=20 || this.s.some((seg,i) => i>0 && seg.x===nx && seg.y===ny)) {
                     this.die(); return;
                 }
@@ -551,7 +541,6 @@
                 this.s.unshift({x:nx, y:ny});
                 
                 if(nx===this.f.x && ny===this.f.y) {
-                    // CELOWY BŁĄD AI 2: Czasem rzuca jabłko poza planszę
                     if(this.isAI && Math.random() < 0.15) this.f = {x: -5, y: 30}; 
                     else this.f = {x: Math.floor(Math.random()*20), y: Math.floor(Math.random()*20)};
                 } else {
@@ -562,7 +551,7 @@
                 this.ctx.fillStyle = '#111'; this.ctx.fillRect(0,0,400,400);
                 this.ctx.fillStyle = '#ef4444'; this.ctx.fillRect(this.f.x*this.grid, this.f.y*this.grid, this.grid-2, this.grid-2);
                 this.s.forEach((seg, i) => {
-                    this.ctx.fillStyle = i===0 ? (this.isAI ? '#10a37f' : '#4ade80') : (this.isAI ? '#059669' : '#22c55e');
+                    this.ctx.fillStyle = i===0 ? (this.isAI ? '#8b5cf6' : '#4ade80') : (this.isAI ? '#6d28d9' : '#22c55e');
                     this.ctx.fillRect(seg.x*this.grid, seg.y*this.grid, this.grid-2, this.grid-2);
                 });
             }
@@ -570,7 +559,7 @@
                 this.dead = true;
                 this.over.style.display = 'flex';
                 if(this.isAI) this.over.classList.add('glitch');
-                setTimeout(()=>this.reset(), this.isAI ? 500 : 1500); // AI odradza się natychmiast (auto-fix)
+                setTimeout(()=>this.reset(), this.isAI ? 500 : 1500);
             }
         }
 
@@ -581,33 +570,16 @@
             s3_active = true;
             document.getElementById('slide-3').classList.remove('s3-game-active');
             
-            // Reset UI
             const hCode = document.getElementById('s3-h-code');
             const hLines = document.getElementById('s3-h-lines');
             const aiChat = document.getElementById('s3-ai-chat');
+            document.getElementById('s3-t-human').textContent = "00:00:00";
+            document.getElementById('s3-t-ai').textContent = "00:00:00";
             hCode.innerHTML = ''; hLines.innerHTML = '1'; aiChat.innerHTML = '';
             simHuman.reset(); simAI.reset();
 
-            // Pętla odliczająca czas w tle
-            let startTime = Date.now();
-            let timerInt = setInterval(() => {
-                if(!s3_active) return clearInterval(timerInt);
-                let elapsed = Date.now() - startTime;
-                
-                // AI czas (prawdziwy, szybki)
-                document.getElementById('s3-t-ai').textContent = `00:00:${Math.floor(elapsed/1000).toString().padStart(2,'0')}`;
-                // Człowiek czas (symulacja 1h 13m)
-                let hSecs = Math.floor((elapsed / 12000) * 4380); // max 4380s = 1h 13m
-                let hH = Math.floor(hSecs/3600), hM = Math.floor((hSecs%3600)/60), hS = hSecs%60;
-                document.getElementById('s3-t-human').textContent = `${hH.toString().padStart(2,'0')}:${hM.toString().padStart(2,'0')}:${hS.toString().padStart(2,'0')}`;
-            }, 100);
-
-            // FAZA 1: Równoległe Pisanie (Trwa ok. 8 sekund)
-            
-            // Wątek Człowieka (szybkie scrollowanie i pisanie długiego kodu)
             let humanThread = async () => {
                 let linesCount = 1;
-                // Skoki co 45 znaków by zdążyć napisać cały ogromny kod
                 for(let i=0; i<=humanRawCode.length; i+=45) { 
                     if(!s3_active) return;
                     let chunk = humanRawCode.substring(0, i);
@@ -617,35 +589,39 @@
                         linesCount = newLines;
                         hLines.innerHTML = Array.from({length: linesCount}, (_, k)=>k+1).join('<br>');
                     }
-                    hCode.scrollTop = hCode.scrollHeight;
+                    hCode.parentElement.scrollTop = hCode.parentElement.scrollHeight;
+                    
+                    let progress = Math.min(1, i / humanRawCode.length);
+                    let hSecs = Math.floor(progress * 4320); // 1h 12m
+                    let hH = Math.floor(hSecs/3600), hM = Math.floor((hSecs%3600)/60), hS = hSecs%60;
+                    document.getElementById('s3-t-human').textContent = `${hH.toString().padStart(2,'0')}:${hM.toString().padStart(2,'0')}:${hS.toString().padStart(2,'0')}`;
+                    
                     await wait(20);
                 }
                 hCode.innerHTML = highlight(humanRawCode.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
-                hCode.scrollTop = hCode.scrollHeight;
+                hCode.parentElement.scrollTop = hCode.parentElement.scrollHeight;
+                document.getElementById('s3-t-human').textContent = "01:12:00";
             };
 
-            // Wątek AI (Czat i błyskawiczne wyplucie kodu)
             let aiThread = async () => {
                 await wait(500); if(!s3_active) return;
                 
-                // Prompt
                 const prmpt = document.createElement('div');
                 prmpt.className = 's3-chat-msg';
-                prmpt.style.cssText = "background: #40414f; padding: 15px; border-radius: 8px;";
-                prmpt.innerHTML = `<div style="font-family: 'DM Sans'; font-size: 14px; color: #ececec;">Napisz w pełni działającą grę Snake w HTML5 Canvas. Kod musi być optymalny.</div>`;
+                prmpt.style.cssText = "background: #2b2b36; padding: 15px; border-radius: 8px;";
+                prmpt.innerHTML = `<div style="font-family: 'DM Sans'; font-size: 14px; color: #ececec;">Napisz w pełni działającą grę Snake w HTML5 Canvas. Kod musi być optymalny, wydajny i kompletny.</div>`;
                 aiChat.appendChild(prmpt);
                 setTimeout(()=>prmpt.classList.add('show'), 10);
                 
                 await wait(1000); if(!s3_active) return;
 
-                // Odpowiedź
                 const ans = document.createElement('div');
                 ans.className = 's3-chat-msg';
-                ans.innerHTML = `<div style="width: 30px; height: 30px; border-radius: 4px; background: #10a37f; display: flex; align-items: center; justify-content: center; color: white;"><i class="fa-solid fa-robot"></i></div>
+                ans.innerHTML = `<div style="width: 30px; height: 30px; border-radius: 4px; background: #8b5cf6; display: flex; align-items: center; justify-content: center; color: white;"><i class="fa-solid fa-sparkles"></i></div>
                                  <div style="flex: 1;">
-                                     <div style="font-family: 'DM Sans'; font-size: 14px; color: #ececec; margin-bottom: 10px;">Gotowe. Zastosowałem requestAnimationFrame dla maksymalnej płynności:</div>
-                                     <div style="background: #000; border-radius: 6px; border: 1px solid #444; overflow: hidden;">
-                                        <div style="background: #343541; padding: 5px 10px; font-family: 'Fira Code'; font-size: 11px; color: #888;">javascript</div>
+                                     <div style="font-family: 'DM Sans'; font-size: 14px; color: #ececec; margin-bottom: 10px;">Oto kompletny kod gry z doskonałą pętlą requestAnimationFrame:</div>
+                                     <div style="background: #0d1117; border-radius: 6px; border: 1px solid #30363d; overflow: hidden;">
+                                        <div style="background: #161b22; padding: 5px 10px; font-family: 'Fira Code'; font-size: 11px; color: #888;">html</div>
                                         <div id="s3-ai-code-box" style="padding: 10px; font-family: 'Fira Code', monospace; font-size: 12px; color: #d4d4d4; white-space: pre-wrap;"></div>
                                      </div>
                                  </div>`;
@@ -655,29 +631,32 @@
                 await wait(500); if(!s3_active) return;
 
                 const cBox = document.getElementById('s3-ai-code-box');
-                for(let i=0; i<aiRawCode.length; i+=10) {
+                for(let i=0; i<=aiRawCode.length; i+=15) {
                     if(!s3_active) return;
                     cBox.innerHTML = highlight(aiRawCode.substring(0, i).replace(/</g, "&lt;").replace(/>/g, "&gt;"));
                     aiChat.scrollTop = aiChat.scrollHeight;
+                    
+                    let progress = Math.min(1, i / aiRawCode.length);
+                    let aiSecs = Math.floor(progress * 12);
+                    document.getElementById('s3-t-ai').textContent = `00:00:${aiSecs.toString().padStart(2,'0')}`;
+                    
                     await wait(15);
                 }
                 cBox.innerHTML = highlight(aiRawCode.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
                 aiChat.scrollTop = aiChat.scrollHeight;
+                document.getElementById('s3-t-ai').textContent = "00:00:12";
             };
 
             await Promise.all([humanThread(), aiThread()]);
             await wait(1000); if(!s3_active) return;
 
-            // FAZA 2: Przełączenie na tryb Gry
             document.getElementById('slide-3').classList.add('s3-game-active');
             
             let lastH = 0, lastA = 0;
             function gameLoop(t) {
                 if(!s3_active) return;
-                
                 if(t - lastH > 100) { simHuman.update(); simHuman.draw(); lastH = t; }
-                if(t - lastA > 50) { simAI.update(); simAI.draw(); lastA = t; } // AI jest 2x szybsze
-                
+                if(t - lastA > 50) { simAI.update(); simAI.draw(); lastA = t; }
                 requestAnimationFrame(gameLoop);
             }
             requestAnimationFrame(gameLoop);
@@ -689,11 +668,11 @@
         async function runSlide4() {
             s4_active = true;
             
-            // Reset UI states
             document.getElementById('s4-code-old').style.display = 'block';
             document.getElementById('s4-code-diff').style.display = 'none';
             document.getElementById('s4-code-new').style.display = 'none';
             document.getElementById('s4-ai-panel').classList.remove('open');
+            document.getElementById('s4-highlight').style.width = '0';
             
             const cursor = document.getElementById('s4-cursor');
             const btnApply = document.getElementById('s4-btn-apply');
@@ -703,46 +682,39 @@
 
             await wait(1000); if(!s4_active) return;
 
-            // 1. Zaznaczenie złego kodu
-            const highlightBox = document.createElement('div');
-            highlightBox.style.cssText = "position: absolute; top: 125px; left: 10px; height: 80px; width: 0; background: rgba(255,255,255,0.05); border-radius: 4px; transition: width 0.5s; pointer-events: none;";
-            document.getElementById('s4-code-old').parentElement.appendChild(highlightBox);
-            await wait(100); highlightBox.style.width = '350px';
+            // Highlight error
+            document.getElementById('s4-highlight').style.width = '100%';
 
             await wait(800); if(!s4_active) return;
 
-            // 2. Wysunięcie panelu AI
+            // Open Panel
             document.getElementById('s4-ai-panel').classList.add('open');
             
             await wait(1500); if(!s4_active) return;
 
-            // 3. Pokazanie Inline Diff w kodzie
+            // Show Diff
             document.getElementById('s4-code-old').style.display = 'none';
             document.getElementById('s4-code-diff').style.display = 'block';
-            highlightBox.style.display = 'none';
 
             await wait(1000); if(!s4_active) return;
 
-            // 4. Ruch kursorem myszki do przycisku Zastosuj
+            // Cursor movement with exact scaling calculation
             cursor.style.transition = 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)';
             cursor.style.opacity = '1';
             
-            // Wymaga pobrania prawdziwych koordynatów przycisku z DOM
             const btnRect = btnApply.getBoundingClientRect();
             const areaRect = document.getElementById('presentation-area').getBoundingClientRect();
-            // Przeliczenie skali
-            const scaleX = 1280 / areaRect.width;
-            const scaleY = 720 / areaRect.height;
+            const scale = areaRect.width / 1280;
             
-            const targetLeft = (btnRect.left - areaRect.left) * scaleX + (btnRect.width/2);
-            const targetTop = (btnRect.top - areaRect.top) * scaleY + (btnRect.height/2);
+            const targetLeft = (btnRect.left - areaRect.left) / scale + (btnRect.width / scale / 2) - 12;
+            const targetTop = (btnRect.top - areaRect.top) / scale + (btnRect.height / scale / 2) - 12;
 
             cursor.style.left = targetLeft + 'px';
             cursor.style.top = targetTop + 'px';
 
             await wait(900); if(!s4_active) return;
 
-            // 5. Kliknięcie
+            // Click
             cursor.style.transform = 'scale(0.8)';
             btnApply.classList.add('clicked');
             
@@ -750,18 +722,18 @@
             cursor.style.transform = 'scale(1)';
             btnApply.classList.remove('clicked');
 
-            // 6. Aplikacja zmian i zamknięcie panelu
+            // Apply
             document.getElementById('s4-code-diff').style.display = 'none';
             document.getElementById('s4-code-new').style.display = 'block';
             
             await wait(500); if(!s4_active) return;
             document.getElementById('s4-ai-panel').classList.remove('open');
             cursor.style.opacity = '0';
-            cursor.style.top = '600px'; // odejście w dół
+            cursor.style.top = '600px';
         }
 
         // ==========================================
-        // SILNIK PARKOUR DLA SLAJDU 5 (Pozostaje bez zmian, działa w tle)
+        // SILNIK PARKOUR DLA SLAJDU 5
         // ==========================================
         function initSlide5Game() {
             const cv = document.getElementById('s5-canvas');
@@ -774,7 +746,7 @@
                 w = cv.width = 1280; h = cv.height = 720; fl = h * 0.8;
                 p = { x: 250, y: fl-16, v: 0, r: 0, m: C }; e = []; pt = []; nx = w + 300; d = 0; zn = C; nz = C; ck = 0;
             }
-            rs(); // Rozwiązano problem zniekształceń, wymuszając równe 1280x720
+            rs(); 
 
             function rnd(a, b) { return Math.random() * (b - a) + a; }
             function ad(t, dx, y, w, h, m) { e.push({ t, x: nx + dx, y, w, h, m }); }
@@ -819,12 +791,15 @@
 
             function draw() {
                 if(currentSlide !== 4) { requestAnimationFrame(draw); return; }
-                x.clearRect(0,0,w,h);
+                
+                x.fillStyle = '#050814';
+                x.fillRect(0, 0, w, h);
+                
                 x.strokeStyle = 'rgba(0, 240, 255, 0.03)'; x.lineWidth = 2;
                 let ofs = (fr * spd * 0.2) % 60;
                 for(let i = -ofs; i < w; i += 60) { x.beginPath(); x.moveTo(i, 0); x.lineTo(i, h); x.stroke(); }
                 for(let i = 0; i < h; i += 60) { x.beginPath(); x.moveTo(0, i); x.lineTo(w, i); x.stroke(); }
-                x.fillStyle = '#050814'; x.fillRect(0, fl, w, h);
+                
                 x.shadowBlur = 20; x.shadowColor = '#00f0ff'; x.strokeStyle = '#00f0ff';
                 x.beginPath(); x.moveTo(0, fl); x.lineTo(w, fl); x.lineWidth = 3; x.stroke();
                 x.shadowBlur = 0;
