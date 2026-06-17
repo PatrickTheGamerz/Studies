@@ -81,9 +81,6 @@
         .code-content { flex: 1; padding: 20px; overflow-y: auto; color: #d4d4d4; font-size: 13px; line-height: 1.6; white-space: pre-wrap; word-break: break-all; }
         .s3-chat-msg { display: flex; gap: 15px; margin-bottom: 20px; opacity: 0; transform: translateY(10px); transition: all 0.3s; }
         .s3-chat-msg.show { opacity: 1; transform: translateY(0); }
-        .s3-bug-overlay { position: absolute; inset: 0; background: rgba(239, 68, 68, 0.2); border: 4px solid #ef4444; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; }
-        .s3-bug-overlay.glitch { opacity: 1; animation: s3glitch 0.2s infinite; }
-        @keyframes s3glitch { 0% { transform: translate(2px, 2px); } 50% { transform: translate(-2px, -2px); } 100% { transform: translate(2px, -2px); } }
 
         /* Slajd 4: Copilot/Cursor Debug */
         .s4-panel-ai { position: absolute; right: -400px; top: 0; width: 380px; height: 100%; background: #161b22; border-left: 1px solid #30363d; box-shadow: -10px 0 30px rgba(0,0,0,0.5); z-index: 20; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); display: flex; flex-direction: column; }
@@ -202,7 +199,7 @@
                 <!-- AI Chat -->
                 <div class="half-panel" style="background: #1e1e24;">
                     <div class="panel-header" style="background: #1e1e24; border-color: #333; font-weight: bold;">
-                        <i class="fa-solid fa-sparkles" style="color: #8b5cf6;"></i> Gemini Advanced
+                        <i class="fa-solid fa-sparkles" style="color: #8b5cf6;"></i> Gemini
                     </div>
                     <div style="flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column;" id="s3-ai-chat">
                     </div>
@@ -214,17 +211,18 @@
                 <div class="half-panel" style="align-items: center; justify-content: center; border-right: 1px solid #333;">
                     <div style="border: 4px solid #333; border-radius: 8px; box-shadow: 0 0 40px rgba(0,0,0,0.8); position: relative; background: #000;">
                         <canvas id="cvs-human" width="400" height="400"></canvas>
-                        <div id="over-human" style="position: absolute; inset: 0; background: rgba(0,0,0,0.8); display: none; flex-direction: column; align-items: center; justify-content: center; color: #ef4444; font-size: 32px; font-weight: bold;">
-                            KONIEC GRY
-                            <div style="font-size: 14px; color: #22c55e; margin-top: 10px;">Restartowanie...</div>
+                        <div id="over-human" style="position: absolute; inset: 0; background: rgba(20, 20, 20, 0.9); backdrop-filter: blur(4px); display: none; flex-direction: column; align-items: center; justify-content: center; color: #ff5555; font-size: 32px; font-weight: bold;">
+                            <div style="text-shadow: 2px 2px 0 #000;">KONIEC GRY</div>
+                            <button style="margin-top: 25px; padding: 12px 24px; font-size: 18px; cursor: default; background-color: #55ff55; color: #000; font-weight: bold; border: none; border-radius: 4px;">Zagraj ponownie</button>
                         </div>
                     </div>
                 </div>
                 <div class="half-panel" style="align-items: center; justify-content: center; background: #050505;">
                     <div style="border: 2px solid #333; border-radius: 4px; box-shadow: 0 0 20px rgba(57, 255, 20, 0.2); position: relative; background: #000;">
                         <canvas id="cvs-ai" width="400" height="400"></canvas>
-                        <div id="over-ai" class="s3-bug-overlay">
-                            <div style="background: #ef4444; color: #fff; font-family: 'Fira Code'; font-size: 14px; padding: 4px 10px; font-weight: bold;">[ERR] GLITCH DETECTED</div>
+                        <div id="over-ai" style="position: absolute; inset: 0; background: rgba(0,0,0,0.8); display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                            <h1 style="color: #0ff; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0 0 20px 0; font-size: 32px; font-weight: bold;">KONIEC GRY</h1>
+                            <button style="padding: 15px 30px; background: transparent; color: #39ff14; border: 2px solid #39ff14; font-size: 20px; font-weight: normal; cursor: default; font-family: 'Segoe UI', Tahoma, sans-serif;">START</button>
                         </div>
                     </div>
                 </div>
@@ -457,7 +455,6 @@
             
             const aiMsg = document.createElement('div');
             aiMsg.style.cssText = "align-self: flex-start; width: 100%; display: flex; gap: 15px;";
-            // Usunięto czarny okrąg z avatarem.
             aiMsg.innerHTML = `<div style="flex: 1; max-width: 100%; overflow: hidden;" id="s2-ai-content">
                                  <div id="s2-ai-text" style="margin-bottom: 15px;"></div>
                                </div>`;
@@ -467,7 +464,6 @@
 
             await wait(200); if(!s2_active) return;
 
-            // Dodanie elementu z kodem pod wygenerowanym tekstem
             const codeBox = document.createElement('div');
             codeBox.style.cssText = "background: #0d0d0d; border-radius: 8px; border: 1px solid #333; overflow: hidden;";
             codeBox.innerHTML = `<div style="background: #2f2f2f; padding: 8px 15px; display: flex; justify-content: space-between; font-family: 'Fira Code'; font-size: 12px; color: #b4b4b4;"><span>html</span><span>Copy</span></div>
@@ -512,7 +508,6 @@
                 this.f = {x: Math.floor(Math.random()*20), y: Math.floor(Math.random()*20)};
                 this.dead = false;
                 this.over.style.display = 'none';
-                this.over.classList.remove('glitch');
             }
             update() {
                 if(this.dead) return;
@@ -576,18 +571,17 @@
                     this.ctx.shadowBlur = 0;
                 } else {
                     this.ctx.fillStyle = '#111'; this.ctx.fillRect(0,0,400,400);
-                    this.ctx.fillStyle = '#ef4444'; this.ctx.fillRect(this.f.x*this.grid, this.f.y*this.grid, this.grid-2, this.grid-2);
+                    this.ctx.fillStyle = '#ff3333'; this.ctx.fillRect(this.f.x*this.grid+1, this.f.y*this.grid+1, this.grid-2, this.grid-2);
                     this.s.forEach((seg, i) => {
-                        this.ctx.fillStyle = i===0 ? '#4ade80' : '#22c55e';
-                        this.ctx.fillRect(seg.x*this.grid, seg.y*this.grid, this.grid-2, this.grid-2);
+                        this.ctx.fillStyle = i===0 ? '#55ff55' : '#22cc22';
+                        this.ctx.fillRect(seg.x*this.grid+1, seg.y*this.grid+1, this.grid-2, this.grid-2);
                     });
                 }
             }
             die() {
                 this.dead = true;
                 this.over.style.display = 'flex';
-                if(this.isAI) this.over.classList.add('glitch');
-                setTimeout(()=>this.reset(), this.isAI ? 500 : 1500);
+                setTimeout(()=>this.reset(), this.isAI ? 800 : 1500);
             }
         }
 
@@ -608,8 +602,8 @@
 
             let humanThread = async () => {
                 let linesCount = 1;
-                // Zwiększony rozmiar chunku zapobiega przypadkowemu ucinaniu kodu.
-                for(let i=0; i<=humanRawCode.length; i+=100) { 
+                // Poprawiony mechanizm animacji - rzadsze aktualizacje dla lepszego wydajności i idealne skopiowanie całego kodu na koniec.
+                for(let i=0; i<=humanRawCode.length; i+=75) { 
                     if(!s3_active) return;
                     let chunk = humanRawCode.substring(0, i);
                     hCode.innerHTML = highlight(chunk.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
@@ -625,9 +619,12 @@
                     let hH = Math.floor(hSecs/3600), hM = Math.floor((hSecs%3600)/60), hS = hSecs%60;
                     document.getElementById('s3-t-human').textContent = `${hH.toString().padStart(2,'0')}:${hM.toString().padStart(2,'0')}:${hS.toString().padStart(2,'0')}`;
                     
-                    await wait(15);
+                    await wait(10);
                 }
+                // Perfekcyjne wpisanie całego i ostatecznego bloku
                 hCode.innerHTML = highlight(humanRawCode.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
+                let finalLinesCount = (humanRawCode.match(/\n/g) || []).length + 1;
+                hLines.innerHTML = Array.from({length: finalLinesCount}, (_, k)=>k+1).join('<br>');
                 hCode.parentElement.scrollTop = hCode.parentElement.scrollHeight;
                 document.getElementById('s3-t-human').textContent = "01:12:00";
             };
@@ -646,7 +643,6 @@
 
                 const ans = document.createElement('div');
                 ans.className = 's3-chat-msg';
-                // Usunięto fioletowy kwadrat/avatar.
                 ans.innerHTML = `<div style="flex: 1;">
                                      <div style="font-family: 'DM Sans'; font-size: 14px; color: #ececec; margin-bottom: 10px;">Oto kompletny kod gry z doskonałą pętlą requestAnimationFrame:</div>
                                      <div style="background: #0d1117; border-radius: 6px; border: 1px solid #30363d; overflow: hidden;">
@@ -660,7 +656,7 @@
                 await wait(500); if(!s3_active) return;
 
                 const cBox = document.getElementById('s3-ai-code-box');
-                for(let i=0; i<=aiRawCode.length; i+=25) {
+                for(let i=0; i<=aiRawCode.length; i+=30) {
                     if(!s3_active) return;
                     cBox.innerHTML = highlight(aiRawCode.substring(0, i).replace(/</g, "&lt;").replace(/>/g, "&gt;"));
                     aiChat.scrollTop = aiChat.scrollHeight;
@@ -669,7 +665,7 @@
                     let aiSecs = Math.floor(progress * 12);
                     document.getElementById('s3-t-ai').textContent = `00:00:${aiSecs.toString().padStart(2,'0')}`;
                     
-                    await wait(15);
+                    await wait(10);
                 }
                 cBox.innerHTML = highlight(aiRawCode.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
                 aiChat.scrollTop = aiChat.scrollHeight;
@@ -776,7 +772,6 @@
             function rnd(a, b) { return Math.random() * (b - a) + a; }
             function ad(t, dx, y, w, h, m) { e.push({ t, x: nx + dx, y, w, h, m }); }
 
-            // Perfekcyjnie wyliczone i wykalibrowane levele
             const lvls = {
                 [C]: [
                     () => { ad('b',0,fl-40,60,40); ad('b',60,fl-80,60,80); ad('b',120,fl-120,60,120); nx+=600; },
@@ -825,7 +820,6 @@
                 if (p.y >= gr - 16) { p.y = gr - 16; p.v = 0; on = true; if(p.m===C) p.r = Math.round(p.r/90)*90; }
 
                 if (p.m === C) {
-                    // Bezkompromisowe AI do Parkouru
                     let jmp = false;
                     e.forEach(v => {
                         if (v.x > p.x && v.x < p.x + 160) {
@@ -838,7 +832,6 @@
                     let orb = e.find(v => v.t==='j' && Math.abs(v.x-p.x) < 40 && Math.abs(v.y-p.y) < 60 && !v.u);
                     if (orb) { p.v = -14.5; orb.u = 1; }
                 } else {
-                    // AI dla Statku/UFO - doskonałe przewidywanie tuneli
                     let cl = 0, flr = fl;
                     e.forEach(v => {
                         if (v.t==='b' && v.x > p.x - 20 && v.x < p.x + 380) {
